@@ -1,0 +1,41 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --color-ivory: #F2EBDD;
+    --color-ivory-light: #FBF8F2;
+    --color-ivory-tint: #EAE2D2;
+    --color-olive: #363D28;
+    --color-olive-muted: #535C3E;
+    --color-olive-dark: #222719;
+    --color-ochre: #A18347;
+    --color-ochre-light: #C4A76C;
+    --color-hairline: rgba(54, 61, 40, 0.14);
+  }
+
+  html {
+    font-family: 'Manrope', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background-color: var(--color-ivory);
+    color: var(--color-olive);
+    scroll-behavior: smooth;
+  }
+
+  /* Offset anchor scrolling so fixed navigation doesn't overlap titles */
+  section[id] {
+    scroll-margin-top: 6rem;
+  }
+
+  /* Accessible focus indicators */
+  :focus-visible {
+    outline: 2px solid var(--color-olive);
+    outline-offset: 3px;
+  }
+}
+
+.font-serif {
+  font-family: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+}
+
+.font-sans {
+  font-family: 'Manrope', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}

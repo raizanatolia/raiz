@@ -1,0 +1,8 @@
+{
+  "name": "RAÍZ · Anatolia Zapata",
+  "description": "Comprende tu raíz. Transforma tus decisiones. Espacio de acompañamiento para mujeres que desean elegir con mayor conciencia.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
