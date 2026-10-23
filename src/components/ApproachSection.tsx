@@ -1,5 +1,6 @@
 import { FUNDAMENTAL_RESOURCES, PageId } from '../data/content';
 import { Compass, Heart, CompassIcon, BatteryCharging, CheckCircle2, ArrowRight } from 'lucide-react';
+import BotanicalGrowthSection from './BotanicalGrowthSection';
 
 interface ApproachSectionProps {
   onNavigate: (page: PageId) => void;
@@ -11,15 +12,6 @@ const RESOURCE_ICONS = [
   CompassIcon,     // Dirección
   BatteryCharging, // Energía vital
   CheckCircle2,    // Acción consistente
-];
-
-// Progresión botánica inspirada en la metáfora natural
-const BOTANICAL_PROGRESSION = [
-  { step: '01', element: 'Semilla', description: 'Intención y punto de partida' },
-  { step: '02', element: 'Raíces', description: 'Historia, valores y recursos profundos' },
-  { step: '03', element: 'Brote y Tronco', description: 'Eje interior y sostén cotidiano' },
-  { step: '04', element: 'Ramas y Hojas', description: 'Nuevas opciones y perspectiva ampliada' },
-  { step: '05', element: 'Frutos', description: 'Decisiones conscientes y huella positiva' },
 ];
 
 export default function ApproachSection({ onNavigate }: ApproachSectionProps) {
@@ -54,40 +46,9 @@ export default function ApproachSection({ onNavigate }: ApproachSectionProps) {
           </button>
         </div>
 
-        {/* Progresión Botánica Visual (Sin inventar etapas metodológicas ficticias) */}
-        <div className="mb-20 p-8 sm:p-10 rounded-3xl bg-[#FAF7F2] border border-[#363D28]/12">
-          <div className="max-w-xl mb-8">
-            <span className="text-xs font-sans uppercase tracking-widest text-[#A18347] font-semibold block mb-2">
-              Metáfora de crecimiento
-            </span>
-            <h3 className="text-2xl font-serif text-[#363D28]">
-              Del arraigo interior a la decisión visible
-            </h3>
-          </div>
-
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-6">
-            {BOTANICAL_PROGRESSION.map((item, idx) => (
-              <div
-                key={item.step}
-                className="p-5 rounded-2xl bg-[#F2EBDD]/70 border border-[#363D28]/10 flex flex-col justify-between"
-              >
-                <div>
-                  <span className="text-xs font-serif italic text-[#A18347] block mb-2">
-                    Fase {item.step}
-                  </span>
-                  <h4 className="text-lg font-serif font-semibold text-[#363D28] mb-1">
-                    {item.element}
-                  </h4>
-                  <p className="text-xs font-sans text-[#363D28]/75 leading-relaxed font-light">
-                    {item.description}
-                  </p>
-                </div>
-                <div className="mt-4 pt-3 border-t border-[#363D28]/10 flex justify-end">
-                  <span className="w-2 h-2 rounded-full bg-[#A18347]/50" />
-                </div>
-              </div>
-            ))}
-          </div>
+        {/* Metáfora interactiva de crecimiento botánico (SVG + GSAP) */}
+        <div className="mb-20">
+          <BotanicalGrowthSection />
         </div>
 
         {/* 06. Mapa RAÍZ: los cinco recursos */}

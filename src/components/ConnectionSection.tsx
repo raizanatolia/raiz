@@ -1,4 +1,4 @@
-import { IDENTIFICATION_CARDS, PageId } from '../data/content';
+import { PageId } from '../data/content';
 import { Sparkles, Users, Lightbulb, Compass, ArrowRight } from 'lucide-react';
 import OrganicTrace from './OrganicTrace';
 
@@ -6,7 +6,45 @@ interface ConnectionSectionProps {
   onNavigate: (page: PageId) => void;
 }
 
-const ICONS = [Sparkles, Users, Lightbulb, Compass];
+// 4 tarjetas fotográficas editoriales con imágenes oficiales de Cloudinary
+const EDITORIAL_CARDS = [
+  {
+    id: 'bienestar',
+    title: 'Bienestar',
+    description:
+      'Cuando lo que haces y lo que deseas parecen ir en direcciones distintas, puedes sentirte cada vez más cansada o desconectada de ti.',
+    icon: Sparkles,
+    image: 'https://res.cloudinary.com/rus3f4tb/image/upload/v1792770476/raiz-anatolia-zapata-bienestar.png',
+    position: 'center 20%',
+  },
+  {
+    id: 'relaciones',
+    title: 'Relaciones',
+    description:
+      'Reconocer tus patrones puede ayudarte a comprender mejor cómo te comunicas, cuidas y estableces límites.',
+    icon: Users,
+    image: 'https://res.cloudinary.com/rus3f4tb/image/upload/v1792770503/raiz-anatolia-zapata-relaciones.png',
+    position: 'center 30%',
+  },
+  {
+    id: 'oportunidades',
+    title: 'Oportunidades',
+    description:
+      'Hay ideas y posibilidades que merecen ser exploradas, incluso cuando todavía no tienes todas las respuestas.',
+    icon: Lightbulb,
+    image: 'https://res.cloudinary.com/rus3f4tb/image/upload/v1792770546/raiz-anatolia-zapata-oportunidades.png',
+    position: 'center 25%',
+  },
+  {
+    id: 'forma-elegir',
+    title: 'Tu forma de elegir',
+    description:
+      'Puedes aprender a reconocer qué influye en tus respuestas y considerar otras maneras de actuar.',
+    icon: Compass,
+    image: 'https://res.cloudinary.com/rus3f4tb/image/upload/v1792770544/raiz-anatolia-zapata-tu-forma-de-elegir.png',
+    position: 'center 25%',
+  },
+];
 
 export default function ConnectionSection({ onNavigate }: ConnectionSectionProps) {
   return (
@@ -27,23 +65,45 @@ export default function ConnectionSection({ onNavigate }: ConnectionSectionProps
           </p>
         </div>
 
-        {/* Cuatro tarjetas minimalistas con íconos lineales discretos */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-14">
-          {IDENTIFICATION_CARDS.map((card, index) => {
-            const Icon = ICONS[index];
+        {/* Cuatro tarjetas fotográficas editoriales premium */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-7 mb-14">
+          {EDITORIAL_CARDS.map((card) => {
+            const Icon = card.icon;
             return (
               <div
                 key={card.id}
-                className="bg-[#F2EBDD] p-8 rounded-2xl border border-[#363D28]/10 hover:border-[#363D28]/25 transition-all duration-200 flex flex-col justify-between"
+                className="group relative overflow-hidden rounded-2xl sm:rounded-3xl min-h-[360px] sm:min-h-[390px] md:min-h-[410px] flex flex-col justify-end p-7 sm:p-9 border border-[#363D28]/15 shadow-xs"
               >
-                <div>
-                  <div className="w-10 h-10 rounded-full bg-[#363D28]/5 flex items-center justify-center text-[#363D28] mb-5">
-                    <Icon className="w-5 h-5 stroke-[1.6]" />
+                {/* Background Photography with smooth hover zoom respecting reduced motion */}
+                <img
+                  src={card.image}
+                  alt={card.title}
+                  loading="lazy"
+                  style={{ objectPosition: card.position }}
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-[350ms] ease-out group-hover:scale-[1.03] motion-reduce:transform-none"
+                />
+
+                {/* Overlay degradado verde oliva profundo #363D28 (~85% en texto, reduciéndose hacia la derecha y arriba) */}
+                <div
+                  className="absolute inset-0 pointer-events-none"
+                  style={{
+                    background:
+                      'linear-gradient(135deg, rgba(54,61,40,0.88) 0%, rgba(54,61,40,0.82) 48%, rgba(54,61,40,0.38) 82%, rgba(54,61,40,0.18) 100%), linear-gradient(to top, rgba(54,61,40,0.92) 0%, rgba(54,61,40,0.72) 45%, transparent 80%)',
+                  }}
+                  aria-hidden="true"
+                />
+
+                {/* Content: Icon, Title, Description aligned left at the bottom */}
+                <div className="relative z-10 flex flex-col items-start text-left max-w-md">
+                  <div className="w-10 h-10 rounded-full bg-[#F2EBDD]/15 backdrop-blur-xs border border-[#F2EBDD]/25 flex items-center justify-center text-[#F2EBDD] mb-4">
+                    <Icon className="w-5 h-5 stroke-[1.7]" />
                   </div>
-                  <h3 className="text-xl font-serif font-semibold text-[#363D28] mb-3">
+
+                  <h3 className="text-2xl sm:text-[1.65rem] font-serif font-semibold text-[#F2EBDD] tracking-tight mb-2.5 leading-snug">
                     {card.title}
                   </h3>
-                  <p className="text-sm font-sans text-[#363D28]/80 font-light leading-relaxed">
+
+                  <p className="text-sm sm:text-[0.93rem] font-sans text-[#F2EBDD]/90 font-light leading-relaxed">
                     {card.description}
                   </p>
                 </div>

@@ -15,6 +15,10 @@ export const BRAND_ASSETS = {
   heroBackgroundCloudinaryUrl: 'https://res.cloudinary.com/rus3f4tb/image/upload/v1792767313/background-hero-raiz-anatoliazapata.png',
   // Retrato oficial de Anatolia Zapata
   anatoliaPhoto: 'https://res.cloudinary.com/rus3f4tb/image/upload/f_auto,q_auto/v1792769718/Anatolia-Zapata-Coach-RAIZ.png',
+  // Pasos oficiales de El Sentido de RAÍZ
+  senseComprender: 'https://res.cloudinary.com/rus3f4tb/image/upload/f_auto,q_auto/v1792773744/raiz-anatolia-zapata-comprender.png',
+  senseReconocer: 'https://res.cloudinary.com/rus3f4tb/image/upload/f_auto,q_auto/v1792773744/raiz-anatolia-zapata-reconocer.png',
+  senseElegir: 'https://res.cloudinary.com/rus3f4tb/image/upload/f_auto,q_auto/v1792773744/raiz-anatolia-zapata-elegir.png',
 };
 
 export const CLOUDINARY_CONFIG = {
