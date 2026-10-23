@@ -1,34 +1,33 @@
 /**
- * Central image configuration for RAÍZ · Anatolia Zapata
+ * Central image & brand assets configuration for RAÍZ · Anatolia Zapata
  *
- * Prepared for future Cloudinary integration:
- * To migrate, simply update `CLOUDINARY_BASE_URL` or the individual image URLs.
- * The `getImageUrl` helper normalizes assets and supports responsive sizing.
+ * Official Cloudinary Assets:
+ * - Logotipo horizontal: https://res.cloudinary.com/rus3f4tb/image/upload/v1792767322/RAIZ_HorizontalLogoTransparente.png
+ * - Isotipo / Favicon: https://res.cloudinary.com/rus3f4tb/image/upload/v1792767407/favicon-raiz.png
  */
 
 import { ImageAsset } from '../types';
 
+export const BRAND_ASSETS = {
+  logoHorizontal: 'https://res.cloudinary.com/rus3f4tb/image/upload/v1792767322/RAIZ_HorizontalLogoTransparente.png',
+  isotipo: 'https://res.cloudinary.com/rus3f4tb/image/upload/v1792767407/favicon-raiz.png',
+  // Background oficial de Hero
+  heroBackgroundCloudinaryUrl: 'https://res.cloudinary.com/rus3f4tb/image/upload/v1792767313/background-hero-raiz-anatoliazapata.png',
+  // Retrato oficial de Anatolia Zapata
+  anatoliaPhoto: 'https://res.cloudinary.com/rus3f4tb/image/upload/f_auto,q_auto/v1792769718/Anatolia-Zapata-Coach-RAIZ.png',
+};
+
 export const CLOUDINARY_CONFIG = {
-  cloudName: '', // e.g. 'raiz-anatolia'
-  baseUrl: '',   // e.g. 'https://res.cloudinary.com/raiz-anatolia/image/upload'
+  cloudName: 'rus3f4tb',
+  baseUrl: 'https://res.cloudinary.com/rus3f4tb/image/upload',
   useCloudinary: false,
 };
 
 export const IMAGES: Record<string, ImageAsset> = {
-  hero: {
-    id: 'hero_contemplation',
-    url: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=1200&q=85',
-    alt: 'Mujer en un momento de pausa y serenidad con luz natural cálida',
-    source: 'Unsplash (Stock provisional)',
-    isProvisional: true,
-    cropPosition: 'center 30%',
-    aspectRatio: '4/5',
-    caption: 'Momento de pausa y claridad',
-  },
   approachSeed: {
     id: 'approach_roots_growth',
     url: 'https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=1000&q=85',
-    alt: 'Brote en crecimiento con raíces en la tierra, simbolizando el arraigo profundo',
+    alt: 'Brote en crecimiento con raíces en la tierra fértil, simbolizando el arraigo profundo',
     source: 'Unsplash (Stock provisional)',
     isProvisional: true,
     cropPosition: 'center center',
@@ -44,6 +43,16 @@ export const IMAGES: Record<string, ImageAsset> = {
     cropPosition: 'center center',
     aspectRatio: '4/3',
     caption: 'Bitácora de registro personal del proceso',
+  },
+  anatoliaPortrait: {
+    id: 'anatolia_portrait_official',
+    url: 'https://res.cloudinary.com/rus3f4tb/image/upload/f_auto,q_auto/v1792769718/Anatolia-Zapata-Coach-RAIZ.png',
+    alt: 'Anatolia Zapata, coach y creadora del Método RAÍZ',
+    source: 'Cloudinary (Retrato oficial)',
+    isProvisional: false,
+    cropPosition: 'center 15%',
+    aspectRatio: '3/4',
+    caption: 'Anatolia Zapata · Creadora de RAÍZ',
   },
   anatoliaSpace: {
     id: 'anatolia_space_botanical',
@@ -65,12 +74,18 @@ export const IMAGES: Record<string, ImageAsset> = {
     aspectRatio: '16/9',
     caption: 'Alineación consciente en organizaciones',
   },
+  natureReflection: {
+    id: 'nature_reflection_leaf',
+    url: 'https://images.unsplash.com/photo-1518495973542-4542c06a5843?auto=format&fit=crop&w=1000&q=85',
+    alt: 'Luz natural matutina filtrándose suavemente entre follaje sereno',
+    source: 'Unsplash (Stock provisional)',
+    isProvisional: true,
+    cropPosition: 'center center',
+    aspectRatio: '16/10',
+    caption: 'Pausa y luz natural',
+  },
 };
 
-/**
- * Returns the optimized URL for an image asset.
- * If Cloudinary is enabled in the future, it appends appropriate transformations.
- */
 export function getImageUrl(asset: ImageAsset, options?: { width?: number; quality?: number }): string {
   if (CLOUDINARY_CONFIG.useCloudinary && CLOUDINARY_CONFIG.baseUrl) {
     const transforms: string[] = ['f_auto', 'q_auto'];

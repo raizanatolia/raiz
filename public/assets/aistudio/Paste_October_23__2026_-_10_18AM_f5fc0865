@@ -1,0 +1,1148 @@
+# PROMPT MAESTRO PARA GOOGLE AI STUDIO
+## RAÍZ · Anatolia Zapata | Fase 1: Rediseño visual, experiencia de usuario y conversión
+
+### 1. ROL Y OBJETIVO
+
+Actúa como un equipo senior integrado por:
+
+- Director creativo especializado en marcas personales premium.
+- Diseñador UI/UX experto en landing pages de conversión.
+- Especialista en copywriting emocional y estratégico para público femenino.
+- Desarrollador frontend senior.
+- Consultor de branding, accesibilidad y experiencia mobile-first.
+
+Trabajarás sobre el **proyecto web existente de RAÍZ · Anatolia Zapata**, actualmente abierto en Google AI Studio.
+
+**Tu tarea es implementar las mejoras en el código existente, no limitarte a describirlas.**
+
+Antes de modificar archivos, inspecciona la arquitectura, las rutas, los componentes, los estilos y las funcionalidades actuales.
+
+Conserva lo que funciona. Refactoriza únicamente cuando sea necesario.
+
+No reconstruyas el proyecto desde cero, no elimines funcionalidades existentes y no introduzcas dependencias innecesarias.
+
+### OBJETIVO PRINCIPAL
+
+Transformar la web actual en una experiencia editorial, humana, elegante y comercialmente efectiva.
+
+La visitante debe comprender rápidamente:
+
+1. Qué es RAÍZ.
+2. Si este acompañamiento es para ella.
+3. Cómo puede ayudarla a explorar sus decisiones.
+4. Qué alternativas de acompañamiento existen.
+5. Cómo puede empezar.
+
+La conversión principal estará orientada al **Mapa RAÍZ y al contacto para conocer el acompañamiento**.
+
+La web tendrá dos caminos claramente diferenciados:
+
+- **Personas:** principalmente mujeres en momentos de transición personal o profesional.
+- **Organizaciones:** empresas e instituciones interesadas en desarrollo humano, bienestar, liderazgo y género.
+
+La comunicación no debe sonar agresiva ni excesivamente comercial. Debe generar identificación, confianza y una invitación natural a actuar.
+
+---
+
+# 2. REFERENCIAS VISUALES
+
+Utiliza las cuatro referencias gráficas adjuntas como guía de dirección artística:
+
+- Referencia de Inicio / Método RAÍZ.
+- Referencia de la página Organizaciones.
+- Referencia de la página Mapa RAÍZ.
+- Mosaico editorial con las seis páginas propuestas.
+
+Las referencias orientan la composición, la atmósfera y el lenguaje visual, pero no representan contenido definitivo ni fotografías verificadas.
+
+**No insertes las capturas completas como imágenes de la web.** Reconstruye sus composiciones con HTML/CSS y componentes responsivos reales.
+
+Elementos visuales que debemos conservar:
+
+- Editorial minimalista.
+- Tipografía serif elegante en titulares.
+- Fotografías naturales.
+- Tonos tierra y verde oliva.
+- Espacios amplios y buen ritmo visual.
+- Líneas divisorias delicadas.
+- Tarjetas sobrias.
+- Botones verde oliva.
+- Elementos botánicos utilizados discretamente.
+- Contraste entre superficies marfil, blanco cálido y verde profundo.
+
+Evita que parezca una web genérica de coaching, un spa o un centro de bienestar clínico.
+
+Debe sentirse como una marca personal con identidad, profundidad y sensibilidad.
+
+---
+
+# 3. IDENTIDAD VISUAL OFICIAL DE TRABAJO
+
+### Logotipo horizontal
+
+https://res.cloudinary.com/rus3f4tb/image/upload/v1792767322/RAIZ_HorizontalLogoTransparente.png
+
+Utilízalo en el encabezado y donde corresponda el logotipo completo.
+
+Respeta sus proporciones originales.
+
+No reescribas manualmente el texto que ya contiene el archivo ni dupliques la marca junto a él.
+
+### Isotipo
+
+https://res.cloudinary.com/rus3f4tb/image/upload/v1792767407/favicon-raiz.png
+
+Utilízalo en aplicaciones pequeñas, acentos visuales, identidad y situaciones donde tenga sentido mostrar únicamente el símbolo.
+
+### Favicon
+
+https://res.cloudinary.com/rus3f4tb/image/upload/v1792767407/favicon-raiz.png
+
+Configúralo correctamente como favicon del proyecto, incluyendo las referencias apropiadas en el documento HTML.
+
+Verifica que funcione y que no permanezca el favicon por defecto de Google AI Studio o del framework utilizado.
+
+### Paleta de colores
+
+- Verde oliva profundo: `#363D28`
+- Ocre dorado mate: `#A18347`
+- Marfil cálido: `#F2EBDD`
+
+Puedes utilizar variaciones tonales derivadas de esta paleta para construir fondos, bordes y contrastes, sin incorporar colores protagonistas ajenos.
+
+Utiliza el verde para identidad, botones y puntos de mayor jerarquía.
+
+Utiliza el marfil para fondos y espacios de descanso visual.
+
+Utiliza el ocre solamente como acento elegante.
+
+Evita brillos metálicos, degradados dorados, sombras exageradas y colores saturados.
+
+### Tipografía propuesta
+
+- Titulares: **Cormorant Garamond**
+- Textos, navegación, botones e interfaz: **Manrope**
+
+Estas tipografías son una propuesta de trabajo pendiente de validación final.
+
+Prioriza legibilidad, especialmente en dispositivos móviles.
+
+No utilices textos demasiado pequeños ni bloques con espaciados excesivos entre letras.
+
+---
+
+# 4. NUEVO HERO DE INICIO: SIN RETRATO
+
+Este es uno de los cambios visuales más importantes.
+
+Eliminar la fotografía de la persona del hero de Inicio.
+
+El nuevo hero debe ser una composición de una sola columna de contenido sobre un **fondo atmosférico premium**, sin personas, retratos, tarjetas flotantes ni ilustraciones protagonistas.
+
+### Background
+
+La intención es utilizar posteriormente un background generado en Higgsfield.
+
+Como todavía no se proporciona su URL definitiva, implementa ahora una solución visual provisional mediante CSS:
+
+- Base marfil cálido.
+- Gradientes orgánicos sutiles.
+- Sombras botánicas muy suaves.
+- Textura discreta inspirada en tierra, raíces y crecimiento.
+- Profundidad visual refinada.
+- Espacio negativo suficiente para leer el texto.
+
+No inventes una URL externa ni utilices fotografías aleatorias.
+
+Prepara una variable o configuración fácilmente reemplazable por la URL definitiva del background de Cloudinary.
+
+Cuando exista, el fondo debe adaptarse mediante `background-size: cover`, posiciones responsivas y una capa de protección para conservar la legibilidad del texto.
+
+No debe parecer una ilustración literal de árboles o raíces gigantes.
+
+### Composición desktop
+
+- Hero amplio, con aire.
+- Contenido editorial destacado.
+- Titular grande, elegante y de alto contraste.
+- Texto alineado a la izquierda dentro de un contenedor bien proporcionado.
+- Anchura del texto controlada.
+- Un botón principal y uno secundario.
+- Sin fotografía de Anatolia en esta sección.
+
+### Composición móvil
+
+- Titular optimizado para pantallas pequeñas.
+- Correcta separación entre líneas.
+- Botones cómodos para tocar.
+- Fondo simplificado para que no compita con el mensaje.
+
+### Copy del hero
+
+**Eyebrow:**
+
+RAÍZ · UN ESPACIO PARA ELEGIR CON CONCIENCIA
+
+**H1:**
+
+Sabes que necesitas un cambio.
+
+Es momento de descubrir qué quieres construir.
+
+**Descripción:**
+
+A veces sabes que algo necesita cambiar, pero entre responsabilidades, dudas y expectativas no es fácil reconocer qué deseas.
+
+RAÍZ te acompaña a comprender qué influye en tus decisiones y encontrar un punto de partida que tenga sentido para ti.
+
+**CTA principal:**
+
+Descubre tu Mapa RAÍZ →
+
+**CTA secundario:**
+
+Conoce mi acompañamiento →
+
+**Enlace discreto:**
+
+¿Representas una organización? Explora esta línea →
+
+El CTA principal debe llevar a la página correspondiente del Mapa RAÍZ.
+
+El CTA secundario debe llevar a la sección de acompañamiento para personas.
+
+No añadas más botones ni mensajes al hero.
+
+---
+
+# 5. NUEVA SECCIÓN DE IDENTIFICACIÓN
+
+Debajo del hero debemos lograr que la visitante se reconozca en situaciones reales.
+
+Esta sección debe ser breve, cálida y directa.
+
+**Eyebrow:**
+
+UNA PAUSA PARA MIRARTE
+
+**Título:**
+
+¿Qué te está costando seguir dejando para después ese cambio que sabes que necesitas?
+
+**Texto:**
+
+Tal vez quieres explorar otro camino, recuperar una parte de ti, desarrollar una idea o tomar una decisión importante.
+
+Pero entre las responsabilidades y lo urgente, lo que necesitas sigue esperando.
+
+### Cuatro elementos visuales
+
+Presenta cuatro tarjetas minimalistas, con íconos lineales discretos.
+
+**Bienestar**
+
+Cuando lo que haces y lo que deseas parecen ir en direcciones distintas, puedes sentirte cada vez más cansada o desconectada de ti.
+
+**Relaciones**
+
+Reconocer tus patrones puede ayudarte a comprender mejor cómo te comunicas, cuidas y estableces límites.
+
+**Oportunidades**
+
+Hay ideas y posibilidades que merecen ser exploradas, incluso cuando todavía no tienes todas las respuestas.
+
+**Tu forma de elegir**
+
+Puedes aprender a reconocer qué influye en tus respuestas y considerar otras maneras de actuar.
+
+### Cierre de sección
+
+**No siempre puedes cambiarlo todo. Pero puedes empezar a cambiar tu manera de responder a lo que estás viviendo.**
+
+**CTA:**
+
+Quiero empezar a elegir conscientemente →
+
+Esta sección no debe culpabilizar a las madres o mujeres por postergar decisiones.
+
+No utilices presión emocional ni mensajes que sugieran que perderán oportunidades inevitablemente si no actúan.
+
+---
+
+# 6. REESTRUCTURAR LA HOME COMO LANDING
+
+La versión actual contiene muchas secciones con una jerarquía visual relativamente homogénea.
+
+Necesitamos mayor fluidez y menos repetición.
+
+Implementa esta estructura de Inicio:
+
+### 01. Hero
+
+Con el nuevo copy y background descritos anteriormente.
+
+### 02. Identificación
+
+La sección «Una pausa para mirarte».
+
+### 03. Qué es RAÍZ
+
+**Eyebrow:**
+
+EL SENTIDO DE RAÍZ
+
+**Título:**
+
+No se trata de cambiarlo todo.
+
+Se trata de comprender qué importa y elegir cómo avanzar.
+
+**Descripción:**
+
+RAÍZ integra una mirada estructurada, herramientas de coaching y PNL, y una perspectiva de género y desarrollo que reconoce nuestra historia, nuestros recursos y las condiciones en las que vivimos.
+
+Su propósito es acompañarte a observar desde dónde decides, explorar posibilidades y construir pasos que puedas sostener.
+
+Presenta tres conceptos:
+
+- Comprender tu historia.
+- Reconocer tus recursos.
+- Elegir y actuar con conciencia.
+
+No afirmes que RAÍZ puede eliminar condicionamientos, sanar traumas o garantizar transformaciones.
+
+### 04. Dos caminos
+
+**Título:**
+
+Un mismo propósito, diferentes caminos.
+
+Crear dos tarjetas visualmente atractivas:
+
+**RAÍZ para personas**
+
+Un espacio para mujeres que buscan comprender sus decisiones y construir su siguiente etapa.
+
+CTA: Explorar RAÍZ para personas →
+
+**RAÍZ para organizaciones**
+
+Experiencias y programas que promueven desarrollo humano, bienestar y entornos más conscientes.
+
+CTA: Conocer soluciones para organizaciones →
+
+Estas tarjetas deben mostrar de manera inmediata la diferencia entre ambas líneas.
+
+### 05. El Método RAÍZ
+
+**Título:**
+
+El crecimiento comienza por la raíz.
+
+**Descripción:**
+
+El Método RAÍZ orienta un proceso de reflexión y acción para reconocer lo que influye en nuestras decisiones y explorar nuevas posibilidades.
+
+Puedes inspirarte en la progresión visual semilla, raíces, tronco, ramas, hojas, flores y frutos que aparece en las referencias.
+
+Sin embargo, **no conviertas esta metáfora en siete etapas metodológicas oficiales ni inventes nombres, duraciones o procesos no confirmados**.
+
+Si el proyecto ya tiene etapas definidas, respétalas. De lo contrario, utiliza la progresión botánica como recurso visual y presenta únicamente la descripción validada del método.
+
+CTA: Conoce el Método RAÍZ →
+
+### 06. Mapa RAÍZ: los cinco recursos
+
+**Título:**
+
+Cinco recursos para mirar tu punto de partida.
+
+Presenta:
+
+1. Perspectiva.
+2. Gestión emocional.
+3. Dirección.
+4. Energía vital.
+5. Acción consistente.
+
+Cada recurso debe incluir una explicación breve, sin exceso de texto.
+
+**CTA:**
+
+Descubre tu Mapa RAÍZ →
+
+### 07. Oferta principal
+
+Crear un bloque destacado, sin parecer una página comercial agresiva.
+
+**Título:**
+
+Hay distintas maneras de comenzar.
+
+**Mapa RAÍZ**
+
+Una herramienta de exploración personal para observar cinco recursos que influyen en tus decisiones.
+
+CTA: Conocer el Mapa →
+
+**Viaje RAÍZ**
+
+Un acompañamiento personalizado de 12 sesiones a lo largo de tres meses para profundizar en tu proceso.
+
+CTA: Explorar el Viaje →
+
+**Bitácora RAÍZ**
+
+Un material de reflexión para registrar descubrimientos, preguntas y pasos durante el recorrido.
+
+CTA: Conocer la Bitácora →
+
+La Bitácora no debe presentarse como un producto de venta independiente si todavía no tiene una oferta confirmada.
+
+### 08. Sobre Anatolia
+
+Introducir la conexión humana a través de una fotografía real, cuando esté disponible.
+
+**Título:**
+
+Hola, soy Anatolia Zapata.
+
+**Texto:**
+
+Soy mamá de dos, ingeniera industrial, coach y creadora del Método RAÍZ.
+
+Mi propia historia me llevó a comprender que cuidar de quienes amamos y seguir construyendo nuestros sueños no tendrían por qué ser caminos opuestos.
+
+Hoy acompaño a mujeres y organizaciones a reconocer qué influye en sus decisiones y explorar maneras más conscientes de avanzar.
+
+CTA: Conoce mi historia →
+
+### 09. Preguntas frecuentes
+
+Incluir preguntas relevantes sobre:
+
+- Para quién es RAÍZ.
+- Diferencias entre Mapa, Método, Viaje y Bitácora.
+- Cómo empezar.
+- Cómo funciona el acompañamiento.
+- Modalidades disponibles, solo si están confirmadas.
+
+### 10. Cierre
+
+**Título:**
+
+Cada decisión deja una huella.
+
+¿Cuál quieres empezar a construir?
+
+**Texto:**
+
+No necesitas tener todas las respuestas para comenzar. Puedes empezar por mirar con mayor claridad desde dónde estás decidiendo.
+
+CTA principal: Descubre tu Mapa RAÍZ →
+
+CTA secundario: Conversemos →
+
+---
+
+# 7. PÁGINA PERSONAS
+
+Esta página debe profundizar en la realidad de mujeres en transición.
+
+Su público principal son mujeres que reconocen que algo necesita cambiar en su vida personal o profesional, pero todavía no tienen claro qué quieren construir.
+
+Muchas son madres que desean cuidar a sus familias sin perder de vista su identidad, sus proyectos y su desarrollo. Sin embargo, evita presentar la maternidad como requisito para conectar con RAÍZ.
+
+### Hero
+
+**Eyebrow:**
+
+RAÍZ PARA PERSONAS
+
+**Título:**
+
+Un espacio para comprender, elegir y construir tu siguiente etapa.
+
+**Texto:**
+
+Acompaño a mujeres que desean comprender qué está influyendo en sus decisiones, reconocer sus recursos y avanzar hacia lo que consideran importante.
+
+CTA: Descubre tu Mapa RAÍZ →
+
+### Sección de identificación
+
+**Título:**
+
+Tal vez te encuentras en uno de estos momentos.
+
+Crear cuatro situaciones:
+
+- Sabes que necesitas un cambio, pero no tienes claro por dónde empezar.
+- Estás considerando retomar un proyecto, desarrollar una idea o cambiar de rumbo profesional.
+- Sientes que has postergado partes importantes de ti entre múltiples responsabilidades.
+- Reconoces que ciertas decisiones o respuestas se repiten y quieres comprenderlas mejor.
+
+### Sección de acompañamiento
+
+Explicar de forma sencilla:
+
+- Mapa RAÍZ: explorar tu punto de partida.
+- Viaje RAÍZ: profundizar con acompañamiento personalizado.
+- Bitácora RAÍZ: registrar el proceso de reflexión.
+
+No mezclar estas herramientas ni presentarlas como si fueran el mismo servicio.
+
+Incluir un CTA para conversar y otro para explorar el Mapa RAÍZ.
+
+---
+
+# 8. PÁGINA MAPA RAÍZ
+
+Esta página es una de las principales entradas comerciales y debe ser especialmente clara.
+
+### Hero
+
+**Eyebrow:**
+
+MAPA RAÍZ · TU PUNTO DE PARTIDA
+
+**Título:**
+
+¿Desde dónde estás tomando tus decisiones?
+
+**Subtítulo:**
+
+Antes de decidir hacia dónde ir, vale la pena reconocer desde dónde estás partiendo.
+
+**Descripción:**
+
+El Mapa RAÍZ es una herramienta de exploración personal que propone observar cinco recursos fundamentales y reflexionar sobre tu momento actual.
+
+CTA principal: Descubre tu Mapa RAÍZ →
+
+### Estructura
+
+1. Hero.
+2. Qué es el Mapa RAÍZ.
+3. Para quién es.
+4. Los cinco recursos.
+5. Cómo se utiliza, únicamente con información funcional confirmada.
+6. Vista ilustrativa de resultados, si existe y está validada.
+7. Beneficios formulados como posibilidades de reflexión.
+8. CTA final.
+
+### Los cinco recursos oficiales
+
+**Perspectiva**
+
+Cómo interpretas las situaciones y consideras distintas posibilidades.
+
+**Gestión emocional**
+
+Cómo reconoces, regulas y expresas lo que sientes.
+
+**Dirección**
+
+Cómo defines prioridades y orientas tus decisiones.
+
+**Energía vital**
+
+Cómo cuidas la energía que necesitas para sostener tu camino.
+
+**Acción consistente**
+
+Cómo conviertes tus decisiones en pasos y los mantienes.
+
+### Precauciones importantes
+
+El Mapa RAÍZ no debe presentarse como un test psicológico clínico ni como un instrumento psicométrico validado.
+
+Su validación psicométrica no está establecida.
+
+No inventes porcentajes de precisión, índices científicos, diagnósticos ni resultados garantizados.
+
+Las capturas de informes utilizadas en los diseños de referencia son ilustrativas y no prueban que exista una funcionalidad activa.
+
+Si el cuestionario ya funciona en el proyecto, conserva su lógica y conéctalo correctamente.
+
+Si no funciona o aún no existe, no simules un cuestionario ni prometas informes automáticos. Utiliza un CTA honesto hacia el canal de contacto disponible y deja la funcionalidad preparada para su posterior implementación.
+
+No inventes tiempos de realización, modalidades, precios o entregables no confirmados.
+
+---
+
+# 9. PÁGINA VIAJE RAÍZ
+
+Esta página debe convertir el acompañamiento en una oferta clara y comprensible.
+
+### Hero
+
+**Eyebrow:**
+
+ACOMPAÑAMIENTO PERSONALIZADO
+
+**Título:**
+
+Viaje RAÍZ.
+
+Un espacio para comprender tus decisiones y construir con mayor conciencia.
+
+**Descripción:**
+
+Un proceso personalizado de 12 sesiones a lo largo de tres meses, orientado a explorar tu historia, tus recursos y las posibilidades que deseas construir.
+
+**CTA:**
+
+Conversemos sobre tu proceso →
+
+### Contenido
+
+Desarrollar secciones breves:
+
+1. Para quién puede ser útil.
+2. Qué es el Viaje RAÍZ.
+3. Qué se explora durante el proceso.
+4. Qué incluye el acompañamiento.
+5. Cómo comenzar.
+6. Preguntas frecuentes.
+
+Explicar el valor sin prometer que las participantes lograrán resultados concretos o transformaciones garantizadas.
+
+No inventar precios, testimonios, certificaciones ni entregables adicionales.
+
+Utilizar un CTA principal de contacto o agenda que realmente funcione.
+
+---
+
+# 10. PÁGINA ORGANIZACIONES
+
+Inspírate especialmente en la referencia visual de Organizaciones adjunta.
+
+Esta sección debe mantener la identidad de RAÍZ, pero comunicarse en un tono ligeramente más corporativo.
+
+### Hero
+
+**Eyebrow:**
+
+RAÍZ PARA ORGANIZACIONES
+
+**Título:**
+
+Personas más conscientes para entornos más humanos.
+
+**Descripción:**
+
+Diseño y facilito experiencias de desarrollo humano, bienestar, liderazgo y género, adaptadas al contexto y las necesidades de cada organización.
+
+**CTA:**
+
+Conversemos sobre tu organización →
+
+### Secciones
+
+**Una mirada integral**
+
+Las organizaciones están hechas de personas.
+
+Cada equipo tiene historias, recursos, desafíos y un contexto que influye en su manera de colaborar, liderar y tomar decisiones.
+
+**Áreas de trabajo**
+
+- Desarrollo humano y bienestar.
+- Género y desarrollo.
+- Liderazgo con perspectiva.
+- Programas a medida.
+
+**Formatos y experiencias**
+
+- Talleres.
+- Conferencias.
+- Programas de acompañamiento.
+
+**Proceso de trabajo**
+
+1. Conversamos.
+2. Diseñamos.
+3. Facilitamos.
+4. Damos seguimiento, si el alcance contratado lo contempla.
+
+**Cierre**
+
+Cada organización es única.
+
+Por eso, las propuestas se diseñan considerando sus objetivos, su contexto y el tipo de experiencia que necesita su equipo.
+
+CTA: Solicita una propuesta →
+
+No inventes logos de clientes, alianzas, reconocimientos, resultados medidos ni testimonios corporativos.
+
+Si existen experiencias verificadas y autorizadas en el proyecto, consérvalas.
+
+---
+
+# 11. PÁGINA SOBRE MÍ: HISTORIA DE ANATOLIA
+
+Esta sección necesita una especial atención editorial.
+
+No debe parecer un currículum genérico. Debe transmitir humanidad, experiencia, credibilidad y el origen auténtico de RAÍZ.
+
+### Hero
+
+**Eyebrow:**
+
+CONOCE MI HISTORIA
+
+**Título:**
+
+Aprendí que cuidar a quienes amas no debería significar dejar de elegirte a ti misma.
+
+**Introducción:**
+
+Soy Anatolia Zapata, mamá de dos, ingeniera industrial, coach y creadora del Método RAÍZ.
+
+### Historia de marca
+
+Utiliza fielmente las siguientes ideas, organizándolas en bloques narrativos legibles:
+
+**Cuando el amor y los sueños parecían competir**
+
+Durante mucho tiempo, Anatolia confió en su capacidad para analizar, organizar y encontrar soluciones.
+
+La maternidad le planteó una pregunta que no podía resolver únicamente desde la lógica:
+
+**¿Cómo quería vivir mi propia vida?**
+
+Con la llegada de sus dos hijos, quería ser una mamá presente, cuidar de su familia y acompañar su crecimiento.
+
+Al mismo tiempo, mientras su desarrollo profesional quedaba en pausa, comenzó a sentir que estaba perdiendo una parte de su identidad.
+
+Al revisar su historia familiar, reconoció que ciertas experiencias también habían influido en su manera de cuidar y tomar decisiones.
+
+Su madre había atravesado la pérdida de dos hijos, una experiencia familiar que hizo que Anatolia reflexionara sobre el miedo a perder a quienes más amaba.
+
+Comprendió que no necesitaba amar menos ni renunciar a sus sueños. Necesitaba reconocer desde dónde estaba decidiendo y qué quería seguir construyendo.
+
+**Así comenzó el camino hacia RAÍZ**
+
+Integró su formación como ingeniera industrial con herramientas de coaching, programación neurolingüística y una mirada de género y desarrollo.
+
+Reconoció que nuestras decisiones están influenciadas por la historia, las creencias, las emociones, los valores y las condiciones en las que vivimos.
+
+De esa búsqueda nació RAÍZ, como una filosofía y metodología para comprender desde dónde decidimos, reconocer recursos y explorar posibilidades para avanzar.
+
+**Lo que hoy quiero construir**
+
+Hoy acompaña a mujeres en transiciones personales y profesionales, así como a organizaciones que buscan desarrollar entornos más humanos y conscientes.
+
+Su convicción es que el desarrollo personal no tiene por qué competir con el cuidado de quienes amamos.
+
+### Cierre de la historia
+
+Destacar visualmente la siguiente frase en primera persona:
+
+**Creo en un mundo de personas más conscientes de sus decisiones, que dejan huella positiva en sus familias, organizaciones y en las nuevas generaciones.**
+
+Por eso existe RAÍZ.
+
+**Cada decisión deja una huella.**
+
+¿Desde dónde estás tomando las tuyas?
+
+CTA: Descubre tu Mapa RAÍZ →
+
+### Tratamiento de la historia
+
+Mantén la voz en primera persona, porque es Anatolia quien cuenta su historia.
+
+Evita dramatizar la maternidad, la pausa profesional o las pérdidas familiares.
+
+No utilices el dolor como un recurso de presión comercial.
+
+Conserva la sensibilidad y la responsabilidad del relato.
+
+La mención sobre la pérdida de los hijos de su madre debe quedar identificada para revisión editorial de Anatolia antes de publicarla.
+
+### Fotografía
+
+Utiliza una fotografía real de Anatolia cuando se proporcione el archivo correspondiente.
+
+No sustituyas su identidad por una mujer generada con inteligencia artificial.
+
+Mientras la fotografía no esté disponible, conserva una composición elegante que pueda recibirla posteriormente.
+
+---
+
+# 12. PÁGINA CONTACTO
+
+Debe ser directa, útil y accesible.
+
+**Título:**
+
+Conversemos.
+
+**Texto:**
+
+Si quieres explorar cómo puedo acompañarte, de manera individual o con tu organización, será un gusto conocerte.
+
+Crear dos opciones principales:
+
+### Personas
+
+Quiero conversar sobre mi proceso personal.
+
+CTA: Agendar una conversación →
+
+### Organizaciones
+
+Quiero explorar una propuesta para mi equipo.
+
+CTA: Solicitar información →
+
+### Formulario
+
+Campos mínimos:
+
+- Nombre.
+- Correo electrónico.
+- Tipo de consulta.
+- Mensaje.
+
+Incluir confirmación visual del envío, manejo de errores y una nota de privacidad apropiada al tratamiento real de los datos.
+
+No simules que un formulario envía mensajes si todavía no tiene una integración funcional.
+
+Si existe un WhatsApp configurado, reutiliza su número real.
+
+No inventes números, correos electrónicos, enlaces de reserva ni perfiles sociales.
+
+Si faltan, centraliza esos valores en una configuración fácil de completar.
+
+---
+
+# 13. FOTOGRAFÍAS Y RECURSOS VISUALES
+
+Las imágenes adjuntas son referencias artísticas y mockups, no fotografías verificadas.
+
+El sitio debe comenzar a evolucionar hacia un lenguaje de **fotografía real y humana**.
+
+Cuando se proporcionen imágenes auténticas de Anatolia mediante URLs de Cloudinary, utilízalas prioritariamente en:
+
+- Sobre mí.
+- Presentación del acompañamiento.
+- Organizaciones.
+- Experiencias y talleres.
+- Secciones de conexión personal.
+
+Evita:
+
+- Fotografías genéricas de mujeres posando como modelos.
+- Personas ficticias presentadas como Anatolia.
+- Escenarios corporativos artificiales.
+- Imágenes recargadas.
+- Estética spa.
+- Stock fotográfico excesivamente producido.
+
+Puedes utilizar naturaleza, cuadernos, escritura y materiales orgánicos como imágenes complementarias, siempre que los archivos estén disponibles y su uso esté permitido.
+
+No inventes URLs de Cloudinary.
+
+Implementa imágenes responsivas con proporciones coherentes, recortes adecuados, atributos alt descriptivos y carga diferida cuando corresponda.
+
+---
+
+# 14. MEJORAS DE NAVEGACIÓN Y CONVERSIÓN
+
+### Header
+
+Utilizar el logotipo horizontal oficial.
+
+Navegación principal:
+
+- Inicio.
+- Personas.
+- Organizaciones.
+- Sobre mí.
+- Viaje RAÍZ.
+- Contacto.
+
+CTA destacado:
+
+**Descubre tu Mapa RAÍZ →**
+
+Este CTA debe mantener coherencia con el resto del sitio.
+
+### Navegación móvil
+
+Implementar menú hamburguesa accesible, limpio y funcional.
+
+La navegación debe ser cómoda para mujeres que visiten el sitio desde Instagram, WhatsApp o TikTok.
+
+No debe existir desplazamiento horizontal ni elementos que se superpongan.
+
+### Botones
+
+Utiliza principalmente:
+
+- Descubre tu Mapa RAÍZ.
+- Conversemos.
+- Explora el Viaje RAÍZ.
+- Solicita una propuesta.
+
+Evita tener muchas etiquetas diferentes para la misma acción.
+
+Todos los botones deben dirigir a páginas, anclas o mecanismos de contacto reales.
+
+No implementes enlaces `#` sin destino ni botones que aparenten funcionar.
+
+### Conversión
+
+Distribuir CTAs estratégicamente:
+
+- Primer bloque visible.
+- Después de conectar con la situación de la visitante.
+- En la presentación de servicios.
+- Después de explicar el acompañamiento.
+- Al final de cada página.
+
+No colocar un CTA en cada párrafo. Mantener la elegancia editorial.
+
+---
+
+# 15. EXPERIENCIA RESPONSIVE Y ACCESIBILIDAD
+
+Optimiza especialmente:
+
+- 360 px.
+- 390 px.
+- 768 px.
+- 1280 px.
+- 1440 px.
+
+En escritorio, utiliza contenedores amplios pero controlados.
+
+En móvil, evita titulares que ocupen demasiadas líneas y textos diminutos.
+
+Requisitos:
+
+- Buen contraste.
+- Jerarquía H1, H2 y H3 semánticamente correcta.
+- Tipografía de cuerpo legible.
+- Estados hover y focus.
+- Navegación por teclado.
+- Botones con área táctil suficiente.
+- Formularios etiquetados.
+- Imágenes con alt pertinente.
+- Respeto a la preferencia de movimiento reducido.
+- Animaciones discretas, rápidas y no invasivas.
+
+No dependas de animaciones para que el contenido sea comprensible.
+
+---
+
+# 16. SEO, METADATOS Y RENDIMIENTO
+
+Actualizar los metadatos básicos de las páginas existentes.
+
+### Home
+
+Title:
+RAÍZ · Anatolia Zapata | Decide con mayor conciencia
+
+Description:
+Comprende qué influye en tus decisiones, reconoce tus recursos y explora nuevas posibilidades con RAÍZ, el enfoque de acompañamiento de Anatolia Zapata.
+
+### Personas
+
+Title:
+RAÍZ para personas | Acompañamiento personal
+
+### Organizaciones
+
+Title:
+RAÍZ para organizaciones | Desarrollo humano y bienestar
+
+### Sobre mí
+
+Title:
+Sobre Anatolia Zapata | La historia detrás de RAÍZ
+
+### Mapa RAÍZ
+
+Title:
+Mapa RAÍZ | Explora tu punto de partida
+
+### Viaje RAÍZ
+
+Title:
+Viaje RAÍZ | Acompañamiento personalizado
+
+### Contacto
+
+Title:
+Contacto | Anatolia Zapata · RAÍZ
+
+Redacta metadescripciones breves, naturales y específicas para las páginas interiores.
+
+Evita introducir keywords artificialmente.
+
+Optimiza:
+
+- Carga de imágenes.
+- Fuentes.
+- Tamaño del bundle.
+- Estabilidad visual.
+- Velocidad de carga inicial.
+- Comportamiento de navegación entre rutas.
+
+Conserva cualquier configuración SEO y analítica funcional que ya exista.
+
+Si hay analítica configurada, registra eventos relevantes de clics en CTA sin duplicar instalaciones ni inventar identificadores de medición.
+
+---
+
+# 17. TESTIMONIOS Y CREDIBILIDAD
+
+No inventes testimonios de clientas, certificaciones, años de experiencia, cifras, empresas atendidas ni resultados.
+
+Si existen testimonios reales y autorizados en el proyecto, consérvalos y mejóralos visualmente.
+
+Si no existen, no introduzcas tarjetas con testimonios ficticios ni textos que aparenten experiencias reales.
+
+Puede reservarse un componente reutilizable para incorporarlos en una fase posterior, sin publicarlo vacío.
+
+Lo mismo aplica para logos de organizaciones, resultados y casos de éxito.
+
+---
+
+# 18. CRITERIOS DE DISEÑO
+
+Quiero una identidad que transmita simultáneamente:
+
+- Calma.
+- Profundidad.
+- Feminidad.
+- Cercanía.
+- Confianza.
+- Claridad.
+- Sofisticación sencilla.
+
+La feminidad debe provenir de la sensibilidad de las composiciones y del lenguaje visual, no de una acumulación de colores rosados, flores o adornos.
+
+Busca un equilibrio entre diseño editorial premium y una experiencia digital intuitiva.
+
+Evita:
+
+- Exceso de texto visible.
+- Tipografía demasiado pequeña.
+- Grillas excesivamente densas.
+- Carruseles innecesarios.
+- Sombras pesadas.
+- Gradientes metálicos.
+- Íconos de múltiples estilos.
+- Imágenes artificiales de personas.
+- Demasiados fondos iguales consecutivos.
+- Botones poco contrastados.
+- Secciones repetidas entre páginas.
+
+---
+
+# 19. ORDEN DE IMPLEMENTACIÓN
+
+Trabaja en este orden:
+
+**Prioridad 1: identidad e impacto inicial**
+
+- Sustituir los logos por los archivos correctos.
+- Configurar favicon.
+- Centralizar paleta y tipografías.
+- Rediseñar el hero de Inicio sin fotografía.
+- Optimizar header y menú móvil.
+- Ajustar botones y jerarquía tipográfica.
+
+**Prioridad 2: conversión**
+
+- Incorporar el nuevo mensaje de Anatolia.
+- Añadir la sección de identificación.
+- Reordenar la Home.
+- Clarificar Mapa RAÍZ y Viaje RAÍZ.
+- Revisar las rutas y los CTAs.
+- Mejorar contacto.
+
+**Prioridad 3: consistencia editorial**
+
+- Mejorar Personas.
+- Mejorar Organizaciones.
+- Reestructurar Sobre mí.
+- Mejorar la página Mapa RAÍZ.
+- Unificar tarjetas, divisores, iconografía y espaciados.
+
+**Prioridad 4: calidad técnica**
+
+- Responsive.
+- Accesibilidad.
+- SEO.
+- Rendimiento.
+- Pruebas de navegación y formularios.
+
+---
+
+# 20. RESTRICCIONES IMPORTANTES
+
+1. No eliminar información importante del proyecto sin comprobar su función.
+2. No modificar la lógica del Mapa RAÍZ si existe un cuestionario funcional.
+3. No inventar ninguna etapa del método.
+4. No inventar testimonios ni resultados.
+5. No simular funcionalidades inexistentes.
+6. No incorporar imágenes externas sin autorización.
+7. No cambiar las URLs públicas existentes innecesariamente.
+8. No romper conexiones con formularios, analítica o servicios externos.
+9. No crear contenido clínico, diagnóstico o promesas de transformación.
+10. No cambiar la identidad de marca por una plantilla genérica.
+11. No utilizar las capturas de referencia como secciones rasterizadas.
+12. No confundir fotografías generadas con fotografías reales de Anatolia.
+
+---
+
+# 21. CRITERIOS DE ACEPTACIÓN
+
+Consideraré esta fase correctamente implementada cuando:
+
+- El header y favicon utilicen la identidad correcta.
+- El hero de Inicio no tenga retrato.
+- El hero comunique con claridad para quién existe RAÍZ.
+- Las dos líneas, Personas y Organizaciones, sean fáciles de identificar.
+- El Mapa RAÍZ tenga protagonismo como punto de partida.
+- El Viaje RAÍZ esté presentado como acompañamiento de 12 sesiones en tres meses.
+- La historia de Anatolia se integre con respeto y sensibilidad.
+- Los cinco recursos mantengan sus nombres y significado.
+- Las páginas mantengan coherencia visual.
+- Todos los CTA sean funcionales.
+- La experiencia móvil sea cómoda.
+- No existan textos ilegibles o bloques saturados.
+- No existan rutas rotas.
+- No se hayan inventado testimonios, fotografías personales ni funcionalidades.
+- El proyecto compile y pueda ejecutarse correctamente.
+
+### ENTREGA ESPERADA
+
+Implementa los cambios directamente en los archivos del proyecto.
+
+Después de implementar, entrégame:
+
+1. Resumen de mejoras por página.
+2. Archivos modificados.
+3. Confirmación de pruebas realizadas y resultados.
+4. Pendientes que necesitan materiales reales de Anatolia.
+5. Funcionalidades no implementadas por falta de datos o integraciones.
+
+**No respondas solamente con un plan de rediseño. Realiza las modificaciones sobre el proyecto existente.**
+
+El objetivo final es una web que una mujer pueda visitar, comprender y sentir cercana en pocos segundos, y donde encontrar el siguiente paso sea sencillo.
+
+RAÍZ no busca convencerla de cambiarlo todo.
+
+Busca ofrecerle un espacio para comprender desde dónde está decidiendo y qué quiere construir a partir de ahí.
+
+**Comprende tu raíz. Transforma tus decisiones.**
+
+**Cada decisión deja una huella.**

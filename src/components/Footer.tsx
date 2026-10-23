@@ -1,9 +1,22 @@
 import Logo from './Logo';
-import { NAV_LINKS, BRAND, CONTACT } from '../data/content';
-import { ArrowUp } from 'lucide-react';
+import { NAV_LINKS, BRAND, CONTACT, PageId } from '../data/content';
+import { ArrowUp, ArrowUpRight } from 'lucide-react';
 
-export default function Footer() {
+interface FooterProps {
+  onNavigate: (page: PageId) => void;
+}
+
+export default function Footer({ onNavigate }: FooterProps) {
   const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleLink = (href: string, e: React.MouseEvent) => {
+    e.preventDefault();
+    const clean = href.replace('#/', '').trim();
+    const resolvedPage: PageId = (clean || 'home') as PageId;
+    window.location.hash = href;
+    onNavigate(resolvedPage);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
@@ -11,12 +24,24 @@ export default function Footer() {
     <footer className="bg-[#242A1A] text-[#F2EBDD] py-14 border-t border-[#363D28]">
       <div className="max-w-6xl mx-auto px-5 sm:px-8">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-10 items-start pb-12 border-b border-[#F2EBDD]/10">
-          {/* Brand Info */}
+          {/* Brand Info & Isotipo */}
           <div className="md:col-span-5 flex flex-col items-start">
-            <Logo variant="light" size="md" className="mb-4" />
+            <div className="mb-4">
+              <Logo
+                variant="horizontal"
+                theme="light"
+                size="md"
+                href="#/"
+                onClick={() => {
+                  window.location.hash = '#/';
+                  onNavigate('home');
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+              />
+            </div>
             <p className="text-sm font-sans text-[#F2EBDD]/75 font-light leading-relaxed max-w-sm mb-4">
               Comprende tu raíz. Transforma tus decisiones. Espacio de exploración personal y
-              acompañamiento individual creado por Anatolia Zapata.
+              desarrollo consciente creado por Anatolia Zapata.
             </p>
             <p className="text-xs font-serif italic text-[#C4A76C] tracking-wide">
               “{BRAND.subtagline}”
@@ -33,6 +58,7 @@ export default function Footer() {
                 <li key={link.href}>
                   <a
                     href={link.href}
+                    onClick={(e) => handleLink(link.href, e)}
                     className="text-sm font-sans text-[#F2EBDD]/80 hover:text-white transition-colors"
                   >
                     {link.label}
@@ -41,12 +67,12 @@ export default function Footer() {
               ))}
               <li>
                 <a
-                  href={CONTACT.mapUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href="#/mapa-raiz"
+                  onClick={(e) => handleLink('#/mapa-raiz', e)}
                   className="text-sm font-sans text-[#C4A76C] hover:text-white transition-colors inline-flex items-center gap-1"
                 >
-                  <span>Mapa RAÍZ (En línea)</span>
+                  <span>Mapa RAÍZ</span>
+                  <ArrowUpRight className="w-3.5 h-3.5" />
                 </a>
               </li>
             </ul>

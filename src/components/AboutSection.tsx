@@ -5,7 +5,7 @@ import { MessageCircle, Sparkles } from 'lucide-react';
 
 export default function AboutSection() {
   const [imgError, setImgError] = useState(false);
-  const anatoliaSpaceImage = IMAGES.anatoliaSpace;
+  const portraitImage = IMAGES.anatoliaPortrait;
   const whatsappUrl = getWhatsAppLink('anatolia');
 
   return (
@@ -24,11 +24,11 @@ export default function AboutSection() {
               <div className="relative rounded-xl overflow-hidden bg-[#EAE2D2] border border-[#363D28]/10 aspect-[3/4] shadow-xs">
                 {!imgError ? (
                   <img
-                    src={getImageUrl(anatoliaSpaceImage, { width: 800 })}
-                    alt={anatoliaSpaceImage.alt}
+                    src={getImageUrl(portraitImage, { width: 900 })}
+                    alt="Anatolia Zapata, coach y creadora de RAÍZ"
                     loading="lazy"
-                    style={{ objectPosition: anatoliaSpaceImage.cropPosition }}
-                    className="w-full h-full object-cover"
+                    style={{ objectPosition: portraitImage.cropPosition }}
+                    className="w-full h-full object-cover object-top"
                     onError={() => setImgError(true)}
                   />
                 ) : (
@@ -41,9 +41,8 @@ export default function AboutSection() {
                 )}
               </div>
 
-              {/* Reserved portrait note (discrete, tasteful) */}
               <div className="mt-3 text-center">
-                <span className="text-[11px] font-sans text-[#363D28]/60 italic">
+                <span className="text-xs font-sans text-[#363D28]/80 font-medium">
                   Anatolia Zapata · Creadora de RAÍZ
                 </span>
               </div>

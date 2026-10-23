@@ -1,17 +1,28 @@
 /**
- * Central copy and content configuration for RAÍZ · Anatolia Zapata
+ * Central copy, content and SEO configuration for RAÍZ · Anatolia Zapata
+ *
+ * Implements Fase 1: Rediseño visual, experiencia de usuario y conversión
  */
 
 import { FaqItem, NavLink, ResourceItem } from '../types';
+
+export type PageId = 'home' | 'personas' | 'organizaciones' | 'sobre-mi' | 'mapa-raiz' | 'viaje-raiz' | 'contacto';
+
+export interface PageMeta {
+  title: string;
+  description: string;
+}
 
 export const BRAND = {
   name: 'RAÍZ',
   founder: 'Anatolia Zapata',
   fullName: 'RAÍZ · Anatolia Zapata',
+  heroEyebrow: 'RAÍZ · UN ESPACIO PARA ELEGIR CON CONCIENCIA',
   tagline: 'Comprende tu raíz. Transforma tus decisiones.',
   subtagline: 'Cada decisión deja una huella.',
+  heroTitle: 'Sabes que necesitas un cambio. Es momento de descubrir qué quieres construir.',
   heroDescription:
-    'Un espacio para comprender lo que influye en tus decisiones y desarrollar recursos para avanzar con mayor conciencia, desde tu historia y tu realidad.',
+    'A veces sabes que algo necesita cambiar, pero entre responsabilidades, dudas y expectativas no es fácil reconocer qué deseas. RAÍZ te acompaña a comprender qué influye en tus decisiones y encontrar un punto de partida que tenga sentido para ti.',
 };
 
 export const CONTACT = {
@@ -20,7 +31,6 @@ export const CONTACT = {
   email: 'anatolia.zapata@gmail.com',
   mapUrl: 'https://cjyyftsgcb.zite.so/',
   socials: {
-    // Hidden until confirmed URLs are provided
     instagram: '',
     linkedin: '',
   },
@@ -29,91 +39,169 @@ export const CONTACT = {
 /**
  * Builds pre-filled WhatsApp links with appropriate URL encoding
  */
-export function getWhatsAppLink(type: 'viaje' | 'anatolia' | 'organizaciones' | 'general'): string {
+export function getWhatsAppLink(type: 'viaje' | 'anatolia' | 'organizaciones' | 'contacto_general' | 'mapa'): string {
   const messages: Record<string, string> = {
     viaje:
       'Hola Anatolia, me gustaría consultar por Viaje RAÍZ y conocer los detalles para participar.',
     anatolia:
-      'Hola Anatolia, leí sobre tu propuesta de acompañamiento en RAÍZ y me gustaría conversar contigo.',
+      'Hola Anatolia, leí sobre tu historia y tu acompañamiento en RAÍZ y me gustaría conversar contigo.',
     organizaciones:
       'Hola Anatolia, me gustaría explorar cómo llevar el enfoque RAÍZ a mi organización o equipo.',
-    general:
+    mapa:
+      'Hola Anatolia, exploré el Mapa RAÍZ y me gustaría conversar sobre mis reflexiones y siguientes pasos.',
+    contacto_general:
       'Hola Anatolia, me gustaría tener más información sobre el acompañamiento de RAÍZ.',
   };
 
-  const message = messages[type] || messages.general;
+  const message = messages[type] || messages.contacto_general;
   return `https://wa.me/${CONTACT.whatsappRaw}?text=${encodeURIComponent(message)}`;
 }
 
 export const NAV_LINKS: NavLink[] = [
-  { label: 'El enfoque', href: '#enfoque' },
-  { label: 'Mapa RAÍZ', href: '#mapa-raiz' },
-  { label: 'Viaje RAÍZ', href: '#viaje-raiz' },
-  { label: 'Anatolia', href: '#sobre-anatolia' },
-  { label: 'Organizaciones', href: '#organizaciones' },
+  { label: 'Inicio', href: '#/' },
+  { label: 'Personas', href: '#/personas' },
+  { label: 'Organizaciones', href: '#/organizaciones' },
+  { label: 'Sobre mí', href: '#/sobre-mi' },
+  { label: 'Viaje RAÍZ', href: '#/viaje-raiz' },
+  { label: 'Contacto', href: '#/contacto' },
 ];
 
-export const CONNECTION_SITUATIONS = [
+export const PAGE_METADATA: Record<PageId, PageMeta> = {
+  home: {
+    title: 'RAÍZ · Anatolia Zapata | Decide con mayor conciencia',
+    description:
+      'Comprende qué influye en tus decisiones, reconoce tus recursos y explora nuevas posibilidades con RAÍZ, el enfoque de acompañamiento de Anatolia Zapata.',
+  },
+  personas: {
+    title: 'RAÍZ para personas | Acompañamiento personal',
+    description:
+      'Un espacio para mujeres que buscan comprender sus decisiones, reconocer sus recursos y construir su siguiente etapa personal o profesional.',
+  },
+  organizaciones: {
+    title: 'RAÍZ para organizaciones | Desarrollo humano y bienestar',
+    description:
+      'Experiencias y programas de desarrollo humano, bienestar, liderazgo con perspectiva y género para crear entornos más conscientes.',
+  },
+  'sobre-mi': {
+    title: 'Sobre Anatolia Zapata | La historia detrás de RAÍZ',
+    description:
+      'Conoce la historia y mirada de Anatolia Zapata, mamá de dos, ingeniera industrial, coach y creadora del Método RAÍZ.',
+  },
+  'mapa-raiz': {
+    title: 'Mapa RAÍZ | Explora tu punto de partida',
+    description:
+      'Una herramienta de exploración personal para observar cinco recursos fundamentales que influyen en tus decisiones diarias.',
+  },
+  'viaje-raiz': {
+    title: 'Viaje RAÍZ | Acompañamiento personalizado',
+    description:
+      'Programa de acompañamiento personalizado de 12 sesiones a lo largo de 3 meses para profundizar en tus decisiones y avanzar con serenidad.',
+  },
+  contacto: {
+    title: 'Contacto | Anatolia Zapata · RAÍZ',
+    description:
+      'Conversemos sobre tu proceso personal o explora una propuesta a medida para tu equipo u organización.',
+  },
+};
+
+/**
+ * Sección de Identificación: «Una pausa para mirarte» (Home y Personas)
+ */
+export const IDENTIFICATION_CARDS = [
   {
-    id: 'urgencia',
-    label: 'Decisiones desde la prisa',
-    description: 'Tomas decisiones desde la urgencia del momento, sintiendo que no hay tiempo para pausar y mirar con perspectiva.',
+    id: 'bienestar',
+    title: 'Bienestar',
+    description:
+      'Cuando lo que haces y lo que deseas parecen ir en direcciones distintas, puedes sentirte cada vez más cansada o desconectada de ti.',
   },
   {
-    id: 'patrones',
-    label: 'Patrones que se repiten',
-    description: 'Repites hábitos o respuestas automáticas que deseas cambiar, aún cuando tienes clara la intención de hacerlo diferente.',
+    id: 'relaciones',
+    title: 'Relaciones',
+    description:
+      'Reconocer tus patrones puede ayudarte a comprender mejor cómo te comunicas, cuidas y estableces límites.',
   },
   {
-    id: 'sostener',
-    label: 'Dificultad para sostener',
-    description: 'Te cuesta sostener en el tiempo lo que decides cuando la energía decae o las exigencias cotidianas aumentan.',
+    id: 'oportunidades',
+    title: 'Oportunidades',
+    description:
+      'Hay ideas y posibilidades que merecen ser exploradas, incluso cuando todavía no tienes todas las respuestas.',
   },
   {
-    id: 'claridad',
-    label: 'Búsqueda del siguiente paso',
-    description: 'Necesitas un espacio sereno para ordenar prioridades y elegir tu siguiente paso con verdadera certeza personal.',
+    id: 'forma-elegir',
+    title: 'Tu forma de elegir',
+    description:
+      'Puedes aprender a reconocer qué influye en tus respuestas y considerar otras maneras de actuar.',
   },
 ];
 
+/**
+ * Tres conceptos del sentido de RAÍZ
+ */
+export const SENSE_OF_RAIZ_CONCEPTS = [
+  {
+    number: '01',
+    title: 'Comprender tu historia',
+    description:
+      'Mirar con respeto las vivencias, acuerdos aprendidos y circunstancias que han dado forma a tu manera de responder al mundo.',
+  },
+  {
+    number: '02',
+    title: 'Reconocer tus recursos',
+    description:
+      'Identificar la claridad, la energía, la templanza y las fortalezas que ya habitan en ti, dejando de actuar solo desde la autoexigencia.',
+  },
+  {
+    number: '03',
+    title: 'Elegir y actuar con conciencia',
+    description:
+      'Diseñar pasos reales, graduales y sostenibles en coherencia con tus prioridades actuales y tu propia visión de vida.',
+  },
+];
+
+/**
+ * Los cinco recursos fundamentales oficiales del Mapa RAÍZ
+ */
 export const FUNDAMENTAL_RESOURCES: ResourceItem[] = [
   {
     id: 'perspectiva',
     number: '01',
     name: 'Perspectiva',
-    description: 'Cómo interpretas lo que ocurre a tu alrededor y consideras distintas posibilidades antes de actuar.',
+    description: 'Cómo interpretas las situaciones y consideras distintas posibilidades antes de actuar.',
     reflectionPrompt: '¿Desde qué mirada estás leyendo lo que vives hoy?',
   },
   {
     id: 'gestion-emocional',
     number: '02',
     name: 'Gestión emocional',
-    description: 'Cómo reconoces, regulas y expresas lo que sientes, permitiendo que las emociones informen sin desbordar tus elecciones.',
+    description: 'Cómo reconoces, regulas y expresas lo que sientes, permitiendo que las emociones orienten sin desbordar.',
     reflectionPrompt: '¿Qué emoción suele acelerar o frenar tus decisiones?',
   },
   {
     id: 'direccion',
     number: '03',
     name: 'Dirección',
-    description: 'Cómo defines tus prioridades y orientas tus decisiones cotidianas en coherencia con tus valores profundos.',
+    description: 'Cómo defines prioridades y orientas tus decisiones en coherencia con tus valores esenciales.',
     reflectionPrompt: '¿Tus elecciones diarias apuntan hacia lo que de verdad valoras?',
   },
   {
     id: 'energia-vital',
     number: '04',
     name: 'Energía vital',
-    description: 'Cómo cuidas, dosificas y renuevas la energía física y mental que necesitas para sostener tu propio camino.',
+    description: 'Cómo cuidas la energía que necesitas para sostener tu camino sin desgastarte en lo secundario.',
     reflectionPrompt: '¿Qué decisiones te están nutriendo y cuáles drenan tu vitalidad?',
   },
   {
     id: 'accion-consistente',
     number: '05',
     name: 'Acción consistente',
-    description: 'Cómo conviertes tus decisiones conscientes en pasos concretos y los mantienes a lo largo del tiempo.',
+    description: 'Cómo conviertes tus decisiones en pasos concretos y los mantienes a lo largo del tiempo.',
     reflectionPrompt: '¿De qué forma tus acuerdos contigo misma se vuelven realidad?',
   },
 ];
 
+/**
+ * Preguntas frecuentes generales (Home y páginas interiores)
+ */
 export const JOURNEY_HIGHLIGHTS = [
   {
     title: 'Atención a tu historia y tu contexto real',
@@ -139,28 +227,28 @@ export const JOURNEY_HIGHLIGHTS = [
 
 export const FAQ_ITEMS: FaqItem[] = [
   {
-    question: '¿A quién está dirigido Viaje RAÍZ?',
+    question: '¿Para quién es RAÍZ?',
     answer:
-      'Está dirigido a mujeres que desean comprender sus patrones, dejar de reaccionar en automático y desarrollar recursos internos para tomar decisiones más conscientes en su vida personal y profesional.',
+      'Para mujeres que desean comprender sus patrones, dejar de reaccionar en automático y desarrollar recursos internos para tomar decisiones más conscientes en su vida personal y profesional. También desarrollamos experiencias para organizaciones comprometidas con el bienestar de sus equipos.',
   },
   {
-    question: '¿Cuánto dura el acompañamiento?',
+    question: '¿Qué diferencia hay entre Mapa, Método, Viaje y Bitácora?',
     answer:
-      'El programa se desarrolla a lo largo de 12 sesiones personalizadas durante un período de tres meses, brindando el tiempo necesario para asentar cada descubrimiento.',
+      'RAÍZ es la marca que reúne las experiencias; el Método RAÍZ es el enfoque y la mirada integradora; el Mapa RAÍZ es el recurso de exploración personal de tu punto de partida; Viaje RAÍZ es el programa de acompañamiento individual de 12 sesiones; y la Bitácora RAÍZ es el soporte físico para registrar tu proceso.',
   },
   {
-    question: '¿Tengo que esperar una fecha de inicio?',
+    question: '¿Cómo puedo empezar?',
     answer:
-      'No. El inicio de Viaje RAÍZ es personalizado y se coordina de manera directa con Anatolia de acuerdo con tu momento y disponibilidad.',
+      'Puedes comenzar explorando tu punto de partida con el Mapa RAÍZ o agendando una conversación previa con Anatolia para evaluar encaje mutuo y conocer las alternativas que mejor se adapten a tu momento.',
   },
   {
-    question: '¿Qué es el Mapa RAÍZ?',
+    question: '¿Cómo funciona el acompañamiento de Viaje RAÍZ?',
     answer:
-      'Es un recurso de exploración personal diseñado para observar cómo se encuentran tus cinco recursos fundamentales: perspectiva, gestión emocional, dirección, energía vital y acción consistente. Abre una primera conversación sobre tus decisiones.',
+      'Es un proceso personalizado individual de 12 sesiones a lo largo de tres meses. Abordamos tu historia, exploramos tus cinco recursos y definimos acuerdos sostenibles respetando tu contexto y tus tiempos.',
   },
   {
-    question: '¿Cómo conozco los detalles para participar?',
+    question: '¿Tengo que esperar una fecha grupal para iniciar?',
     answer:
-      'Puedes escribirle directamente a Anatolia por WhatsApp para conversar sobre tu situación actual, conocer el funcionamiento del programa y resolver cualquier duda antes de dar el paso.',
+      'No. El inicio de Viaje RAÍZ es continuo y personalizado; se coordina directamente con Anatolia según tu disponibilidad y tu momento actual.',
   },
 ];
