@@ -1,5 +1,6 @@
-import { PageId, getWhatsAppLink } from '../data/content';
-import { MessageCircle, Check, ArrowRight, Calendar, Sparkles, BookOpen, Clock } from 'lucide-react';
+import { PageId } from '../data/content';
+import { BRAND_ASSETS } from '../data/images';
+import { Mail, Check, ArrowRight, Calendar, Sparkles, BookOpen, Clock } from 'lucide-react';
 
 interface ViajeRaizPageProps {
   onNavigate: (page: PageId) => void;
@@ -39,46 +40,71 @@ const VIAJE_FAQS = [
   },
   {
     question: '¿Cómo evalúo si este programa es para mí antes de empezar?',
-    answer: 'Puedes escribir a Anatolia por WhatsApp para conversar sobre tu momento actual y valorar conjuntamente si existe encaje mutuo para el acompañamiento.',
+    answer: 'Puedes escribir a Anatolia a través del formulario de contacto o al correo raizanatolia@gmail.com para conversar sobre tu momento actual y valorar conjuntamente si existe encaje mutuo para el acompañamiento.',
   },
 ];
 
 export default function ViajeRaizPage({ onNavigate }: ViajeRaizPageProps) {
-  const whatsappUrl = getWhatsAppLink('viaje');
 
   return (
-    <div className="pt-28 pb-20 md:pt-36 md:pb-28">
-      {/* Hero Viaje RAÍZ */}
-      <section className="max-w-5xl mx-auto px-5 sm:px-8 mb-20 md:mb-28">
-        <div className="max-w-3xl">
-          <div className="flex items-center gap-2.5 mb-4">
-            <span className="w-6 h-[1.5px] bg-[#A18347]" aria-hidden="true" />
-            <span className="text-xs font-sans tracking-[0.24em] uppercase text-[#363D28]/90 font-semibold">
-              ACOMPAÑAMIENTO PERSONALIZADO
-            </span>
+    <div className="pb-20 md:pb-28">
+      {/* Hero Viaje RAÍZ con background Cloudinary y velo marfil suave */}
+      <section className="relative isolate min-h-[400px] md:min-h-[480px] flex items-center pt-28 pb-14 md:pt-32 md:pb-16 overflow-hidden border-t-0 border-b border-[#363D28]/10 mb-14 md:mb-20 outline-none">
+        {/* Layer de Fondo: Imagen oficial + capita marfil súper suave */}
+        <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
+          {/* Base marfil */}
+          <div className="absolute inset-0 bg-[#F2EBDD]" />
+
+          {/* Fotografía de fondo de Viaje RAÍZ */}
+          <img
+            src={BRAND_ASSETS.heroViajeRaizBackground}
+            alt=""
+            aria-hidden="true"
+            className="absolute inset-0 w-full h-full object-cover object-[right_top] md:object-[right_top] pointer-events-none"
+            style={{ objectPosition: 'right top' }}
+          />
+
+          {/* Capita marfil súper suave para armonizar con la paleta editorial y asegurar legibilidad sin opacar la fotografía */}
+          <div className="absolute inset-0 bg-[#F2EBDD]/20 pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#F2EBDD] via-[#F2EBDD]/80 to-transparent sm:to-[#F2EBDD]/15 pointer-events-none" />
+          <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#F2EBDD] to-transparent pointer-events-none" />
+        </div>
+
+        {/* Contenido Hero */}
+        <div className="relative max-w-6xl mx-auto px-5 sm:px-8 w-full z-10">
+          <div className="max-w-3xl">
+            <div className="flex items-center gap-2.5 mb-3.5">
+              <span className="w-6 h-[1.5px] bg-[#A18347]" aria-hidden="true" />
+              <span className="text-xs font-sans tracking-[0.24em] uppercase text-[#363D28]/90 font-semibold">
+                ACOMPAÑAMIENTO PERSONALIZADO
+              </span>
+            </div>
+
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-normal text-[#363D28] tracking-tight leading-[1.14] mb-5">
+              Viaje RAÍZ.{' '}
+              <span className="italic block sm:inline">
+                Un espacio para comprender tus decisiones y construir con mayor conciencia.
+              </span>
+            </h1>
+
+            <p className="text-base sm:text-lg font-sans text-[#363D28]/85 font-light leading-relaxed max-w-2xl mb-7">
+              Un proceso personalizado de 12 sesiones a lo largo de tres meses, orientado a explorar tu historia,
+              tus recursos y las posibilidades que deseas construir.
+            </p>
+
+            <button
+              type="button"
+              onClick={() => {
+                window.location.hash = '#/contacto';
+                onNavigate('contacto');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
+              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full text-xs sm:text-sm font-semibold tracking-wider uppercase bg-[#363D28] text-[#F2EBDD] hover:bg-[#222719] transition-all shadow-xs focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#363D28]"
+            >
+              <Mail className="w-4 h-4" />
+              <span>Conversemos sobre tu proceso</span>
+            </button>
           </div>
-
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-serif font-normal text-[#363D28] tracking-tight leading-[1.12] mb-6">
-            Viaje RAÍZ.{' '}
-            <span className="italic block sm:inline">
-              Un espacio para comprender tus decisiones y construir con mayor conciencia.
-            </span>
-          </h1>
-
-          <p className="text-base sm:text-lg md:text-xl font-sans text-[#363D28]/85 font-light leading-relaxed max-w-2xl mb-8">
-            Un proceso personalizado de 12 sesiones a lo largo de tres meses, orientado a explorar tu historia,
-            tus recursos y las posibilidades que deseas construir.
-          </p>
-
-          <a
-            href={whatsappUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-8 py-4 rounded-full text-xs sm:text-sm font-semibold tracking-wider uppercase bg-[#363D28] text-[#F2EBDD] hover:bg-[#222719] transition-all shadow-xs focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#363D28]"
-          >
-            <MessageCircle className="w-4 h-4" />
-            <span>Conversemos sobre tu proceso</span>
-          </a>
         </div>
       </section>
 
@@ -172,15 +198,18 @@ export default function ViajeRaizPage({ onNavigate }: ViajeRaizPageProps) {
             El primer paso es una conversación inicial directa con Anatolia Zapata. Hablamos de tu momento actual,
             revisamos si este enfoque responde a lo que buscas y definimos fechas para iniciar.
           </p>
-          <a
-            href={whatsappUrl}
-            target="_blank"
-            rel="noopener noreferrer"
+          <button
+            type="button"
+            onClick={() => {
+              window.location.hash = '#/contacto';
+              onNavigate('contacto');
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
             className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full text-xs sm:text-sm font-semibold tracking-wider uppercase bg-[#363D28] text-[#F2EBDD] hover:bg-[#222719] transition-all shadow-xs"
           >
-            <MessageCircle className="w-4 h-4" />
+            <Mail className="w-4 h-4" />
             <span>Consultar por Viaje RAÍZ</span>
-          </a>
+          </button>
         </div>
 
         {/* FAQs de Viaje RAÍZ */}

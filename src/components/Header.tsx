@@ -54,7 +54,7 @@ export default function Header({ currentPage, onNavigate }: HeaderProps) {
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
           ? 'bg-[#F2EBDD]/95 backdrop-blur-md shadow-xs border-b border-[#363D28]/10 py-3.5'
-          : 'bg-[#F2EBDD]/90 backdrop-blur-xs py-4 md:py-5 border-b border-[#363D28]/5'
+          : 'bg-[#F2EBDD]/90 backdrop-blur-xs py-4 md:py-5 border-b border-transparent'
       }`}
     >
       <div className="max-w-6xl mx-auto px-5 sm:px-8 flex items-center justify-between">

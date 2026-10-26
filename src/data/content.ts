@@ -26,36 +26,14 @@ export const BRAND = {
 };
 
 export const CONTACT = {
-  whatsappDisplay: '+51 949 465 083',
-  whatsappRaw: '51949465083',
-  email: 'anatolia.zapata@gmail.com',
+  email: 'raizanatolia@gmail.com',
   mapUrl: 'https://cjyyftsgcb.zite.so/',
   socials: {
-    instagram: '',
+    instagram: 'https://www.instagram.com/anatoliazapata/',
+    tiktok: 'https://www.tiktok.com/@anatoliacoach',
     linkedin: '',
   },
 };
-
-/**
- * Builds pre-filled WhatsApp links with appropriate URL encoding
- */
-export function getWhatsAppLink(type: 'viaje' | 'anatolia' | 'organizaciones' | 'contacto_general' | 'mapa'): string {
-  const messages: Record<string, string> = {
-    viaje:
-      'Hola Anatolia, me gustaría consultar por Viaje RAÍZ y conocer los detalles para participar.',
-    anatolia:
-      'Hola Anatolia, leí sobre tu historia y tu acompañamiento en RAÍZ y me gustaría conversar contigo.',
-    organizaciones:
-      'Hola Anatolia, me gustaría explorar cómo llevar el enfoque RAÍZ a mi organización o equipo.',
-    mapa:
-      'Hola Anatolia, exploré el Mapa RAÍZ y me gustaría conversar sobre mis reflexiones y siguientes pasos.',
-    contacto_general:
-      'Hola Anatolia, me gustaría tener más información sobre el acompañamiento de RAÍZ.',
-  };
-
-  const message = messages[type] || messages.contacto_general;
-  return `https://wa.me/${CONTACT.whatsappRaw}?text=${encodeURIComponent(message)}`;
-}
 
 export const NAV_LINKS: NavLink[] = [
   { label: 'Inicio', href: '#/' },

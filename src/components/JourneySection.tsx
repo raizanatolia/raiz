@@ -1,8 +1,7 @@
-import { MessageCircle, Check } from 'lucide-react';
-import { JOURNEY_HIGHLIGHTS, getWhatsAppLink } from '../data/content';
+import { Mail, Check } from 'lucide-react';
+import { JOURNEY_HIGHLIGHTS } from '../data/content';
 
 export default function JourneySection() {
-  const whatsappUrl = getWhatsAppLink('viaje');
 
   return (
     <section id="viaje-raiz" className="py-20 md:py-28 relative">
@@ -84,12 +83,10 @@ export default function JourneySection() {
             </div>
 
             <a
-              href={whatsappUrl}
-              target="_blank"
-              rel="noopener noreferrer"
+              href="#/contacto"
               className="inline-flex items-center justify-center gap-2 w-full py-3.5 px-5 rounded-full text-xs font-semibold tracking-wider uppercase bg-[#363D28] text-[#F2EBDD] hover:bg-[#242A1A] transition-colors text-center shadow-xs focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#363D28]"
             >
-              <MessageCircle className="w-4 h-4" />
+              <Mail className="w-4 h-4" />
               <span>Consultar por Viaje RAÍZ</span>
             </a>
           </div>

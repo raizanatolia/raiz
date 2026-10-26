@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { CONTACT } from '../data/content';
-import { ArrowRight, MessageCircle, CheckCircle2, ShieldCheck, Clock, UserCheck, ChevronDown, RotateCcw } from 'lucide-react';
+import { FORMSUBMIT_CONFIG } from '../config/forms';
+import { PageId } from '../data/content';
+import { CheckCircle2, ShieldCheck, Clock, UserCheck, ChevronDown, Loader2, AlertCircle, ArrowLeft, RefreshCw, Send } from 'lucide-react';
 
 export type LeadFormVariant = 'persona' | 'organizacion';
 
@@ -8,20 +9,30 @@ interface LeadContactFormProps {
   variant: LeadFormVariant;
   id?: string;
   className?: string;
+  onNavigate?: (page: PageId) => void;
 }
 
-export default function LeadContactForm({ variant, id, className = '' }: LeadContactFormProps) {
+type SubmissionStatus = 'idle' | 'submitting' | 'success' | 'error' | 'activation_pending';
+
+export default function LeadContactForm({
+  variant,
+  id,
+  className = '',
+  onNavigate,
+}: LeadContactFormProps) {
   // Form fields
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [organization, setOrganization] = useState('');
   const [selection, setSelection] = useState('');
   const [notes, setNotes] = useState('');
+  const [honey, setHoney] = useState('');
 
   // Status & errors
+  const [status, setStatus] = useState<SubmissionStatus>('idle');
+  const [errorMessage, setErrorMessage] = useState('');
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [touched, setTouched] = useState<Record<string, boolean>>({});
-  const [submittedUrl, setSubmittedUrl] = useState<string | null>(null);
 
   const isPersona = variant === 'persona';
   const maxNotesLength = isPersona ? 500 : 700;
@@ -33,7 +44,7 @@ export default function LeadContactForm({ variant, id, className = '' }: LeadCon
         title: 'Tu siguiente capítulo puede comenzar con una conversación.',
         description:
           'No necesitas tener todas las respuestas. Cuéntame un poco sobre tu momento y exploremos juntas cómo podría acompañarte.',
-        ctaText: 'Continuar por WhatsApp →',
+        ctaText: 'Enviar consulta',
         selectLabel: '¿Qué te gustaría explorar?',
         selectPlaceholder: 'Selecciona lo que resuena hoy contigo...',
         selectOptions: [
@@ -48,17 +59,17 @@ export default function LeadContactForm({ variant, id, className = '' }: LeadCon
           {
             icon: UserCheck,
             title: 'Atención personalizada',
-            desc: 'Anatolia responde directamente a cada mensaje.',
+            desc: 'Anatolia responde personalmente a cada mensaje recibido.',
           },
           {
             icon: ShieldCheck,
             title: 'Privacidad absoluta',
-            desc: 'Tus datos se transmiten directamente a WhatsApp sin intermediarios.',
+            desc: 'Tus datos se tratan con total reserva profesional y confidencialidad.',
           },
           {
             icon: Clock,
             title: 'Sin compromisos',
-            desc: 'Una primera conversación para conocernos y orientar tu proceso.',
+            desc: 'Un primer intercambio por correo para conocernos y orientar tu proceso.',
           },
         ],
       }
@@ -67,7 +78,7 @@ export default function LeadContactForm({ variant, id, className = '' }: LeadCon
         title: 'Cada organización tiene una historia. Conversemos sobre la tuya.',
         description:
           'Cuéntame brevemente qué experiencia estás buscando para tu equipo y exploremos una propuesta que responda a su realidad.',
-        ctaText: 'Solicitar conversación →',
+        ctaText: 'Enviar solicitud',
         selectLabel: '¿Qué tipo de experiencia buscan?',
         selectPlaceholder: 'Selecciona una modalidad o formato...',
         selectOptions: [
@@ -92,7 +103,7 @@ export default function LeadContactForm({ variant, id, className = '' }: LeadCon
           {
             icon: Clock,
             title: 'Respuesta ágil',
-            desc: 'Coordinamos una videollamada exploratoria o intercambio inicial.',
+            desc: 'Coordinamos una conversación inicial por correo o videollamada.',
           },
         ],
       };
@@ -139,53 +150,15 @@ export default function LeadContactForm({ variant, id, className = '' }: LeadCon
     }));
   };
 
-  const buildWhatsAppMessage = () => {
-    if (isPersona) {
-      const parts = [
-        'Hola Anatolia, llegué desde la página RAÍZ para personas.',
-        '',
-        `Mi nombre es: ${name.trim()}`,
-        `Mi correo es: ${email.trim()}`,
-        '',
-        'Me gustaría explorar:',
-        selection,
-      ];
-
-      if (notes.trim()) {
-        parts.push('');
-        parts.push('Quisiera contarte:');
-        parts.push(notes.trim());
-      }
-
-      parts.push('');
-      parts.push('Me gustaría conocer cómo podemos empezar.');
-      return parts.join('\n');
-    } else {
-      const parts = [
-        'Hola Anatolia, te contacto desde RAÍZ para organizaciones.',
-        '',
-        `Mi nombre es: ${name.trim()}`,
-        `Organización: ${organization.trim()}`,
-        `Correo: ${email.trim()}`,
-        '',
-        'Estamos interesados en:',
-        selection,
-      ];
-
-      if (notes.trim()) {
-        parts.push('');
-        parts.push('Nuestro contexto o necesidad:');
-        parts.push(notes.trim());
-      }
-
-      parts.push('');
-      parts.push('Me gustaría conversar sobre una posible propuesta.');
-      return parts.join('\n');
-    }
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Spam honeypot trap: silently succeed without hitting the API
+    if (honey.trim().length > 0) {
+      setStatus('success');
+      return;
+    }
+
     const validationErrors = validate();
 
     if (Object.keys(validationErrors).length > 0) {
@@ -197,7 +170,6 @@ export default function LeadContactForm({ variant, id, className = '' }: LeadCon
         selection: true,
       });
 
-      // Focus first error field
       const firstErrorField = Object.keys(validationErrors)[0];
       const el = document.getElementById(`${variant}-${firstErrorField}`);
       if (el) {
@@ -207,13 +179,82 @@ export default function LeadContactForm({ variant, id, className = '' }: LeadCon
     }
 
     setErrors({});
-    const message = buildWhatsAppMessage();
-    const waUrl = `https://wa.me/${CONTACT.whatsappRaw}?text=${encodeURIComponent(message)}`;
+    setStatus('submitting');
+    setErrorMessage('');
 
-    setSubmittedUrl(waUrl);
+    const subject = FORMSUBMIT_CONFIG.subjects[variant];
 
-    // Open WhatsApp in a new tab via direct user action
-    window.open(waUrl, '_blank', 'noopener,noreferrer');
+    const payload: Record<string, string> = {
+      _subject: subject,
+      _template: FORMSUBMIT_CONFIG.template,
+      _captcha: FORMSUBMIT_CONFIG.captcha,
+      _honey: '',
+      email: email.trim(), // FormSubmit uses this for Reply-To
+      Nombre: name.trim(),
+      'Correo electrónico': email.trim(),
+      ...(isPersona
+        ? {
+            'Tipo de formulario': 'Acompañamiento individual (Personas)',
+            'Interés principal': selection,
+            'Mensaje o notas': notes.trim() || 'Sin notas adicionales',
+          }
+        : {
+            'Tipo de formulario': 'Consultas comerciales (Organizaciones)',
+            'Empresa u organización': organization.trim(),
+            'Tipo de experiencia': selection,
+            'Contexto o necesidad': notes.trim() || 'Sin notas adicionales',
+          }),
+    };
+
+    try {
+      const response = await fetch(FORMSUBMIT_CONFIG.endpoint, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify(payload),
+      });
+
+      const data = await response.json().catch(() => null);
+
+      if (response.ok && (data?.success === 'true' || data?.success === true)) {
+        setStatus('success');
+        // Clear fields exclusively on confirmed success
+        setName('');
+        setEmail('');
+        setOrganization('');
+        setSelection('');
+        setNotes('');
+        setHoney('');
+        setTouched({});
+        setErrors({});
+      } else if (
+        data &&
+        typeof data.message === 'string' &&
+        (data.message.toLowerCase().includes('activate') ||
+          data.message.toLowerCase().includes('activar') ||
+          data.message.toLowerCase().includes('confirm'))
+      ) {
+        // FormSubmit requires email activation for first-time use
+        setStatus('activation_pending');
+      } else {
+        setStatus('error');
+        setErrorMessage(
+          (data && data.message) ||
+            'No se pudo completar el envío en este momento. Por favor verifica tu conexión o escríbenos directamente a ' +
+              FORMSUBMIT_CONFIG.recipientEmail +
+              '.'
+        );
+      }
+    } catch {
+      setStatus('error');
+      setErrorMessage(
+        'Hubo un problema de conexión al enviar el formulario. Por favor, inténtalo nuevamente o escribe a ' +
+          FORMSUBMIT_CONFIG.recipientEmail +
+          '.'
+      );
+    }
   };
 
   const handleReset = () => {
@@ -222,9 +263,20 @@ export default function LeadContactForm({ variant, id, className = '' }: LeadCon
     setOrganization('');
     setSelection('');
     setNotes('');
+    setHoney('');
     setErrors({});
     setTouched({});
-    setSubmittedUrl(null);
+    setStatus('idle');
+    setErrorMessage('');
+  };
+
+  const handleGoHome = () => {
+    if (onNavigate) {
+      onNavigate('home');
+    } else {
+      window.location.hash = '#/';
+    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
@@ -274,52 +326,72 @@ export default function LeadContactForm({ variant, id, className = '' }: LeadCon
               </div>
             </div>
 
-            {/* Right Column: Interactive Form */}
+            {/* Right Column: Interactive Form or States */}
             <div className="lg:col-span-7">
-              {submittedUrl ? (
-                /* Success / WhatsApp Preparation Screen */
-                <div className="bg-[#F2EBDD] rounded-2xl border border-[#363D28]/15 p-6 sm:p-8 text-left animate-in fade-in duration-300">
-                  <div className="w-12 h-12 rounded-full bg-[#363D28] text-[#F2EBDD] flex items-center justify-center mb-4">
-                    <CheckCircle2 className="w-6 h-6 stroke-[2]" />
+              {status === 'success' ? (
+                /* Success Screen (Exact requested text) */
+                <div className="bg-[#F2EBDD] rounded-2xl border border-[#363D28]/15 p-7 sm:p-10 text-center animate-in fade-in duration-300">
+                  <div className="w-14 h-14 rounded-full bg-[#363D28] text-[#F2EBDD] flex items-center justify-center mx-auto mb-5 shadow-xs">
+                    <CheckCircle2 className="w-7 h-7 stroke-[2]" />
                   </div>
 
-                  <h3 className="text-xl sm:text-2xl font-serif font-normal text-[#363D28] mb-2">
-                    Tu mensaje está preparado
+                  <h3 className="text-2xl sm:text-3xl font-serif font-normal text-[#363D28] mb-3">
+                    ¡Gracias por escribirnos!
                   </h3>
 
-                  <p className="text-sm font-sans text-[#363D28]/85 font-light leading-relaxed mb-5">
-                    Se ha intentado abrir WhatsApp con tu conversación lista para Anatolia Zapata. Podrás revisarla y personalizar cualquier detalle antes de enviarla.
+                  <p className="text-sm sm:text-base font-sans text-[#363D28]/85 font-light leading-relaxed max-w-md mx-auto mb-8">
+                    Hemos recibido tu mensaje. Nos pondremos en contacto contigo a través del correo que nos compartiste.
                   </p>
 
-                  <div className="p-4 rounded-xl bg-[#FAF7F2] border border-[#363D28]/10 mb-6">
-                    <div className="text-[11px] font-sans font-semibold uppercase tracking-wider text-[#A18347] mb-1.5">
-                      Vista previa del mensaje
-                    </div>
-                    <pre className="text-xs font-sans text-[#363D28]/90 whitespace-pre-wrap font-light leading-relaxed">
-                      {buildWhatsAppMessage()}
-                    </pre>
-                  </div>
-
-                  <div className="space-y-3">
-                    <a
-                      href={submittedUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-full inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-full text-xs sm:text-sm font-semibold tracking-wider uppercase bg-[#363D28] text-[#F2EBDD] hover:bg-[#222719] transition-all shadow-xs"
+                  <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+                    <button
+                      type="button"
+                      onClick={handleGoHome}
+                      className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full text-xs sm:text-sm font-semibold tracking-wider uppercase bg-[#363D28] text-[#F2EBDD] hover:bg-[#222719] transition-all shadow-xs"
                     >
-                      <MessageCircle className="w-4 h-4" />
-                      <span>Abrir WhatsApp ahora</span>
-                    </a>
+                      <ArrowLeft className="w-4 h-4" />
+                      <span>Volver al inicio</span>
+                    </button>
 
                     <button
                       type="button"
                       onClick={handleReset}
-                      className="w-full inline-flex items-center justify-center gap-2 px-5 py-2.5 text-xs font-sans text-[#363D28]/70 hover:text-[#363D28] transition-colors"
+                      className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 text-xs font-sans text-[#363D28]/75 hover:text-[#363D28] transition-colors"
                     >
-                      <RotateCcw className="w-3.5 h-3.5" />
-                      <span>Editar datos o preparar otro mensaje</span>
+                      <RefreshCw className="w-3.5 h-3.5" />
+                      <span>Enviar otro mensaje</span>
                     </button>
                   </div>
+                </div>
+              ) : status === 'activation_pending' ? (
+                /* FormSubmit Activation Notice */
+                <div className="bg-[#FAF7F2] rounded-2xl border border-[#A18347]/40 p-7 sm:p-9 text-left animate-in fade-in duration-300">
+                  <div className="w-12 h-12 rounded-full bg-[#A18347]/15 text-[#A18347] flex items-center justify-center mb-4">
+                    <Clock className="w-6 h-6 stroke-[2]" />
+                  </div>
+
+                  <h3 className="text-xl sm:text-2xl font-serif font-normal text-[#363D28] mb-2">
+                    Activación de recepción pendiente
+                  </h3>
+
+                  <p className="text-sm font-sans text-[#363D28]/85 font-light leading-relaxed mb-4">
+                    FormSubmit ha recibido la primera solicitud y ha enviado un correo de confirmación a{' '}
+                    <strong className="font-semibold text-[#363D28]">{FORMSUBMIT_CONFIG.recipientEmail}</strong> para
+                    autorizar la entrega de formularios.
+                  </p>
+
+                  <p className="text-xs font-sans text-[#363D28]/75 leading-relaxed mb-6">
+                    Por favor, confirma la activación en la bandeja de entrada para que las respuestas comiencen a llegar
+                    directamente.
+                  </p>
+
+                  <button
+                    type="button"
+                    onClick={handleReset}
+                    className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-xs font-semibold uppercase tracking-wider bg-[#363D28] text-[#F2EBDD]"
+                  >
+                    <span>Entendido</span>
+                  </button>
                 </div>
               ) : (
                 /* Primary Form */
@@ -328,6 +400,34 @@ export default function LeadContactForm({ variant, id, className = '' }: LeadCon
                   noValidate
                   className="bg-[#F2EBDD]/60 rounded-2xl border border-[#363D28]/12 p-6 sm:p-8 space-y-5"
                 >
+                  {/* Anti-spam honeypot field (hidden from legitimate users) */}
+                  <div style={{ display: 'none' }} aria-hidden="true">
+                    <label htmlFor={`${variant}-honey`}>No completar este campo</label>
+                    <input
+                      id={`${variant}-honey`}
+                      type="text"
+                      name="_honey"
+                      value={honey}
+                      onChange={(e) => setHoney(e.target.value)}
+                      tabIndex={-1}
+                      autoComplete="off"
+                    />
+                  </div>
+
+                  {/* Error Notification Banner */}
+                  {status === 'error' && (
+                    <div
+                      role="alert"
+                      className="p-4 rounded-xl bg-red-50/90 border border-red-200 text-red-900 text-xs sm:text-sm font-sans flex items-start gap-3 animate-in fade-in"
+                    >
+                      <AlertCircle className="w-5 h-5 text-red-700 shrink-0 mt-0.5" />
+                      <div>
+                        <p className="font-medium mb-0.5">No pudimos procesar tu mensaje</p>
+                        <p className="text-red-800/90 font-light text-xs">{errorMessage}</p>
+                      </div>
+                    </div>
+                  )}
+
                   {/* Name field */}
                   <div>
                     <label
@@ -338,6 +438,7 @@ export default function LeadContactForm({ variant, id, className = '' }: LeadCon
                     </label>
                     <input
                       id={`${variant}-name`}
+                      name="name"
                       type="text"
                       required
                       value={name}
@@ -349,6 +450,7 @@ export default function LeadContactForm({ variant, id, className = '' }: LeadCon
                       placeholder={isPersona ? 'Tu nombre' : 'Tu nombre y apellido'}
                       aria-invalid={Boolean(errors.name)}
                       aria-describedby={errors.name ? `${variant}-name-error` : undefined}
+                      disabled={status === 'submitting'}
                       className={`w-full min-h-[48px] px-4 py-3 rounded-xl bg-[#FAF7F2] text-[#363D28] placeholder-[#363D28]/40 text-sm transition-all focus:outline-none focus:ring-2 ${
                         errors.name
                           ? 'border border-red-500/80 focus:ring-red-400'
@@ -377,6 +479,7 @@ export default function LeadContactForm({ variant, id, className = '' }: LeadCon
                       </label>
                       <input
                         id={`${variant}-organization`}
+                        name="organization"
                         type="text"
                         required
                         value={organization}
@@ -388,6 +491,7 @@ export default function LeadContactForm({ variant, id, className = '' }: LeadCon
                         placeholder="Nombre de tu organización o empresa"
                         aria-invalid={Boolean(errors.organization)}
                         aria-describedby={errors.organization ? `${variant}-organization-error` : undefined}
+                        disabled={status === 'submitting'}
                         className={`w-full min-h-[48px] px-4 py-3 rounded-xl bg-[#FAF7F2] text-[#363D28] placeholder-[#363D28]/40 text-sm transition-all focus:outline-none focus:ring-2 ${
                           errors.organization
                             ? 'border border-red-500/80 focus:ring-red-400'
@@ -416,6 +520,7 @@ export default function LeadContactForm({ variant, id, className = '' }: LeadCon
                     </label>
                     <input
                       id={`${variant}-email`}
+                      name="email"
                       type="email"
                       required
                       value={email}
@@ -427,6 +532,7 @@ export default function LeadContactForm({ variant, id, className = '' }: LeadCon
                       placeholder={isPersona ? 'tu.correo@ejemplo.com' : 'tu.nombre@empresa.com'}
                       aria-invalid={Boolean(errors.email)}
                       aria-describedby={errors.email ? `${variant}-email-error` : undefined}
+                      disabled={status === 'submitting'}
                       className={`w-full min-h-[48px] px-4 py-3 rounded-xl bg-[#FAF7F2] text-[#363D28] placeholder-[#363D28]/40 text-sm transition-all focus:outline-none focus:ring-2 ${
                         errors.email
                           ? 'border border-red-500/80 focus:ring-red-400'
@@ -455,6 +561,7 @@ export default function LeadContactForm({ variant, id, className = '' }: LeadCon
                     <div className="relative">
                       <select
                         id={`${variant}-selection`}
+                        name="selection"
                         required
                         value={selection}
                         onChange={(e) => {
@@ -464,6 +571,7 @@ export default function LeadContactForm({ variant, id, className = '' }: LeadCon
                         onBlur={() => handleBlur('selection')}
                         aria-invalid={Boolean(errors.selection)}
                         aria-describedby={errors.selection ? `${variant}-selection-error` : undefined}
+                        disabled={status === 'submitting'}
                         className={`w-full min-h-[48px] px-4 py-3 pr-10 rounded-xl bg-[#FAF7F2] text-[#363D28] text-sm appearance-none transition-all focus:outline-none focus:ring-2 cursor-pointer ${
                           !selection ? 'text-[#363D28]/50' : 'text-[#363D28]'
                         } ${
@@ -512,12 +620,14 @@ export default function LeadContactForm({ variant, id, className = '' }: LeadCon
                     </div>
                     <textarea
                       id={`${variant}-notes`}
+                      name="notes"
                       rows={3}
                       maxLength={maxNotesLength}
                       value={notes}
                       onChange={(e) => setNotes(e.target.value)}
                       placeholder={config.notesPlaceholder}
                       aria-describedby={`${variant}-counter`}
+                      disabled={status === 'submitting'}
                       className="w-full px-4 py-3 rounded-xl bg-[#FAF7F2] border border-[#363D28]/20 text-[#363D28] placeholder-[#363D28]/40 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-[#363D28] focus:border-transparent transition-all"
                     />
                   </div>
@@ -526,20 +636,27 @@ export default function LeadContactForm({ variant, id, className = '' }: LeadCon
                   <div className="pt-2">
                     <button
                       type="submit"
-                      className="w-full min-h-[48px] py-3.5 px-6 rounded-full text-xs sm:text-sm font-semibold tracking-wider uppercase bg-[#363D28] text-[#F2EBDD] hover:bg-[#222719] transition-all flex items-center justify-center gap-2.5 shadow-xs focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#363D28]"
+                      disabled={status === 'submitting'}
+                      className="w-full min-h-[48px] py-3.5 px-6 rounded-full text-xs sm:text-sm font-semibold tracking-wider uppercase bg-[#363D28] text-[#F2EBDD] hover:bg-[#222719] transition-all flex items-center justify-center gap-2.5 shadow-xs focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#363D28] disabled:opacity-60 disabled:cursor-not-allowed"
                     >
-                      <MessageCircle className="w-4 h-4 shrink-0" />
-                      <span>{config.ctaText}</span>
+                      {status === 'submitting' ? (
+                        <>
+                          <Loader2 className="w-4 h-4 animate-spin" />
+                          <span>Enviando...</span>
+                        </>
+                      ) : (
+                        <>
+                          <Send className="w-4 h-4 shrink-0" />
+                          <span>{config.ctaText}</span>
+                        </>
+                      )}
                     </button>
                   </div>
 
-                  {/* Privacy & WhatsApp Flow Notice */}
+                  {/* Privacy Notice */}
                   <div className="pt-1 text-center">
                     <p className="text-[11px] sm:text-xs font-sans text-[#363D28]/70 leading-relaxed">
-                      Al continuar, se abrirá WhatsApp con tu mensaje preparado. Podrás revisarlo antes de enviarlo.
-                    </p>
-                    <p className="text-[10px] font-sans text-[#363D28]/50 mt-1">
-                      Tus datos se utilizan exclusivamente para responder a tu consulta con total confidencialidad.
+                      {FORMSUBMIT_CONFIG.privacyNotice}
                     </p>
                   </div>
                 </form>

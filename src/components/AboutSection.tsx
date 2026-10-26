@@ -1,12 +1,10 @@
 import { useState } from 'react';
 import { IMAGES, getImageUrl } from '../data/images';
-import { getWhatsAppLink } from '../data/content';
-import { MessageCircle, Sparkles } from 'lucide-react';
+import { Mail, Sparkles } from 'lucide-react';
 
 export default function AboutSection() {
   const [imgError, setImgError] = useState(false);
   const portraitImage = IMAGES.anatoliaPortrait;
-  const whatsappUrl = getWhatsAppLink('anatolia');
 
   return (
     <section id="sobre-anatolia" className="py-20 md:py-28 relative">
@@ -81,18 +79,16 @@ export default function AboutSection() {
             {/* Conversation CTA */}
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
               <a
-                href={whatsappUrl}
-                target="_blank"
-                rel="noopener noreferrer"
+                href="#/contacto"
                 className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full text-xs sm:text-sm font-semibold tracking-wider uppercase bg-[#363D28] text-[#F2EBDD] hover:bg-[#242A1A] transition-colors shadow-xs focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#363D28]"
               >
-                <MessageCircle className="w-4 h-4" />
+                <Mail className="w-4 h-4" />
                 <span>Conversemos</span>
               </a>
 
               <span className="text-xs font-sans text-[#363D28]/70 flex items-center gap-1.5 pt-1 sm:pt-0">
                 <Sparkles className="w-3.5 h-3.5 text-[#A18347]" />
-                Conversación personal y directa por WhatsApp
+                Atención directa y personalizada
               </span>
             </div>
           </div>

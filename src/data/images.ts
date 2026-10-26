@@ -11,8 +11,12 @@ import { ImageAsset } from '../types';
 export const BRAND_ASSETS = {
   logoHorizontal: 'https://res.cloudinary.com/rus3f4tb/image/upload/v1792767322/RAIZ_HorizontalLogoTransparente.png',
   isotipo: 'https://res.cloudinary.com/rus3f4tb/image/upload/v1792767407/favicon-raiz.png',
-  // Background oficial de Hero
+  // Backgrounds oficiales de Hero
   heroBackgroundCloudinaryUrl: 'https://res.cloudinary.com/rus3f4tb/image/upload/v1792767313/background-hero-raiz-anatoliazapata.png',
+  heroPersonasBackground: 'https://res.cloudinary.com/rus3f4tb/image/upload/f_auto,q_auto/v1793034612/anatolia-zapata-raiz-personas.png',
+  heroOrganizacionesBackground: 'https://res.cloudinary.com/rus3f4tb/image/upload/f_auto,q_auto/v1793034612/anatolia-zapata-raiz-organizaciones.png',
+  heroViajeRaizBackground: 'https://res.cloudinary.com/rus3f4tb/image/upload/f_auto,q_auto/v1793036682/bg-hero-raiz-anatolia-zapata-viaje-raiz.png',
+  heroMapaRaizBackground: 'https://res.cloudinary.com/rus3f4tb/image/upload/v1793037854/bg-conoce-tu-mapa-raiz.png',
   // Retrato oficial de Anatolia Zapata
   anatoliaPhoto: 'https://res.cloudinary.com/rus3f4tb/image/upload/f_auto,q_auto/v1792769718/Anatolia-Zapata-Coach-RAIZ.png',
   // Pasos oficiales de El Sentido de RAÍZ

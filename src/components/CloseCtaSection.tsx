@@ -1,5 +1,5 @@
-import { PageId, getWhatsAppLink } from '../data/content';
-import { ArrowRight, MessageCircle } from 'lucide-react';
+import { PageId } from '../data/content';
+import { ArrowRight, Mail } from 'lucide-react';
 import OrganicTrace from './OrganicTrace';
 
 interface CloseCtaSectionProps {
@@ -7,8 +7,6 @@ interface CloseCtaSectionProps {
 }
 
 export default function CloseCtaSection({ onNavigate }: CloseCtaSectionProps) {
-  const whatsappUrl = getWhatsAppLink('anatolia');
-
   return (
     <section className="py-20 md:py-28 bg-[#FAF7F2] border-t border-[#363D28]/10 relative">
       <div className="max-w-4xl mx-auto px-5 sm:px-8 text-center">
@@ -42,15 +40,18 @@ export default function CloseCtaSection({ onNavigate }: CloseCtaSectionProps) {
             <ArrowRight className="w-4 h-4" />
           </button>
 
-          <a
-            href={whatsappUrl}
-            target="_blank"
-            rel="noopener noreferrer"
+          <button
+            type="button"
+            onClick={() => {
+              window.location.hash = '#/contacto';
+              onNavigate('contacto');
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
             className="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-full text-xs sm:text-sm font-medium tracking-wide text-[#363D28] border border-[#363D28]/30 hover:border-[#363D28] hover:bg-[#363D28]/5 transition-all focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#363D28] w-full sm:w-auto"
           >
-            <MessageCircle className="w-4 h-4" />
+            <Mail className="w-4 h-4" />
             <span>Conversemos</span>
-          </a>
+          </button>
         </div>
       </div>
     </section>

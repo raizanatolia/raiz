@@ -1,9 +1,6 @@
-import { getWhatsAppLink } from '../data/content';
 import { MessageSquare, Building2 } from 'lucide-react';
 
 export default function OrganizationsSection() {
-  const whatsappUrl = getWhatsAppLink('organizaciones');
-
   return (
     <section id="organizaciones" className="py-20 md:py-24 bg-[#EAE2D2]/60 border-t border-[#363D28]/10">
       <div className="max-w-4xl mx-auto px-5 sm:px-8 text-center">
@@ -25,13 +22,11 @@ export default function OrganizationsSection() {
 
         <div>
           <a
-            href={whatsappUrl}
-            target="_blank"
-            rel="noopener noreferrer"
+            href="#/organizaciones"
             className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full text-xs sm:text-sm font-semibold tracking-wider uppercase bg-[#363D28] text-[#F2EBDD] hover:bg-[#242A1A] transition-colors shadow-xs focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#363D28]"
           >
             <MessageSquare className="w-4 h-4" />
-            <span>Cuéntame sobre tu organización</span>
+            <span>Ver propuestas para organizaciones</span>
           </a>
         </div>
       </div>

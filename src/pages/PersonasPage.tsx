@@ -1,5 +1,6 @@
 import { PageId } from '../data/content';
-import { ArrowRight, Compass, Sparkles, BookOpen, MessageCircle } from 'lucide-react';
+import { BRAND_ASSETS } from '../data/images';
+import { ArrowRight, Compass, Sparkles, BookOpen, Mail } from 'lucide-react';
 import LeadContactForm from '../components/LeadContactForm';
 
 interface PersonasPageProps {
@@ -38,49 +39,72 @@ export default function PersonasPage({ onNavigate }: PersonasPageProps) {
   };
 
   return (
-    <div className="pt-28 pb-20 md:pt-36 md:pb-28">
-      {/* Hero Personas */}
-      <section className="max-w-5xl mx-auto px-5 sm:px-8 mb-20 md:mb-28">
-        <div className="max-w-3xl">
-          <div className="flex items-center gap-2.5 mb-4">
-            <span className="w-6 h-[1.5px] bg-[#A18347]" aria-hidden="true" />
-            <span className="text-xs font-sans tracking-[0.24em] uppercase text-[#363D28]/90 font-semibold">
-              RAÍZ PARA PERSONAS
-            </span>
-          </div>
+    <div className="pb-20 md:pb-28">
+      {/* Hero Personas con background Cloudinary y velo marfil suave */}
+      <section className="relative isolate min-h-[500px] md:min-h-[580px] lg:min-h-[640px] flex items-center pt-32 pb-20 md:pt-40 md:pb-24 lg:pt-44 lg:pb-28 overflow-hidden border-t-0 border-b border-[#363D28]/10 mb-12 md:mb-16 outline-none">
+        {/* Layer de Fondo: Imagen oficial + capita marfil súper suave */}
+        <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
+          {/* Base marfil */}
+          <div className="absolute inset-0 bg-[#F2EBDD]" />
 
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-serif font-normal text-[#363D28] tracking-tight leading-[1.12] mb-6">
-            Un espacio para comprender,{' '}
-            <span className="italic block sm:inline">elegir y construir tu siguiente etapa.</span>
-          </h1>
+          {/* Fotografía de fondo de Personas con encuadre prioritario en parte superior / rostro */}
+          <img
+            src={BRAND_ASSETS.heroPersonasBackground}
+            alt=""
+            aria-hidden="true"
+            className="absolute inset-0 w-full h-full object-cover object-[right_top] md:object-[right_top] pointer-events-none"
+            style={{ objectPosition: 'right top' }}
+          />
 
-          <p className="text-base sm:text-lg md:text-xl font-sans text-[#363D28]/85 font-light leading-relaxed max-w-2xl mb-8">
-            Acompaño a mujeres que desean comprender qué está influyendo en sus decisiones, reconocer sus
-            recursos y avanzar hacia lo que consideran importante.
-          </p>
+          {/* Capita marfil súper suave para armonizar con la paleta editorial y asegurar legibilidad sin opacar la fotografía */}
+          <div className="absolute inset-0 bg-[#F2EBDD]/20 pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#F2EBDD] via-[#F2EBDD]/75 to-transparent sm:to-[#F2EBDD]/10 pointer-events-none" />
+          <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#F2EBDD] to-transparent pointer-events-none" />
+        </div>
 
-          <div className="flex flex-wrap items-center gap-4">
-            <button
-              type="button"
-              onClick={() => {
-                window.location.hash = '#/mapa-raiz';
-                onNavigate('mapa-raiz');
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-              }}
-              className="inline-flex items-center gap-2 px-8 py-4 rounded-full text-xs sm:text-sm font-semibold tracking-wider uppercase bg-[#363D28] text-[#F2EBDD] hover:bg-[#222719] transition-all shadow-xs focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#363D28]"
-            >
-              <span>Descubre tu Mapa RAÍZ</span>
-              <ArrowRight className="w-4 h-4" />
-            </button>
+        {/* Contenido Hero */}
+        <div className="relative max-w-6xl mx-auto px-5 sm:px-8 w-full z-10">
+          <div className="max-w-3xl">
+            <div className="flex items-center gap-2.5 mb-3.5">
+              <span className="w-6 h-[1.5px] bg-[#A18347]" aria-hidden="true" />
+              <span className="text-xs font-sans tracking-[0.24em] uppercase text-[#363D28]/90 font-semibold">
+                RAÍZ PARA PERSONAS
+              </span>
+            </div>
 
-            <button
-              type="button"
-              onClick={scrollToForm}
-              className="inline-flex items-center gap-2 px-7 py-4 rounded-full text-xs sm:text-sm font-medium tracking-wide text-[#363D28] border border-[#363D28]/30 hover:border-[#363D28] hover:bg-[#363D28]/5 transition-all"
-            >
-              <MessageCircle className="w-4 h-4" />
-              <span>Iniciar conversación</span>
-            </button>
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-normal text-[#363D28] tracking-tight leading-[1.14] mb-5">
+              Un espacio para comprender,{' '}
+              <span className="italic block sm:inline">elegir y construir tu siguiente etapa.</span>
+            </h1>
+
+            <p className="text-base sm:text-lg font-sans text-[#363D28]/85 font-light leading-relaxed max-w-2xl mb-7">
+              Acompaño a mujeres que desean comprender qué está influyendo en sus decisiones, reconocer sus
+              recursos y avanzar hacia lo que consideran importante.
+            </p>
+
+            <div className="flex flex-wrap items-center gap-3.5">
+              <button
+                type="button"
+                onClick={() => {
+                  window.location.hash = '#/mapa-raiz';
+                  onNavigate('mapa-raiz');
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full text-xs sm:text-sm font-semibold tracking-wider uppercase bg-[#363D28] text-[#F2EBDD] hover:bg-[#222719] transition-all shadow-xs focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#363D28]"
+              >
+                <span>Descubre tu Mapa RAÍZ</span>
+                <ArrowRight className="w-4 h-4" />
+              </button>
+
+              <button
+                type="button"
+                onClick={scrollToForm}
+                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full text-xs sm:text-sm font-medium tracking-wide text-[#363D28] border border-[#363D28]/30 hover:border-[#363D28] hover:bg-[#363D28]/5 bg-[#F2EBDD]/60 backdrop-blur-xs transition-all"
+              >
+                <Mail className="w-4 h-4" />
+                <span>Iniciar conversación</span>
+              </button>
+            </div>
           </div>
         </div>
       </section>
@@ -262,7 +286,7 @@ export default function PersonasPage({ onNavigate }: PersonasPageProps) {
               onClick={scrollToForm}
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full text-xs font-medium tracking-wide text-[#363D28] border border-[#363D28]/30 hover:border-[#363D28] hover:bg-[#363D28]/5 transition-all"
             >
-              <MessageCircle className="w-4 h-4" />
+              <Mail className="w-4 h-4" />
               <span>Conversemos</span>
             </button>
           </div>
@@ -270,7 +294,7 @@ export default function PersonasPage({ onNavigate }: PersonasPageProps) {
       </section>
 
       {/* Formulario de Acompañamiento Individual: Un Primer Paso */}
-      <LeadContactForm variant="persona" id="formulario-personas" />
+      <LeadContactForm variant="persona" id="formulario-personas" onNavigate={onNavigate} />
     </div>
   );
 }

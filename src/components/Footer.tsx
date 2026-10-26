@@ -1,6 +1,7 @@
 import Logo from './Logo';
 import { NAV_LINKS, BRAND, CONTACT, PageId } from '../data/content';
 import { ArrowUp, ArrowUpRight } from 'lucide-react';
+import { InstagramIcon, TikTokIcon } from './SocialIcons';
 
 interface FooterProps {
   onNavigate: (page: PageId) => void;
@@ -84,18 +85,7 @@ export default function Footer({ onNavigate }: FooterProps) {
               Contacto
             </span>
             <p className="text-sm font-sans text-[#F2EBDD]/80 mb-2">
-              WhatsApp:{' '}
-              <a
-                href={`https://wa.me/${CONTACT.whatsappRaw}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-white transition-colors underline underline-offset-4"
-              >
-                {CONTACT.whatsappDisplay}
-              </a>
-            </p>
-            <p className="text-sm font-sans text-[#F2EBDD]/80">
-              Correo:{' '}
+              Correo oficial:{' '}
               <a
                 href={`mailto:${CONTACT.email}`}
                 className="hover:text-white transition-colors underline underline-offset-4"
@@ -103,6 +93,46 @@ export default function Footer({ onNavigate }: FooterProps) {
                 {CONTACT.email}
               </a>
             </p>
+            <p className="text-xs font-sans text-[#F2EBDD]/60 font-light leading-relaxed mb-4">
+              Atención personalizada para personas y organizaciones.
+            </p>
+            <a
+              href="#/contacto"
+              onClick={(e) => handleLink('#/contacto', e)}
+              className="text-xs font-sans uppercase tracking-wider text-[#C4A76C] hover:text-white transition-colors inline-flex items-center gap-1 font-semibold mb-4"
+            >
+              <span>Formulario de contacto</span>
+              <ArrowUpRight className="w-3.5 h-3.5" />
+            </a>
+
+            {/* Redes Sociales Oficiales */}
+            <div className="pt-3 border-t border-[#F2EBDD]/10 w-full">
+              <span className="text-[11px] font-sans uppercase tracking-[0.16em] text-[#C4A76C] font-semibold block mb-2.5">
+                Redes
+              </span>
+              <div className="flex flex-col gap-2">
+                <a
+                  href={CONTACT.socials.instagram}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-xs font-sans text-[#F2EBDD]/80 hover:text-white transition-colors inline-flex items-center gap-2 group"
+                  aria-label="Instagram de Anatolia Zapata"
+                >
+                  <InstagramIcon className="w-4 h-4 text-[#C4A76C] group-hover:text-white transition-colors" />
+                  <span>@anatoliazapata</span>
+                </a>
+                <a
+                  href={CONTACT.socials.tiktok}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-xs font-sans text-[#F2EBDD]/80 hover:text-white transition-colors inline-flex items-center gap-2 group"
+                  aria-label="TikTok de Anatolia Zapata"
+                >
+                  <TikTokIcon className="w-4 h-4 text-[#C4A76C] group-hover:text-white transition-colors" />
+                  <span>@anatoliacoach</span>
+                </a>
+              </div>
+            </div>
           </div>
         </div>
 

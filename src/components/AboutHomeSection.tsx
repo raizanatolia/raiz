@@ -49,26 +49,33 @@ export default function AboutHomeSection({ onNavigate }: AboutHomeSectionProps) 
 
           {/* Copy */}
           <div className="lg:col-span-7 flex flex-col items-start order-1 lg:order-2">
-            <span className="text-xs font-sans tracking-[0.24em] uppercase text-[#A18347] font-semibold block mb-3">
-              QUIÉN ESTÁ DETRÁS
-            </span>
+            <div className="flex items-center gap-2.5 mb-3">
+              <span className="w-5 h-[1.5px] bg-[#A18347]" aria-hidden="true" />
+              <span className="text-xs font-sans tracking-[0.24em] uppercase text-[#A18347] font-semibold block">
+                CONOCE MI HISTORIA
+              </span>
+            </div>
 
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-normal text-[#363D28] leading-tight mb-6">
-              Hola, soy Anatolia Zapata.
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-serif font-normal text-[#363D28] leading-[1.2] mb-6">
+              Aprendí que cuidar a quienes amas{' '}
+              <span className="italic block sm:inline">no debería significar dejar de elegirte a ti misma.</span>
             </h2>
 
-            <p className="text-lg sm:text-xl font-serif text-[#363D28] leading-relaxed mb-6 font-normal">
-              Soy mamá de dos, ingeniera industrial, coach y creadora del Método RAÍZ.
+            <p className="text-base sm:text-lg font-serif text-[#363D28] leading-relaxed mb-4 font-normal">
+              Soy Anatolia Zapata, mamá de dos, ingeniera industrial, coach y creadora del Método RAÍZ.
             </p>
 
-            <p className="text-base sm:text-lg font-sans text-[#363D28]/80 font-light leading-relaxed mb-6">
-              Mi propia historia me llevó a comprender que cuidar de quienes amamos y seguir construyendo
-              nuestros sueños no tendrían por qué ser caminos opuestos.
+            <p className="text-sm sm:text-base font-sans text-[#363D28]/85 font-light leading-relaxed mb-4">
+              Durante mucho tiempo confié en mi capacidad para analizar, organizar y encontrar soluciones. Hasta que la maternidad me enfrentó a una pregunta que no podía resolver solo con la lógica:{' '}
+              <strong className="font-serif italic font-medium text-[#363D28]">¿Cómo quería vivir mi propia vida?</strong>
             </p>
 
-            <p className="text-base sm:text-lg font-sans text-[#363D28]/80 font-light leading-relaxed mb-9">
-              Hoy acompaño a mujeres y organizaciones a reconocer qué influye en sus decisiones y explorar
-              maneras más conscientes de avanzar.
+            <p className="text-sm sm:text-base font-sans text-[#363D28]/85 font-light leading-relaxed mb-4">
+              Comprendí que no necesitaba amar menos ni renunciar a mis sueños. Necesitaba entender desde dónde estaba decidiendo y qué quería seguir construyendo.
+            </p>
+
+            <p className="text-sm sm:text-base font-sans text-[#363D28]/85 font-medium leading-relaxed mb-8">
+              Así comenzó el camino hacia RAÍZ.
             </p>
 
             <button
