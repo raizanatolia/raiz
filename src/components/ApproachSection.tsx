@@ -1,20 +1,78 @@
-import { FUNDAMENTAL_RESOURCES, PageId } from '../data/content';
-import { Compass, Heart, CompassIcon, BatteryCharging, CheckCircle2, ArrowRight } from 'lucide-react';
+import { PageId } from '../data/content';
+import { ArrowRight, Compass, Heart, CompassIcon, BatteryCharging, CheckCircle2 } from 'lucide-react';
 import BotanicalGrowthSection from './BotanicalGrowthSection';
+import { CardCarousel, ResourceCardItem } from '@/components/ui/card-carousel';
+
+import imgPerspectiva from '../assets/images/res_perspectiva_1792786331873.jpg';
+import imgEmocional from '../assets/images/res_emocional_1792786333298.jpg';
+import imgDireccion from '../assets/images/res_direccion_1792786333155.jpg';
+import imgEnergia from '../assets/images/res_energia_1792786333532.jpg';
+import imgAccion from '../assets/images/res_accion_1792786334539.jpg';
+
+const RESOURCES: ResourceCardItem[] = [
+  {
+    id: 'perspectiva',
+    number: '01',
+    name: 'Perspectiva',
+    badge: '01 · Perspectiva',
+    image: imgPerspectiva,
+    description: 'Cómo interpretas las situaciones y consideras distintas posibilidades antes de actuar.',
+    reflectionPrompt: '¿Desde qué mirada estás leyendo lo que vives hoy?',
+    icon: Compass,
+  },
+  {
+    id: 'gestion-emocional',
+    number: '02',
+    name: 'Gestión emocional',
+    badge: '02 · Emoción',
+    image: imgEmocional,
+    description: 'Cómo reconoces, regulas y expresas lo que sientes, permitiendo que las emociones orienten sin desbordar.',
+    reflectionPrompt: '¿Qué emoción suele acelerar o frenar tus decisiones?',
+    icon: Heart,
+  },
+  {
+    id: 'direccion',
+    number: '03',
+    name: 'Dirección',
+    badge: '03 · Dirección',
+    image: imgDireccion,
+    description: 'Cómo defines prioridades y orientas tus decisiones en coherencia con tus valores esenciales.',
+    reflectionPrompt: '¿Tus elecciones diarias apuntan hacia lo que de verdad valoras?',
+    icon: CompassIcon,
+  },
+  {
+    id: 'energia-vital',
+    number: '04',
+    name: 'Energía vital',
+    badge: '04 · Energía',
+    image: imgEnergia,
+    description: 'Cómo cuidas la energía que necesitas para sostener tu camino sin desgastarte en lo secundario.',
+    reflectionPrompt: '¿Qué decisiones te están nutriendo y cuáles drenan tu vitalidad?',
+    icon: BatteryCharging,
+  },
+  {
+    id: 'accion-consistente',
+    number: '05',
+    name: 'Acción consistente',
+    badge: '05 · Acción',
+    image: imgAccion,
+    description: 'Cómo conviertes tus decisiones en pasos concretos y los mantienes a lo largo del tiempo.',
+    reflectionPrompt: '¿De qué forma tus acuerdos contigo misma se vuelven realidad?',
+    icon: CheckCircle2,
+  },
+];
 
 interface ApproachSectionProps {
   onNavigate: (page: PageId) => void;
 }
 
-const RESOURCE_ICONS = [
-  Compass,         // Perspectiva
-  Heart,           // Gestión emocional
-  CompassIcon,     // Dirección
-  BatteryCharging, // Energía vital
-  CheckCircle2,    // Acción consistente
-];
-
 export default function ApproachSection({ onNavigate }: ApproachSectionProps) {
+  const handleNavigateToMap = () => {
+    window.location.hash = '#/mapa-raiz';
+    onNavigate('mapa-raiz');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
     <section id="enfoque" className="py-20 md:py-28 bg-[#EAE2D2]/40 border-t border-[#363D28]/10 relative overflow-hidden">
       <div className="max-w-6xl mx-auto px-5 sm:px-8">
@@ -34,11 +92,7 @@ export default function ApproachSection({ onNavigate }: ApproachSectionProps) {
 
           <button
             type="button"
-            onClick={() => {
-              window.location.hash = '#/mapa-raiz';
-              onNavigate('mapa-raiz');
-              window.scrollTo({ top: 0, behavior: 'smooth' });
-            }}
+            onClick={handleNavigateToMap}
             className="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold tracking-wider uppercase text-[#363D28] hover:text-[#A18347] transition-colors py-1.5 border-b border-[#363D28]/40 hover:border-[#A18347]"
           >
             <span>Conoce el Método RAÍZ</span>
@@ -51,70 +105,16 @@ export default function ApproachSection({ onNavigate }: ApproachSectionProps) {
           <BotanicalGrowthSection />
         </div>
 
-        {/* 06. Mapa RAÍZ: los cinco recursos */}
+        {/* 06. Mapa RAÍZ: los cinco recursos con CardCarousel */}
         <div className="pt-4">
-          <div className="border-b border-[#363D28]/15 pb-6 mb-10 flex flex-col md:flex-row md:items-end justify-between gap-4">
-            <div>
-              <span className="text-xs font-sans tracking-[0.24em] uppercase text-[#A18347] font-semibold block mb-2">
-                PUNTO DE PARTIDA
-              </span>
-              <h3 className="text-3xl sm:text-4xl font-serif text-[#363D28]">
-                Cinco recursos para mirar tu punto de partida.
-              </h3>
-            </div>
-            <p className="text-xs sm:text-sm font-sans text-[#363D28]/70 max-w-sm">
-              Cinco recursos fundamentales que influyen en cada una de tus elecciones cotidianas.
-            </p>
-          </div>
-
-          {/* Integrated rows */}
-          <div className="space-y-4 mb-10">
-            {FUNDAMENTAL_RESOURCES.map((resource, idx) => {
-              const Icon = RESOURCE_ICONS[idx];
-              return (
-                <div
-                  key={resource.id}
-                  className="p-6 sm:p-7 rounded-2xl border border-[#363D28]/12 bg-[#FAF7F2] hover:bg-[#F2EBDD] transition-colors grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-6 items-center"
-                >
-                  <div className="md:col-span-4 flex items-center gap-4">
-                    <span className="text-xl sm:text-2xl font-serif text-[#A18347] font-medium min-w-[2.2rem]">
-                      {resource.number}
-                    </span>
-                    <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 rounded-full bg-[#363D28]/5 flex items-center justify-center text-[#363D28]">
-                        <Icon className="w-4 h-4 stroke-[1.75]" />
-                      </div>
-                      <h4 className="text-lg sm:text-xl font-serif font-semibold text-[#363D28]">
-                        {resource.name}
-                      </h4>
-                    </div>
-                  </div>
-
-                  <div className="md:col-span-8">
-                    <p className="text-sm sm:text-base font-sans text-[#363D28]/85 font-light leading-relaxed">
-                      {resource.description}
-                    </p>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-
-          {/* CTA principal hacia Mapa RAÍZ */}
-          <div className="flex justify-start">
-            <button
-              type="button"
-              onClick={() => {
-                window.location.hash = '#/mapa-raiz';
-                onNavigate('mapa-raiz');
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-              }}
-              className="inline-flex items-center gap-2 px-8 py-4 rounded-full text-xs sm:text-sm font-semibold tracking-wider uppercase bg-[#363D28] text-[#F2EBDD] hover:bg-[#222719] transition-all shadow-xs focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#363D28]"
-            >
-              <span>Descubre tu Mapa RAÍZ</span>
-              <ArrowRight className="w-4 h-4" />
-            </button>
-          </div>
+          <CardCarousel
+            items={RESOURCES}
+            badgeText="PUNTO DE PARTIDA"
+            title="Cinco recursos para mirar tu punto de partida"
+            subtitle="Cinco recursos fundamentales que influyen en cada una de tus elecciones cotidianas."
+            onNavigateToMap={handleNavigateToMap}
+            onSelectResource={() => handleNavigateToMap()}
+          />
         </div>
       </div>
     </section>

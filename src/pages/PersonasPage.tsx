@@ -1,6 +1,6 @@
-import { PageId, getWhatsAppLink } from '../data/content';
-import { ArrowRight, Compass, Sparkles, BookOpen, MessageCircle, CheckCircle2 } from 'lucide-react';
-import OrganicTrace from '../components/OrganicTrace';
+import { PageId } from '../data/content';
+import { ArrowRight, Compass, Sparkles, BookOpen, MessageCircle } from 'lucide-react';
+import LeadContactForm from '../components/LeadContactForm';
 
 interface PersonasPageProps {
   onNavigate: (page: PageId) => void;
@@ -30,7 +30,12 @@ const PERSONAS_SITUATIONS = [
 ];
 
 export default function PersonasPage({ onNavigate }: PersonasPageProps) {
-  const whatsappUrl = getWhatsAppLink('viaje');
+  const scrollToForm = () => {
+    const el = document.getElementById('formulario-personas');
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   return (
     <div className="pt-28 pb-20 md:pt-36 md:pb-28">
@@ -54,18 +59,29 @@ export default function PersonasPage({ onNavigate }: PersonasPageProps) {
             recursos y avanzar hacia lo que consideran importante.
           </p>
 
-          <button
-            type="button"
-            onClick={() => {
-              window.location.hash = '#/mapa-raiz';
-              onNavigate('mapa-raiz');
-              window.scrollTo({ top: 0, behavior: 'smooth' });
-            }}
-            className="inline-flex items-center gap-2 px-8 py-4 rounded-full text-xs sm:text-sm font-semibold tracking-wider uppercase bg-[#363D28] text-[#F2EBDD] hover:bg-[#222719] transition-all shadow-xs focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#363D28]"
-          >
-            <span>Descubre tu Mapa RAÍZ</span>
-            <ArrowRight className="w-4 h-4" />
-          </button>
+          <div className="flex flex-wrap items-center gap-4">
+            <button
+              type="button"
+              onClick={() => {
+                window.location.hash = '#/mapa-raiz';
+                onNavigate('mapa-raiz');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
+              className="inline-flex items-center gap-2 px-8 py-4 rounded-full text-xs sm:text-sm font-semibold tracking-wider uppercase bg-[#363D28] text-[#F2EBDD] hover:bg-[#222719] transition-all shadow-xs focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#363D28]"
+            >
+              <span>Descubre tu Mapa RAÍZ</span>
+              <ArrowRight className="w-4 h-4" />
+            </button>
+
+            <button
+              type="button"
+              onClick={scrollToForm}
+              className="inline-flex items-center gap-2 px-7 py-4 rounded-full text-xs sm:text-sm font-medium tracking-wide text-[#363D28] border border-[#363D28]/30 hover:border-[#363D28] hover:bg-[#363D28]/5 transition-all"
+            >
+              <MessageCircle className="w-4 h-4" />
+              <span>Iniciar conversación</span>
+            </button>
+          </div>
         </div>
       </section>
 
@@ -105,7 +121,7 @@ export default function PersonasPage({ onNavigate }: PersonasPageProps) {
       </section>
 
       {/* Sección de acompañamiento: Mapa, Viaje y Bitácora */}
-      <section className="max-w-6xl mx-auto px-5 sm:px-8 mb-20 md:mb-28">
+      <section className="max-w-6xl mx-auto px-5 sm:px-8 mb-16 md:mb-20">
         <div className="max-w-2xl mb-14">
           <span className="text-xs font-sans tracking-[0.24em] uppercase text-[#A18347] font-semibold block mb-2">
             EL RECORRIDO DE ACOMPAÑAMIENTO
@@ -241,18 +257,20 @@ export default function PersonasPage({ onNavigate }: PersonasPageProps) {
               <ArrowRight className="w-4 h-4" />
             </button>
 
-            <a
-              href={whatsappUrl}
-              target="_blank"
-              rel="noopener noreferrer"
+            <button
+              type="button"
+              onClick={scrollToForm}
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full text-xs font-medium tracking-wide text-[#363D28] border border-[#363D28]/30 hover:border-[#363D28] hover:bg-[#363D28]/5 transition-all"
             >
               <MessageCircle className="w-4 h-4" />
               <span>Conversemos</span>
-            </a>
+            </button>
           </div>
         </div>
       </section>
+
+      {/* Formulario de Acompañamiento Individual: Un Primer Paso */}
+      <LeadContactForm variant="persona" id="formulario-personas" />
     </div>
   );
 }

@@ -16,8 +16,13 @@ import ContactoPage from './pages/ContactoPage';
 import { PageId, PAGE_METADATA } from './data/content';
 
 function getPageFromHash(): PageId {
-  const hash = window.location.hash.replace(/^#\/?/, '').trim();
-  switch (hash) {
+  const rawHash = window.location.hash.replace(/^#\/?/, '').trim();
+  const mainPart = rawHash.split('#')[0].split('?')[0].replace(/^\//, '');
+
+  if (mainPart === 'formulario-organizaciones') return 'organizaciones';
+  if (mainPart === 'formulario-personas') return 'personas';
+
+  switch (mainPart) {
     case 'personas':
       return 'personas';
     case 'organizaciones':
@@ -43,7 +48,20 @@ export default function App() {
     const handleHashChange = () => {
       const page = getPageFromHash();
       setCurrentPage(page);
-      window.scrollTo({ top: 0, behavior: 'instant' });
+
+      // Check if there is an anchor element to scroll to
+      const rawHash = window.location.hash.replace(/^#\/?/, '').trim();
+      if (rawHash === 'formulario-organizaciones' || rawHash.endsWith('#formulario-organizaciones')) {
+        setTimeout(() => {
+          document.getElementById('formulario-organizaciones')?.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
+      } else if (rawHash === 'formulario-personas' || rawHash.endsWith('#formulario-personas')) {
+        setTimeout(() => {
+          document.getElementById('formulario-personas')?.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
+      } else {
+        window.scrollTo({ top: 0, behavior: 'instant' });
+      }
     };
 
     window.addEventListener('hashchange', handleHashChange);

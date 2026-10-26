@@ -116,7 +116,7 @@ export default function BotanicalGrowthSection() {
         transformOrigin: 'bottom center',
       });
       gsap.set('.fruit-cluster', {
-        transformOrigin: 'center center',
+        transformOrigin: 'top center',
       });
 
       // Master Timeline with total natural duration ~7.0s
@@ -337,12 +337,14 @@ export default function BotanicalGrowthSection() {
           aria-label={`Ilustración botánica viva en la fase de ${currentChapter.name}: ${currentChapter.subtitle}`}
         >
           <defs>
-            {/* Ocre fruit gradient for organic depth */}
-            <radialGradient id="fruitGlow" cx="35%" cy="30%" r="70%">
-              <stop offset="0%" stopColor="#C9AC73" />
-              <stop offset="65%" stopColor="#A18347" />
-              <stop offset="100%" stopColor="#7E632B" />
-            </radialGradient>
+            {/* Ocre mate sobrio para frutos botánicos (oliva / semilla madura) */}
+            <linearGradient id="matteBotanicalOlive" x1="20%" y1="0%" x2="80%" y2="100%">
+              <stop offset="0%" stopColor="#A38344" />
+              <stop offset="45%" stopColor="#96773B" />
+              <stop offset="100%" stopColor="#7D622C" />
+            </linearGradient>
+            {/* Alias de compatibilidad */}
+            <linearGradient id="fruitGlow" href="#matteBotanicalOlive" />
           </defs>
 
           {/* Whispered Earth Horizon Line (y = 350) */}
@@ -743,59 +745,154 @@ export default function BotanicalGrowthSection() {
             </g>
           </g>
 
-          {/* FASE 05: FRUTOS EN OCRE MATE (#A18347) */}
+          {/* FASE 05: FRUTOS EN OCRE MATE (#A18347) · ANCLADOS A LAS RAMAS, ORGÁNICOS Y DISCRETOS */}
           <g id="fruits-harvest">
-            {/* Fruit 1: Lower Left Node */}
+            {/* Fruto 1: Rama Superior Izquierda (Tier 3) */}
             <g className="fruit-cluster">
-              <line x1="185" y1="245" x2="180" y2="258" stroke="#363D28" strokeWidth="0.9" />
-              <circle cx="178" cy="263" r="6.2" fill="url(#fruitGlow)" />
-              <circle cx="176.5" cy="261" r="1.6" fill="#F2EBDD" fillOpacity="0.4" />
-              <path d="M 176 258 Q 178 260 180 258" fill="none" stroke="#363D28" strokeWidth="0.75" />
+              {/* Pedicelo fino y visible firmemente unido a la rama de Tier 3 */}
+              <path
+                d="M 285 95 C 284 103 281 110 278 116"
+                fill="none"
+                stroke="#363D28"
+                strokeWidth="1.3"
+                strokeLinecap="round"
+              />
+              {/* Cáliz botánico */}
+              <path
+                d="M 275.5 116 C 277 117.5 279 117.5 280.5 116"
+                fill="#363D28"
+                stroke="#363D28"
+                strokeWidth="0.8"
+                strokeLinecap="round"
+              />
+              {/* Cuerpo del fruto: oliva madura en ocre mate */}
+              <path
+                d="M 278 116 C 274.5 118 273.8 123 275 126.5 C 276.2 129.5 279.8 129.5 281 126.5 C 282.2 123 281.5 118 278 116 Z"
+                fill="url(#matteBotanicalOlive)"
+                stroke="#363D28"
+                strokeWidth="0.8"
+                strokeLinejoin="round"
+              />
+              {/* Sutura longitudinal sutil */}
+              <path
+                d="M 278 117.5 C 277.5 121 278.2 124.5 279.5 127"
+                fill="none"
+                stroke="#6E5524"
+                strokeWidth="0.6"
+                strokeLinecap="round"
+                opacity="0.6"
+              />
             </g>
 
-            {/* Fruit 2: Lower Right Node */}
+            {/* Fruto 2: Rama Superior Derecha (Tier 3) */}
             <g className="fruit-cluster">
-              <line x1="515" y1="235" x2="520" y2="248" stroke="#363D28" strokeWidth="0.9" />
-              <circle cx="522" cy="253" r="6.2" fill="url(#fruitGlow)" />
-              <circle cx="520.5" cy="251" r="1.6" fill="#F2EBDD" fillOpacity="0.4" />
-              <path d="M 520 248 Q 522 250 524 248" fill="none" stroke="#363D28" strokeWidth="0.75" />
+              {/* Pedicelo unido a la rama de Tier 3 */}
+              <path
+                d="M 415 84 C 416 92 419 99 422 105"
+                fill="none"
+                stroke="#363D28"
+                strokeWidth="1.3"
+                strokeLinecap="round"
+              />
+              {/* Cáliz botánico */}
+              <path
+                d="M 419.5 105 C 421 106.5 423 106.5 424.5 105"
+                fill="#363D28"
+                stroke="#363D28"
+                strokeWidth="0.8"
+                strokeLinecap="round"
+              />
+              {/* Cuerpo del fruto */}
+              <path
+                d="M 422 105 C 418.5 107 417.8 112 419 115.5 C 420.2 118.5 423.8 118.5 425 115.5 C 426.2 112 425.5 107 422 105 Z"
+                fill="url(#matteBotanicalOlive)"
+                stroke="#363D28"
+                strokeWidth="0.8"
+                strokeLinejoin="round"
+              />
+              {/* Sutura longitudinal sutil */}
+              <path
+                d="M 422 106.5 C 421.5 110 422.2 113.5 423.5 116"
+                fill="none"
+                stroke="#6E5524"
+                strokeWidth="0.6"
+                strokeLinecap="round"
+                opacity="0.6"
+              />
             </g>
 
-            {/* Fruit 3: Mid Left Node */}
+            {/* Fruto 3: Rama Media Izquierda (Tier 2) */}
             <g className="fruit-cluster">
-              <line x1="190" y1="175" x2="185" y2="188" stroke="#363D28" strokeWidth="0.9" />
-              <circle cx="183" cy="193" r="5.5" fill="url(#fruitGlow)" />
-              <circle cx="181.5" cy="191" r="1.5" fill="#F2EBDD" fillOpacity="0.4" />
-              <path d="M 181 188 Q 183 190 185 188" fill="none" stroke="#363D28" strokeWidth="0.7" />
+              {/* Pedicelo unido a la rama de Tier 2 */}
+              <path
+                d="M 258 155 C 257 165 253 173 249 181"
+                fill="none"
+                stroke="#363D28"
+                strokeWidth="1.3"
+                strokeLinecap="round"
+              />
+              {/* Cáliz botánico */}
+              <path
+                d="M 246.5 181 C 248 182.5 250 182.5 251.5 181"
+                fill="#363D28"
+                stroke="#363D28"
+                strokeWidth="0.8"
+                strokeLinecap="round"
+              />
+              {/* Cuerpo del fruto */}
+              <path
+                d="M 249 181 C 245.2 183.2 244.5 188.5 245.8 192.2 C 247.2 195.5 250.8 195.5 252.2 192.2 C 253.5 188.5 252.8 183.2 249 181 Z"
+                fill="url(#matteBotanicalOlive)"
+                stroke="#363D28"
+                strokeWidth="0.8"
+                strokeLinejoin="round"
+              />
+              {/* Sutura longitudinal sutil */}
+              <path
+                d="M 249 182.5 C 248.4 186.5 249.2 190.5 250.6 193.5"
+                fill="none"
+                stroke="#6E5524"
+                strokeWidth="0.6"
+                strokeLinecap="round"
+                opacity="0.6"
+              />
             </g>
 
-            {/* Fruit 4: Mid Right Node */}
+            {/* Fruto 4: Rama Media Derecha (Tier 2) */}
             <g className="fruit-cluster">
-              <line x1="505" y1="165" x2="510" y2="178" stroke="#363D28" strokeWidth="0.9" />
-              <circle cx="512" cy="183" r="5.5" fill="url(#fruitGlow)" />
-              <circle cx="510.5" cy="181" r="1.5" fill="#F2EBDD" fillOpacity="0.4" />
-              <path d="M 510 178 Q 512 180 514 178" fill="none" stroke="#363D28" strokeWidth="0.7" />
-            </g>
-
-            {/* Fruit 5: Upper Left Node */}
-            <g className="fruit-cluster">
-              <line x1="280" y1="108" x2="275" y2="119" stroke="#363D28" strokeWidth="0.9" />
-              <circle cx="273" cy="124" r="5" fill="url(#fruitGlow)" />
-              <circle cx="271.5" cy="122.5" r="1.3" fill="#F2EBDD" fillOpacity="0.4" />
-            </g>
-
-            {/* Fruit 6: Upper Right Node */}
-            <g className="fruit-cluster">
-              <line x1="420" y1="98" x2="425" y2="109" stroke="#363D28" strokeWidth="0.9" />
-              <circle cx="427" cy="114" r="5" fill="url(#fruitGlow)" />
-              <circle cx="425.5" cy="112.5" r="1.3" fill="#F2EBDD" fillOpacity="0.4" />
-            </g>
-
-            {/* Fruit 7: Crown Summit */}
-            <g className="fruit-cluster">
-              <line x1="350" y1="60" x2="350" y2="70" stroke="#363D28" strokeWidth="0.9" />
-              <circle cx="350" cy="75" r="5.2" fill="url(#fruitGlow)" />
-              <circle cx="348.5" cy="73.5" r="1.4" fill="#F2EBDD" fillOpacity="0.4" />
+              {/* Pedicelo unido a la rama de Tier 2 */}
+              <path
+                d="M 448 143 C 449 153 453 161 457 169"
+                fill="none"
+                stroke="#363D28"
+                strokeWidth="1.3"
+                strokeLinecap="round"
+              />
+              {/* Cáliz botánico */}
+              <path
+                d="M 454.5 169 C 456 170.5 458 170.5 459.5 169"
+                fill="#363D28"
+                stroke="#363D28"
+                strokeWidth="0.8"
+                strokeLinecap="round"
+              />
+              {/* Cuerpo del fruto */}
+              <path
+                d="M 457 169 C 453.2 171.2 452.5 176.5 453.8 180.2 C 455.2 183.5 458.8 183.5 460.2 180.2 C 461.5 176.5 460.8 171.2 457 169 Z"
+                fill="url(#matteBotanicalOlive)"
+                stroke="#363D28"
+                strokeWidth="0.8"
+                strokeLinejoin="round"
+              />
+              {/* Sutura longitudinal sutil */}
+              <path
+                d="M 457 170.5 C 456.4 174.5 457.2 178.5 458.6 181.5"
+                fill="none"
+                stroke="#6E5524"
+                strokeWidth="0.6"
+                strokeLinecap="round"
+                opacity="0.6"
+              />
             </g>
           </g>
         </svg>

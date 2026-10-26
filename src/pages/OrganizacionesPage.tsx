@@ -1,5 +1,6 @@
-import { PageId, getWhatsAppLink } from '../data/content';
-import { Building2, Users, HeartHandshake, Compass, Layers, Presentation, Users2, ArrowRight, MessageSquare } from 'lucide-react';
+import { PageId } from '../data/content';
+import { HeartHandshake, Users, Compass, Layers, MessageSquare } from 'lucide-react';
+import LeadContactForm from '../components/LeadContactForm';
 
 interface OrganizacionesPageProps {
   onNavigate: (page: PageId) => void;
@@ -51,7 +52,12 @@ const PROCESO_PASOS = [
 ];
 
 export default function OrganizacionesPage({ onNavigate }: OrganizacionesPageProps) {
-  const whatsappUrl = getWhatsAppLink('organizaciones');
+  const scrollToForm = () => {
+    const el = document.getElementById('formulario-organizaciones');
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   return (
     <div className="pt-28 pb-20 md:pt-36 md:pb-28">
@@ -75,15 +81,14 @@ export default function OrganizacionesPage({ onNavigate }: OrganizacionesPagePro
             contexto y las necesidades de cada organización.
           </p>
 
-          <a
-            href={whatsappUrl}
-            target="_blank"
-            rel="noopener noreferrer"
+          <button
+            type="button"
+            onClick={scrollToForm}
             className="inline-flex items-center gap-2 px-8 py-4 rounded-full text-xs sm:text-sm font-semibold tracking-wider uppercase bg-[#363D28] text-[#F2EBDD] hover:bg-[#222719] transition-all shadow-xs focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#363D28]"
           >
             <MessageSquare className="w-4 h-4" />
             <span>Conversemos sobre tu organización</span>
-          </a>
+          </button>
         </div>
       </section>
 
@@ -202,8 +207,8 @@ export default function OrganizacionesPage({ onNavigate }: OrganizacionesPagePro
           </div>
         </div>
 
-        {/* Cierre */}
-        <div className="p-8 sm:p-12 rounded-3xl bg-[#FAF7F2] border border-[#363D28]/15 text-center max-w-3xl mx-auto">
+        {/* Cierre previo al formulario */}
+        <div className="p-8 sm:p-12 rounded-3xl bg-[#FAF7F2] border border-[#363D28]/15 text-center max-w-3xl mx-auto mb-10">
           <h3 className="text-2xl sm:text-3xl font-serif text-[#363D28] mb-4">
             Cada organización es única.
           </h3>
@@ -212,17 +217,19 @@ export default function OrganizacionesPage({ onNavigate }: OrganizacionesPagePro
             que necesita su equipo.
           </p>
 
-          <a
-            href={whatsappUrl}
-            target="_blank"
-            rel="noopener noreferrer"
+          <button
+            type="button"
+            onClick={scrollToForm}
             className="inline-flex items-center gap-2 px-8 py-4 rounded-full text-xs sm:text-sm font-semibold tracking-wider uppercase bg-[#363D28] text-[#F2EBDD] hover:bg-[#222719] transition-all shadow-xs"
           >
             <MessageSquare className="w-4 h-4" />
             <span>Solicita una propuesta</span>
-          </a>
+          </button>
         </div>
       </section>
+
+      {/* Formulario de Consultas Comerciales: id="formulario-organizaciones" */}
+      <LeadContactForm variant="organizacion" id="formulario-organizaciones" />
     </div>
   );
 }
