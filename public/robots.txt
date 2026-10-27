@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /raiz/
+
+Sitemap: https://raizanatolia.github.io/raiz/sitemap.xml

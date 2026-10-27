@@ -1,6 +1,5 @@
-import { useState } from 'react';
 import { PageId } from '../data/content';
-import { IMAGES, getImageUrl } from '../data/images';
+import { BRAND_ASSETS } from '../data/images';
 import { ArrowRight } from 'lucide-react';
 
 interface AboutHomeSectionProps {
@@ -8,89 +7,102 @@ interface AboutHomeSectionProps {
 }
 
 export default function AboutHomeSection({ onNavigate }: AboutHomeSectionProps) {
-  const [imgError, setImgError] = useState(false);
-  const portraitImage = IMAGES.anatoliaPortrait;
+  const photoUrl = BRAND_ASSETS.anatoliaSplitCard;
 
   return (
-    <section className="py-20 md:py-28 bg-[#FAF7F2] border-t border-[#363D28]/10 relative">
-      <div className="max-w-6xl mx-auto px-5 sm:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          {/* Vertical Visual: Retrato oficial de Anatolia Zapata */}
-          <div className="lg:col-span-5 relative order-2 lg:order-1">
-            <div className="relative mx-auto max-w-sm lg:max-w-none">
-              <div
-                className="absolute -inset-2.5 rounded-2xl border border-[#A18347]/25 rotate-1 pointer-events-none"
-                aria-hidden="true"
-              />
-              <div className="relative rounded-xl overflow-hidden bg-[#EAE2D2] aspect-[3/4] shadow-xs">
-                {!imgError ? (
-                  <img
-                    src={getImageUrl(portraitImage, { width: 900 })}
-                    alt="Anatolia Zapata, coach y creadora del Método RAÍZ"
-                    loading="lazy"
-                    style={{ objectPosition: portraitImage.cropPosition }}
-                    className="w-full h-full object-cover object-top"
-                    onError={() => setImgError(true)}
-                  />
-                ) : (
-                  <div className="w-full h-full flex flex-col items-center justify-center p-6 text-center">
-                    <span className="font-serif text-2xl text-[#363D28]">Anatolia Zapata</span>
-                    <span className="text-xs uppercase tracking-widest text-[#A18347] mt-1">
-                      Creadora del Método RAÍZ
-                    </span>
-                  </div>
-                )}
-              </div>
-              <p className="mt-3 text-center text-xs font-sans text-[#363D28]/80 font-medium">
-                Anatolia Zapata · Creadora de RAÍZ
-              </p>
-            </div>
-          </div>
-
-          {/* Copy */}
-          <div className="lg:col-span-7 flex flex-col items-start order-1 lg:order-2">
-            <div className="flex items-center gap-2.5 mb-3">
-              <span className="w-5 h-[1.5px] bg-[#A18347]" aria-hidden="true" />
-              <span className="text-xs font-sans tracking-[0.24em] uppercase text-[#A18347] font-semibold block">
-                CONOCE MI HISTORIA
+    <section className="py-14 sm:py-20 md:py-24 bg-[#F5EFEB] border-t border-[#363D28]/10 relative">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Split Card Container matching reference mockup */}
+        <div className="bg-[#FAF6F0] rounded-2xl sm:rounded-3xl border border-[#363D28]/12 overflow-hidden shadow-xs grid grid-cols-1 lg:grid-cols-12 items-stretch">
+          
+          {/* Left Column: Narrative Content */}
+          <div className="lg:col-span-7 p-6 sm:p-10 md:p-14 flex flex-col justify-center">
+            {/* Eyebrow with gold accent bar */}
+            <div className="flex items-center gap-2.5 mb-4 sm:mb-5">
+              <span className="w-1 h-5 sm:h-6 bg-[#C59B4B] rounded-full inline-block" aria-hidden="true" />
+              <span className="text-[11px] sm:text-xs font-sans tracking-[0.16em] uppercase text-[#363D28]/90 font-bold">
+                ALGUNA VEZ SENTÍ CULPA DE ESTAR PARA MÍ...
               </span>
             </div>
 
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-serif font-normal text-[#363D28] leading-[1.2] mb-6">
-              Aprendí que cuidar a quienes amas{' '}
-              <span className="italic block sm:inline">no debería significar dejar de elegirte a ti misma.</span>
+            {/* Headline with custom brush underline under 'Y TODOS.' */}
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-sans font-black text-[#222918] tracking-tight leading-[1.1] uppercase mb-6 sm:mb-7">
+              <span>ERA TAN NORMAL</span>
+              <br />
+              <span>ESTAR PARA TODO</span>
+              <br />
+              <span className="relative inline-block mt-1">
+                <span>Y TODOS.</span>
+                {/* Organic curved brush underline */}
+                <svg
+                  className="absolute -bottom-2.5 left-0 w-full h-3.5 text-[#C8D674] pointer-events-none"
+                  viewBox="0 0 120 12"
+                  fill="none"
+                  preserveAspectRatio="none"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M3 8 C 35 13, 85 2, 117 7"
+                    stroke="currentColor"
+                    strokeWidth="5"
+                    strokeLinecap="round"
+                  />
+                </svg>
+              </span>
             </h2>
 
-            <p className="text-base sm:text-lg font-serif text-[#363D28] leading-relaxed mb-4 font-normal">
-              Soy Anatolia Zapata, mamá de dos, ingeniera industrial, coach y creadora del Método RAÍZ.
+            {/* Narrative Paragraph */}
+            <p className="text-sm sm:text-base font-sans text-[#222918]/85 font-normal leading-relaxed mb-6 sm:mb-7 max-w-xl">
+              Lo que nació como un proceso de autodescubrimiento se convirtió en un viaje para mí, para cuestionar desde dónde venían mis decisiones y qué quería construir.
             </p>
 
-            <p className="text-sm sm:text-base font-sans text-[#363D28]/85 font-light leading-relaxed mb-4">
-              Durante mucho tiempo confié en mi capacidad para analizar, organizar y encontrar soluciones. Hasta que la maternidad me enfrentó a una pregunta que no podía resolver solo con la lógica:{' '}
-              <strong className="font-serif italic font-medium text-[#363D28]">¿Cómo quería vivir mi propia vida?</strong>
-            </p>
+            {/* Highlighted Core Manifesto Block */}
+            <div className="bg-[#D8E488]/70 border-l-4 border-[#5A6836] p-4 sm:p-5 rounded-r-xl mb-7 sm:mb-9 max-w-xl">
+              <p className="text-xs sm:text-sm font-sans font-extrabold uppercase text-[#222918] tracking-wide leading-snug">
+                CREO QUE CUIDAR DE QUIENES AMAS Y DESARROLLARTE NO DEBERÍAN SER CAMINOS OPUESTOS.
+              </p>
+            </div>
 
-            <p className="text-sm sm:text-base font-sans text-[#363D28]/85 font-light leading-relaxed mb-4">
-              Comprendí que no necesitaba amar menos ni renunciar a mis sueños. Necesitaba entender desde dónde estaba decidiendo y qué quería seguir construyendo.
-            </p>
+            {/* Actions: Primary outlined pill CTA and secondary biography link */}
+            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6">
+              <button
+                type="button"
+                onClick={() => {
+                  window.location.hash = '#/viaje-raiz';
+                  onNavigate('viaje-raiz');
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+                className="inline-flex items-center justify-center gap-2 px-7 sm:px-8 py-3.5 rounded-full text-xs sm:text-sm font-sans font-bold tracking-wider uppercase border-2 border-[#222918] text-[#222918] hover:bg-[#222918] hover:text-[#FAF7F2] transition-all duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#222918] cursor-pointer"
+              >
+                <span>QUIERO VIAJAR A LA RAÍZ</span>
+                <span aria-hidden="true">→</span>
+              </button>
 
-            <p className="text-sm sm:text-base font-sans text-[#363D28]/85 font-medium leading-relaxed mb-8">
-              Así comenzó el camino hacia RAÍZ.
-            </p>
-
-            <button
-              type="button"
-              onClick={() => {
-                window.location.hash = '#/sobre-mi';
-                onNavigate('sobre-mi');
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-              }}
-              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full text-xs sm:text-sm font-semibold tracking-wider uppercase bg-[#363D28] text-[#F2EBDD] hover:bg-[#222719] transition-all shadow-xs focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#363D28]"
-            >
-              <span>Conoce mi historia</span>
-              <ArrowRight className="w-4 h-4" />
-            </button>
+              <button
+                type="button"
+                onClick={() => {
+                  window.location.hash = '#/sobre-mi';
+                  onNavigate('sobre-mi');
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+                className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-sans text-[#222918]/80 hover:text-[#222918] font-semibold underline underline-offset-4 transition-colors cursor-pointer"
+              >
+                <span>Conoce mi historia completa</span>
+                <ArrowRight className="w-3.5 h-3.5" aria-hidden="true" />
+              </button>
+            </div>
           </div>
+
+          {/* Right Column: Full-Height Portrait Photo */}
+          <div className="lg:col-span-5 relative min-h-[380px] lg:min-h-full bg-[#EFE9DF]">
+            <img
+              src={photoUrl}
+              alt="Anatolia Zapata, coach y creadora del Método RAÍZ"
+              className="w-full h-full object-cover object-top lg:absolute lg:inset-0 select-none"
+              loading="lazy"
+            />
+          </div>
+
         </div>
       </div>
     </section>

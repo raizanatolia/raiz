@@ -6,12 +6,27 @@
 
 import { FaqItem, NavLink, ResourceItem } from '../types';
 
-export type PageId = 'home' | 'personas' | 'organizaciones' | 'sobre-mi' | 'mapa-raiz' | 'viaje-raiz' | 'contacto';
+export type PageId =
+  | 'home'
+  | 'personas'
+  | 'organizaciones'
+  | 'sobre-mi'
+  | 'mapa-raiz'
+  | 'viaje-raiz'
+  | 'contacto'
+  | 'politica-de-privacidad'
+  | 'libro-de-reclamaciones';
 
 export interface PageMeta {
   title: string;
   description: string;
+  canonical: string;
+  ogImage: string;
+  ogType?: string;
+  h1: string;
 }
+
+export const SITE_URL = 'https://raizanatolia.github.io/raiz';
 
 export const BRAND = {
   name: 'RAÍZ',
@@ -31,7 +46,7 @@ export const CONTACT = {
   socials: {
     instagram: 'https://www.instagram.com/anatoliazapata/',
     tiktok: 'https://www.tiktok.com/@anatoliacoach',
-    linkedin: '',
+    linkedin: 'https://pe.linkedin.com/in/anatolia-%C3%BArsula-zapata-paiva-939786142',
   },
 };
 
@@ -49,36 +64,82 @@ export const PAGE_METADATA: Record<PageId, PageMeta> = {
     title: 'RAÍZ · Anatolia Zapata | Decide con mayor conciencia',
     description:
       'Comprende qué influye en tus decisiones, reconoce tus recursos y explora nuevas posibilidades con RAÍZ, el enfoque de acompañamiento de Anatolia Zapata.',
+    canonical: `${SITE_URL}/`,
+    ogImage: 'https://res.cloudinary.com/rus3f4tb/image/upload/f_auto,q_auto/v1792769718/Anatolia-Zapata-Coach-RAIZ.png',
+    ogType: 'website',
+    h1: 'Sabes que necesitas un cambio. Es momento de descubrir qué quieres construir.',
   },
   personas: {
-    title: 'RAÍZ para personas | Acompañamiento personal',
+    title: 'RAÍZ para personas | Acompañamiento personal · Anatolia Zapata',
     description:
       'Un espacio para mujeres que buscan comprender sus decisiones, reconocer sus recursos y construir su siguiente etapa personal o profesional.',
+    canonical: `${SITE_URL}/personas/`,
+    ogImage: 'https://res.cloudinary.com/rus3f4tb/image/upload/f_auto,q_auto/v1793034612/anatolia-zapata-raiz-personas.png',
+    ogType: 'website',
+    h1: 'Un espacio para comprender, elegir y construir tu siguiente etapa.',
   },
   organizaciones: {
-    title: 'RAÍZ para organizaciones | Desarrollo humano y bienestar',
+    title: 'RAÍZ para organizaciones | Desarrollo humano y bienestar · Anatolia Zapata',
     description:
       'Experiencias y programas de desarrollo humano, bienestar, liderazgo con perspectiva y género para crear entornos más conscientes.',
+    canonical: `${SITE_URL}/organizaciones/`,
+    ogImage: 'https://res.cloudinary.com/rus3f4tb/image/upload/f_auto,q_auto/v1793034612/anatolia-zapata-raiz-organizaciones.png',
+    ogType: 'website',
+    h1: 'Personas más conscientes para entornos más humanos.',
   },
   'sobre-mi': {
-    title: 'Sobre Anatolia Zapata | La historia detrás de RAÍZ',
+    title: 'Sobre mí | Anatolia Zapata · Creadora del Método RAÍZ',
     description:
-      'Conoce la historia y mirada de Anatolia Zapata, mamá de dos, ingeniera industrial, coach y creadora del Método RAÍZ.',
+      'Conoce la historia de Anatolia Zapata, mamá de dos, ingeniera industrial, coach y creadora del Método RAÍZ.',
+    canonical: `${SITE_URL}/sobre-mi/`,
+    ogImage: 'https://res.cloudinary.com/rus3f4tb/image/upload/f_auto,q_auto/v1792769718/Anatolia-Zapata-Coach-RAIZ.png',
+    ogType: 'profile',
+    h1: 'Soy Anatolia Zapata.',
   },
   'mapa-raiz': {
-    title: 'Mapa RAÍZ | Explora tu punto de partida',
+    title: 'Descubre tu Mapa RAÍZ | Herramienta de exploración personal',
     description:
-      'Una herramienta de exploración personal para observar cinco recursos fundamentales que influyen en tus decisiones diarias.',
+      'Una herramienta de exploración personal para observar cinco recursos fundamentales que influyen en tus decisiones cotidianas.',
+    canonical: `${SITE_URL}/mapa-raiz/`,
+    ogImage: 'https://res.cloudinary.com/rus3f4tb/image/upload/v1793037854/bg-conoce-tu-mapa-raiz.png',
+    ogType: 'website',
+    h1: '¿Estás reaccionando o eligiendo?',
   },
   'viaje-raiz': {
-    title: 'Viaje RAÍZ | Acompañamiento personalizado',
+    title: 'Viaje RAÍZ | Acompañamiento personalizado de 12 sesiones',
     description:
-      'Programa de acompañamiento personalizado de 12 sesiones a lo largo de 3 meses para profundizar en tus decisiones y avanzar con serenidad.',
+      'Un proceso personalizado de 12 sesiones a lo largo de tres meses, orientado a explorar tu historia, tus recursos y lo que deseas construir.',
+    canonical: `${SITE_URL}/viaje-raiz/`,
+    ogImage: 'https://res.cloudinary.com/rus3f4tb/image/upload/f_auto,q_auto/v1793036682/bg-hero-raiz-anatolia-zapata-viaje-raiz.png',
+    ogType: 'website',
+    h1: 'Viaje RAÍZ. Un espacio para comprender tus decisiones y construir con mayor conciencia.',
   },
   contacto: {
-    title: 'Contacto | Anatolia Zapata · RAÍZ',
+    title: 'Contacto | Conversemos con Anatolia Zapata · RAÍZ',
     description:
-      'Conversemos sobre tu proceso personal o explora una propuesta a medida para tu equipo u organización.',
+      'Conversemos sobre tu proceso personal o explora una propuesta de desarrollo humano a medida para tu equipo u organización.',
+    canonical: `${SITE_URL}/contacto/`,
+    ogImage: 'https://res.cloudinary.com/rus3f4tb/image/upload/f_auto,q_auto/v1792769718/Anatolia-Zapata-Coach-RAIZ.png',
+    ogType: 'website',
+    h1: 'Cada decisión deja una huella. Conversemos sobre la tuya.',
+  },
+  'politica-de-privacidad': {
+    title: 'Política de Privacidad y Protección de Datos Personales | RAÍZ',
+    description:
+      'Información sobre el tratamiento de datos personales, finalidades, derechos ARCO y cumplimiento de la Ley N.º 29733 en RAÍZ.',
+    canonical: `${SITE_URL}/politica-de-privacidad/`,
+    ogImage: 'https://res.cloudinary.com/rus3f4tb/image/upload/f_auto,q_auto/v1792769718/Anatolia-Zapata-Coach-RAIZ.png',
+    ogType: 'website',
+    h1: 'Política de Privacidad y Protección de Datos Personales',
+  },
+  'libro-de-reclamaciones': {
+    title: 'Libro de Reclamaciones Virtual | RAÍZ · Anatolia Zapata',
+    description:
+      'Información sobre el Libro de Reclamaciones conforme al Código de Protección y Defensa del Consumidor (Ley N.º 29571) y Ley N.º 32495.',
+    canonical: `${SITE_URL}/libro-de-reclamaciones/`,
+    ogImage: 'https://res.cloudinary.com/rus3f4tb/image/upload/f_auto,q_auto/v1792769718/Anatolia-Zapata-Coach-RAIZ.png',
+    ogType: 'website',
+    h1: 'Libro de Reclamaciones Virtual',
   },
 };
 
@@ -205,28 +266,43 @@ export const JOURNEY_HIGHLIGHTS = [
 
 export const FAQ_ITEMS: FaqItem[] = [
   {
-    question: '¿Para quién es RAÍZ?',
+    question: '¿Qué es RAÍZ?',
     answer:
-      'Para mujeres que desean comprender sus patrones, dejar de reaccionar en automático y desarrollar recursos internos para tomar decisiones más conscientes en su vida personal y profesional. También desarrollamos experiencias para organizaciones comprometidas con el bienestar de sus equipos.',
+      'RAÍZ es un espacio fundado por Anatolia Zapata que acompaña a personas y organizaciones a comprender qué influye en sus decisiones, reconocer sus recursos internos y construir su siguiente etapa con mayor conciencia, serenidad y claridad.',
   },
   {
-    question: '¿Qué diferencia hay entre Mapa, Método, Viaje y Bitácora?',
+    question: '¿Quién es Anatolia Zapata?',
     answer:
-      'RAÍZ es la marca que reúne las experiencias; el Método RAÍZ es el enfoque y la mirada integradora; el Mapa RAÍZ es el recurso de exploración personal de tu punto de partida; Viaje RAÍZ es el programa de acompañamiento individual de 12 sesiones; y la Bitácora RAÍZ es el soporte físico para registrar tu proceso.',
+      'Es mamá de dos, ingeniera industrial, coach y creadora del Método RAÍZ. Integra su formación analítica con herramientas de desarrollo humano, programación neurolingüística y una mirada sensible para acompañar procesos de transformación personal y organizacional.',
   },
   {
-    question: '¿Cómo puedo empezar?',
+    question: '¿Qué es el Método RAÍZ?',
     answer:
-      'Puedes comenzar explorando tu punto de partida con el Mapa RAÍZ o agendando una conversación previa con Anatolia para evaluar encaje mutuo y conocer las alternativas que mejor se adapten a tu momento.',
+      'Es una filosofía y metodología orientada a comprender desde dónde decidimos, reconociendo tres momentos clave: comprender tu historia, reconocer tus recursos y elegir con conciencia. No impone fórmulas rígidas, sino que ayuda a desactivar automatismos y reconectar con lo que de verdad valoras.',
   },
   {
-    question: '¿Cómo funciona el acompañamiento de Viaje RAÍZ?',
+    question: '¿Qué diferencia existe entre el Método y el Mapa RAÍZ?',
     answer:
-      'Es un proceso personalizado individual de 12 sesiones a lo largo de tres meses. Abordamos tu historia, exploramos tus cinco recursos y definimos acuerdos sostenibles respetando tu contexto y tus tiempos.',
+      'El Método RAÍZ es la metodología y mirada global que guía todos los procesos de acompañamiento. El Mapa RAÍZ es una herramienta digital de exploración personal y punto de partida que permite observar el estado actual de tus cinco recursos cotidianos (Perspectiva, Gestión emocional, Dirección, Energía vital y Acción consistente).',
   },
   {
-    question: '¿Tengo que esperar una fecha grupal para iniciar?',
+    question: '¿Para quién está dirigido RAÍZ?',
     answer:
-      'No. El inicio de Viaje RAÍZ es continuo y personalizado; se coordina directamente con Anatolia según tu disponibilidad y tu momento actual.',
+      'Está dirigido principalmente a mujeres que atraviesan transiciones de vida, dudas o encrucijadas personales o profesionales, y que desean dejar de decidir desde la autoexigencia o el miedo para elegir con mayor coherencia. En el ámbito corporativo, está dirigido a organizaciones que buscan fortalecer el bienestar, el liderazgo consciente y la equidad en sus equipos.',
+  },
+  {
+    question: '¿Qué es Viaje RAÍZ y cuántas sesiones incluye?',
+    answer:
+      'Viaje RAÍZ es el programa insignia de acompañamiento individual de Anatolia Zapata. Consta de 12 sesiones personalizadas a lo largo de tres meses, en las que se profundiza en tu historia, tus cinco recursos y la construcción de acuerdos graduales y sostenibles para tu siguiente capítulo.',
+  },
+  {
+    question: '¿Cómo acompaña RAÍZ a las organizaciones?',
+    answer:
+      'Mediante talleres prácticos, conferencias inspiradoras y programas de acompañamiento a medida sobre bienestar integral, liderazgo consciente, toma de decisiones y equidad de género, adaptados a la cultura y necesidades específicas de cada empresa o equipo.',
+  },
+  {
+    question: '¿Cómo puedo dar un primer paso?',
+    answer:
+      'Puedes comenzar realizando la autoexploración del Mapa RAÍZ en línea o escribiendo directamente a través de nuestro formulario de contacto para agendar una primera conversación exploratoria sin compromiso.',
   },
 ];

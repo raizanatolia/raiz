@@ -219,16 +219,16 @@ export default function BotanicalGrowthSection() {
         5.0
       );
 
-      // --- CHAPTER 5: Frutos en ocre mate (5.8s -> 7.0s) ---
+      // --- CHAPTER 5: Frutos en verde oliva apagado y ocre mate (5.8s -> 7.0s) ---
       tl.addLabel('frutos', 6.8);
       tl.to(
         '.fruit-cluster',
         {
           scale: 1,
           opacity: 1,
-          duration: 0.8,
-          ease: 'back.out(1.5)',
-          stagger: 0.07,
+          duration: 0.75,
+          ease: 'power2.out',
+          stagger: 0.08,
         },
         5.9
       );
@@ -745,154 +745,105 @@ export default function BotanicalGrowthSection() {
             </g>
           </g>
 
-          {/* FASE 05: FRUTOS EN OCRE MATE (#A18347) · ANCLADOS A LAS RAMAS, ORGÁNICOS Y DISCRETOS */}
+          {/* FASE 05: TRES PEQUEÑAS OLIVAS BOTÁNICAS ASIMÉTRICAS · VERDE OLIVA APAGADO Y OCRE MATE */}
           <g id="fruits-harvest">
-            {/* Fruto 1: Rama Superior Izquierda (Tier 3) */}
-            <g className="fruit-cluster">
-              {/* Pedicelo fino y visible firmemente unido a la rama de Tier 3 */}
+            {/* Oliva 1: Rama Superior Izquierda (Tier 3, x=284, y=96) */}
+            <g className="fruit-cluster" style={{ transformOrigin: '284px 96px' }}>
+              {/* Pedicelo milimétrico directo a la madera */}
               <path
-                d="M 285 95 C 284 103 281 110 278 116"
+                d="M 284 96 L 283 98.5"
                 fill="none"
                 stroke="#363D28"
-                strokeWidth="1.3"
+                strokeWidth="1.1"
                 strokeLinecap="round"
               />
-              {/* Cáliz botánico */}
+              {/* Cáliz botánico discreto */}
               <path
-                d="M 275.5 116 C 277 117.5 279 117.5 280.5 116"
+                d="M 281.5 98.5 Q 283 99.2 284.5 98.5"
                 fill="#363D28"
                 stroke="#363D28"
-                strokeWidth="0.8"
-                strokeLinecap="round"
-              />
-              {/* Cuerpo del fruto: oliva madura en ocre mate */}
-              <path
-                d="M 278 116 C 274.5 118 273.8 123 275 126.5 C 276.2 129.5 279.8 129.5 281 126.5 C 282.2 123 281.5 118 278 116 Z"
-                fill="url(#matteBotanicalOlive)"
-                stroke="#363D28"
-                strokeWidth="0.8"
-                strokeLinejoin="round"
-              />
-              {/* Sutura longitudinal sutil */}
-              <path
-                d="M 278 117.5 C 277.5 121 278.2 124.5 279.5 127"
-                fill="none"
-                stroke="#6E5524"
                 strokeWidth="0.6"
                 strokeLinecap="round"
-                opacity="0.6"
               />
+              {/* Oliva ovalada mate (verde oliva apagado) */}
+              <ellipse
+                cx="283"
+                cy="102.5"
+                rx="2.6"
+                ry="4"
+                transform="rotate(-4 283 102.5)"
+                fill="#4B5539"
+                stroke="#363D28"
+                strokeWidth="0.7"
+              />
+              {/* Pequeño ápice ocre mate */}
+              <circle cx="282.8" cy="106.2" r="0.6" fill="#A18347" />
             </g>
 
-            {/* Fruto 2: Rama Superior Derecha (Tier 3) */}
-            <g className="fruit-cluster">
-              {/* Pedicelo unido a la rama de Tier 3 */}
+            {/* Oliva 2: Rama Superior Derecha (Tier 3, x=420, y=85) */}
+            <g className="fruit-cluster" style={{ transformOrigin: '420px 85px' }}>
+              {/* Pedicelo milimétrico directo a la madera */}
               <path
-                d="M 415 84 C 416 92 419 99 422 105"
+                d="M 420 85 L 421 87.5"
                 fill="none"
                 stroke="#363D28"
-                strokeWidth="1.3"
+                strokeWidth="1.1"
                 strokeLinecap="round"
               />
-              {/* Cáliz botánico */}
+              {/* Cáliz botánico discreto */}
               <path
-                d="M 419.5 105 C 421 106.5 423 106.5 424.5 105"
+                d="M 419.5 87.5 Q 421 88.2 422.5 87.5"
                 fill="#363D28"
                 stroke="#363D28"
-                strokeWidth="0.8"
-                strokeLinecap="round"
-              />
-              {/* Cuerpo del fruto */}
-              <path
-                d="M 422 105 C 418.5 107 417.8 112 419 115.5 C 420.2 118.5 423.8 118.5 425 115.5 C 426.2 112 425.5 107 422 105 Z"
-                fill="url(#matteBotanicalOlive)"
-                stroke="#363D28"
-                strokeWidth="0.8"
-                strokeLinejoin="round"
-              />
-              {/* Sutura longitudinal sutil */}
-              <path
-                d="M 422 106.5 C 421.5 110 422.2 113.5 423.5 116"
-                fill="none"
-                stroke="#6E5524"
                 strokeWidth="0.6"
                 strokeLinecap="round"
-                opacity="0.6"
               />
+              {/* Oliva ovalada mate (verde oliva apagado) */}
+              <ellipse
+                cx="421"
+                cy="91.5"
+                rx="2.4"
+                ry="3.8"
+                transform="rotate(6 421 91.5)"
+                fill="#475135"
+                stroke="#363D28"
+                strokeWidth="0.7"
+              />
+              {/* Pequeño ápice ocre mate */}
+              <circle cx="421.4" cy="95" r="0.55" fill="#A18347" />
             </g>
 
-            {/* Fruto 3: Rama Media Izquierda (Tier 2) */}
-            <g className="fruit-cluster">
-              {/* Pedicelo unido a la rama de Tier 2 */}
+            {/* Oliva 3: Rama Media Izquierda (Tier 2, x=268, y=154) - Asimetría botánica */}
+            <g className="fruit-cluster" style={{ transformOrigin: '268px 154px' }}>
+              {/* Pedicelo milimétrico directo a la madera */}
               <path
-                d="M 258 155 C 257 165 253 173 249 181"
+                d="M 268 154 L 267 157"
                 fill="none"
                 stroke="#363D28"
-                strokeWidth="1.3"
+                strokeWidth="1.1"
                 strokeLinecap="round"
               />
-              {/* Cáliz botánico */}
+              {/* Cáliz botánico discreto */}
               <path
-                d="M 246.5 181 C 248 182.5 250 182.5 251.5 181"
+                d="M 265.5 157 Q 267 157.8 268.5 157"
                 fill="#363D28"
                 stroke="#363D28"
-                strokeWidth="0.8"
-                strokeLinecap="round"
-              />
-              {/* Cuerpo del fruto */}
-              <path
-                d="M 249 181 C 245.2 183.2 244.5 188.5 245.8 192.2 C 247.2 195.5 250.8 195.5 252.2 192.2 C 253.5 188.5 252.8 183.2 249 181 Z"
-                fill="url(#matteBotanicalOlive)"
-                stroke="#363D28"
-                strokeWidth="0.8"
-                strokeLinejoin="round"
-              />
-              {/* Sutura longitudinal sutil */}
-              <path
-                d="M 249 182.5 C 248.4 186.5 249.2 190.5 250.6 193.5"
-                fill="none"
-                stroke="#6E5524"
                 strokeWidth="0.6"
                 strokeLinecap="round"
-                opacity="0.6"
               />
-            </g>
-
-            {/* Fruto 4: Rama Media Derecha (Tier 2) */}
-            <g className="fruit-cluster">
-              {/* Pedicelo unido a la rama de Tier 2 */}
-              <path
-                d="M 448 143 C 449 153 453 161 457 169"
-                fill="none"
+              {/* Oliva ovalada mate (verde oliva apagado) */}
+              <ellipse
+                cx="267"
+                cy="161"
+                rx="2.7"
+                ry="4.1"
+                transform="rotate(-5 267 161)"
+                fill="#495337"
                 stroke="#363D28"
-                strokeWidth="1.3"
-                strokeLinecap="round"
+                strokeWidth="0.7"
               />
-              {/* Cáliz botánico */}
-              <path
-                d="M 454.5 169 C 456 170.5 458 170.5 459.5 169"
-                fill="#363D28"
-                stroke="#363D28"
-                strokeWidth="0.8"
-                strokeLinecap="round"
-              />
-              {/* Cuerpo del fruto */}
-              <path
-                d="M 457 169 C 453.2 171.2 452.5 176.5 453.8 180.2 C 455.2 183.5 458.8 183.5 460.2 180.2 C 461.5 176.5 460.8 171.2 457 169 Z"
-                fill="url(#matteBotanicalOlive)"
-                stroke="#363D28"
-                strokeWidth="0.8"
-                strokeLinejoin="round"
-              />
-              {/* Sutura longitudinal sutil */}
-              <path
-                d="M 457 170.5 C 456.4 174.5 457.2 178.5 458.6 181.5"
-                fill="none"
-                stroke="#6E5524"
-                strokeWidth="0.6"
-                strokeLinecap="round"
-                opacity="0.6"
-              />
+              {/* Pequeño ápice ocre mate */}
+              <circle cx="266.8" cy="164.8" r="0.6" fill="#A18347" />
             </g>
           </g>
         </svg>

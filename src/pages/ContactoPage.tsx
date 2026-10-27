@@ -15,6 +15,7 @@ export default function ContactoPage({ onNavigate }: ContactoPageProps) {
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
   const [honey, setHoney] = useState('');
+  const [privacyConsent, setPrivacyConsent] = useState(false);
 
   const [status, setStatus] = useState<SubmissionStatus>('idle');
   const [errorMessage, setErrorMessage] = useState('');
@@ -37,6 +38,9 @@ export default function ContactoPage({ onNavigate }: ContactoPageProps) {
     }
     if (!message.trim()) {
       newErrors.message = 'Por favor, cuéntanos brevemente cómo podemos acompañarte.';
+    }
+    if (!privacyConsent) {
+      newErrors.privacyConsent = 'Es necesario aceptar la política de privacidad para enviar tu mensaje.';
     }
     return newErrors;
   };
@@ -116,6 +120,7 @@ export default function ContactoPage({ onNavigate }: ContactoPageProps) {
         setEmail('');
         setMessage('');
         setHoney('');
+        setPrivacyConsent(false);
         setTouched({});
         setErrors({});
       } else if (
@@ -496,6 +501,44 @@ export default function ContactoPage({ onNavigate }: ContactoPageProps) {
                 {errors.message && (
                   <p id="contacto-message-error" role="alert" className="mt-1.5 text-xs text-red-700 font-sans">
                     {errors.message}
+                  </p>
+                )}
+              </div>
+
+              {/* Consentimiento Afirmativo de Privacidad */}
+              <div className="pt-1">
+                <label className="flex items-start gap-2.5 cursor-pointer select-none">
+                  <input
+                    type="checkbox"
+                    id="contacto-privacy"
+                    checked={privacyConsent}
+                    onChange={(e) => {
+                      setPrivacyConsent(e.target.checked);
+                      if (errors.privacyConsent) setErrors((prev) => ({ ...prev, privacyConsent: '' }));
+                    }}
+                    disabled={status === 'submitting'}
+                    className="mt-0.5 w-4 h-4 rounded border-[#363D28]/30 text-[#363D28] focus:ring-[#363D28] accent-[#363D28] cursor-pointer shrink-0"
+                  />
+                  <span className="text-xs font-sans text-[#363D28]/80 leading-snug">
+                    He leído y acepto la{' '}
+                    <a
+                      href="#/politica-de-privacidad"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        window.location.hash = '#/politica-de-privacidad';
+                        onNavigate('politica-de-privacidad');
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                      }}
+                      className="text-[#363D28] font-semibold underline underline-offset-2 hover:text-[#A18347] transition-colors"
+                    >
+                      Política de Privacidad
+                    </a>{' '}
+                    para el tratamiento de mis datos con el fin exclusivo de atender mi consulta. *
+                  </span>
+                </label>
+                {errors.privacyConsent && (
+                  <p role="alert" className="mt-1 text-xs text-red-700 font-sans pl-6.5">
+                    {errors.privacyConsent}
                   </p>
                 )}
               </div>

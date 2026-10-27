@@ -19,6 +19,9 @@ export const BRAND_ASSETS = {
   heroMapaRaizBackground: 'https://res.cloudinary.com/rus3f4tb/image/upload/v1793037854/bg-conoce-tu-mapa-raiz.png',
   // Retrato oficial de Anatolia Zapata
   anatoliaPhoto: 'https://res.cloudinary.com/rus3f4tb/image/upload/f_auto,q_auto/v1792769718/Anatolia-Zapata-Coach-RAIZ.png',
+  anatoliaHeroTransparent: 'https://res.cloudinary.com/rus3f4tb/image/upload/f_auto,q_auto/v1793118223/anatolia-zapata-transparente.png',
+  anatoliaHeroHorizontal: 'https://res.cloudinary.com/rus3f4tb/image/upload/f_auto,q_auto/v1793119147/anatolia-zapata-png-horizontal.png',
+  anatoliaSplitCard: 'https://res.cloudinary.com/rus3f4tb/image/upload/f_auto,q_auto/v1793118223/anatolia-zapata.png',
   // Pasos oficiales de El Sentido de RAÍZ
   senseComprender: 'https://res.cloudinary.com/rus3f4tb/image/upload/f_auto,q_auto/v1792773744/raiz-anatolia-zapata-comprender.png',
   senseReconocer: 'https://res.cloudinary.com/rus3f4tb/image/upload/f_auto,q_auto/v1792773744/raiz-anatolia-zapata-reconocer.png',

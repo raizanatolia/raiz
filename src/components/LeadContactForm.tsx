@@ -27,6 +27,7 @@ export default function LeadContactForm({
   const [selection, setSelection] = useState('');
   const [notes, setNotes] = useState('');
   const [honey, setHoney] = useState('');
+  const [privacyConsent, setPrivacyConsent] = useState(false);
 
   // Status & errors
   const [status, setStatus] = useState<SubmissionStatus>('idle');
@@ -63,8 +64,8 @@ export default function LeadContactForm({
           },
           {
             icon: ShieldCheck,
-            title: 'Privacidad absoluta',
-            desc: 'Tus datos se tratan con total reserva profesional y confidencialidad.',
+            title: 'Privacidad y confidencialidad',
+            desc: 'Tus datos se tratan con estricta reserva profesional y conforme a la ley.',
           },
           {
             icon: Clock,
@@ -136,6 +137,10 @@ export default function LeadContactForm({
       newErrors.selection = isPersona
         ? 'Por favor, selecciona qué te gustaría explorar.'
         : 'Por favor, selecciona qué tipo de experiencia buscan.';
+    }
+
+    if (!privacyConsent) {
+      newErrors.privacyConsent = 'Es necesario aceptar la política de privacidad para enviar tu mensaje.';
     }
 
     return newErrors;
@@ -227,6 +232,7 @@ export default function LeadContactForm({
         setSelection('');
         setNotes('');
         setHoney('');
+        setPrivacyConsent(false);
         setTouched({});
         setErrors({});
       } else if (
@@ -630,6 +636,44 @@ export default function LeadContactForm({
                       disabled={status === 'submitting'}
                       className="w-full px-4 py-3 rounded-xl bg-[#FAF7F2] border border-[#363D28]/20 text-[#363D28] placeholder-[#363D28]/40 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-[#363D28] focus:border-transparent transition-all"
                     />
+                  </div>
+
+                  {/* Consentimiento Afirmativo de Privacidad */}
+                  <div className="pt-1">
+                    <label className="flex items-start gap-2.5 cursor-pointer select-none">
+                      <input
+                        type="checkbox"
+                        id={`${variant}-privacy`}
+                        checked={privacyConsent}
+                        onChange={(e) => {
+                          setPrivacyConsent(e.target.checked);
+                          if (errors.privacyConsent) setErrors((prev) => ({ ...prev, privacyConsent: '' }));
+                        }}
+                        disabled={status === 'submitting'}
+                        className="mt-0.5 w-4 h-4 rounded border-[#363D28]/30 text-[#363D28] focus:ring-[#363D28] accent-[#363D28] cursor-pointer shrink-0"
+                      />
+                      <span className="text-xs font-sans text-[#363D28]/80 leading-snug">
+                        He leído y acepto la{' '}
+                        <a
+                          href="#/politica-de-privacidad"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            window.location.hash = '#/politica-de-privacidad';
+                            if (onNavigate) onNavigate('politica-de-privacidad');
+                            window.scrollTo({ top: 0, behavior: 'smooth' });
+                          }}
+                          className="text-[#363D28] font-semibold underline underline-offset-2 hover:text-[#A18347] transition-colors"
+                        >
+                          Política de Privacidad
+                        </a>{' '}
+                        para el tratamiento de mis datos con el fin exclusivo de atender mi consulta. *
+                      </span>
+                    </label>
+                    {errors.privacyConsent && (
+                      <p role="alert" className="mt-1 text-xs text-red-700 font-sans pl-6.5">
+                        {errors.privacyConsent}
+                      </p>
+                    )}
                   </div>
 
                   {/* CTA Submit Button */}
