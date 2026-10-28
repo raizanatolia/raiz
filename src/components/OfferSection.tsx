@@ -16,8 +16,8 @@ export default function OfferSection({ onNavigate }: OfferSectionProps) {
       alt: 'Método RAÍZ - Comprende desde dónde decides y qué quieres construir',
       buttonText: '¡QUIERO CONOCER EL MÉTODO! →',
       action: () => {
-        window.location.hash = '#/viaje-raiz';
-        onNavigate('viaje-raiz');
+        window.location.hash = '#/metodo-raiz';
+        onNavigate('metodo-raiz');
         window.scrollTo({ top: 0, behavior: 'smooth' });
       },
     },
@@ -26,10 +26,10 @@ export default function OfferSection({ onNavigate }: OfferSectionProps) {
       title: 'CURSOS & RETOS',
       image: `${cleanBase}assets/cards/cursos-retos-card.png`,
       alt: 'Cursos & Retos - Aprende, explora y pon en práctica nuevas formas de elegir',
-      buttonText: '¡QUIERO PARTICIPAR! →',
+      buttonText: '¡EXPLORAR CURSOS & RETOS! →',
       action: () => {
-        window.location.hash = '#/contacto';
-        onNavigate('contacto');
+        window.location.hash = '#/cursos-retos';
+        onNavigate('cursos-retos');
         window.scrollTo({ top: 0, behavior: 'smooth' });
       },
     },
@@ -40,8 +40,8 @@ export default function OfferSection({ onNavigate }: OfferSectionProps) {
       alt: 'Bitácora RAÍZ - Un espacio para escribir, cuestionarte y llevar tus reflexiones a la práctica',
       buttonText: '¡QUIERO MI BITÁCORA! →',
       action: () => {
-        window.location.hash = '#/viaje-raiz';
-        onNavigate('viaje-raiz');
+        window.location.hash = '#/bitacora-raiz';
+        onNavigate('bitacora-raiz');
         window.scrollTo({ top: 0, behavior: 'smooth' });
       },
     },
