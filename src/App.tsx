@@ -10,6 +10,8 @@ import HomePage from './pages/HomePage';
 import PersonasPage from './pages/PersonasPage';
 import OrganizacionesPage from './pages/OrganizacionesPage';
 import SobreMiPage from './pages/SobreMiPage';
+import MetodoRaizPage from './pages/MetodoRaizPage';
+import CursosRetosPage from './pages/CursosRetosPage';
 import MapaRaizPage from './pages/MapaRaizPage';
 import ViajeRaizPage from './pages/ViajeRaizPage';
 import ContactoPage from './pages/ContactoPage';
@@ -30,6 +32,8 @@ export function resolvePageFromUrl(): PageId {
     personas: 'personas',
     organizaciones: 'organizaciones',
     'sobre-mi': 'sobre-mi',
+    'metodo-raiz': 'metodo-raiz',
+    'cursos-retos': 'cursos-retos',
     'mapa-raiz': 'mapa-raiz',
     'viaje-raiz': 'viaje-raiz',
     contacto: 'contacto',
@@ -144,6 +148,8 @@ export default function App() {
         {currentPage === 'personas' && <PersonasPage onNavigate={handleNavigate} />}
         {currentPage === 'organizaciones' && <OrganizacionesPage onNavigate={handleNavigate} />}
         {currentPage === 'sobre-mi' && <SobreMiPage onNavigate={handleNavigate} />}
+        {currentPage === 'metodo-raiz' && <MetodoRaizPage onNavigate={handleNavigate} />}
+        {currentPage === 'cursos-retos' && <CursosRetosPage onNavigate={handleNavigate} />}
         {currentPage === 'mapa-raiz' && <MapaRaizPage onNavigate={handleNavigate} />}
         {currentPage === 'viaje-raiz' && <ViajeRaizPage onNavigate={handleNavigate} />}
         {currentPage === 'contacto' && <ContactoPage onNavigate={handleNavigate} />}

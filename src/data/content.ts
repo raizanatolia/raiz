@@ -11,6 +11,8 @@ export type PageId =
   | 'personas'
   | 'organizaciones'
   | 'sobre-mi'
+  | 'metodo-raiz'
+  | 'cursos-retos'
   | 'mapa-raiz'
   | 'viaje-raiz'
   | 'contacto'
@@ -47,15 +49,16 @@ export const CONTACT = {
     instagram: 'https://www.instagram.com/anatoliazapata/',
     tiktok: 'https://www.tiktok.com/@anatoliacoach',
     linkedin: 'https://pe.linkedin.com/in/anatolia-%C3%BArsula-zapata-paiva-939786142',
+    youtube: 'https://www.youtube.com/@anatoliazapatap',
   },
 };
 
 export const NAV_LINKS: NavLink[] = [
   { label: 'Inicio', href: '#/' },
-  { label: 'Personas', href: '#/personas' },
-  { label: 'Organizaciones', href: '#/organizaciones' },
-  { label: 'Sobre mí', href: '#/sobre-mi' },
-  { label: 'Viaje RAÍZ', href: '#/viaje-raiz' },
+  { label: 'Sobre mi', href: '#/sobre-mi' },
+  { label: 'Método Raíz', href: '#/metodo-raiz' },
+  { label: 'Cursos & Retos', href: '#/cursos-retos' },
+  { label: 'Viaje Raíz', href: '#/viaje-raiz' },
   { label: 'Contacto', href: '#/contacto' },
 ];
 
@@ -95,6 +98,24 @@ export const PAGE_METADATA: Record<PageId, PageMeta> = {
     ogImage: 'https://res.cloudinary.com/rus3f4tb/image/upload/f_auto,q_auto/v1792769718/Anatolia-Zapata-Coach-RAIZ.png',
     ogType: 'profile',
     h1: 'Soy Anatolia Zapata.',
+  },
+  'metodo-raiz': {
+    title: 'El Método RAÍZ | Filosofía y Metodología · Anatolia Zapata',
+    description:
+      'Comprender tu historia, reconocer tus recursos y elegir con conciencia. Descubre la metodología creada por Anatolia Zapata.',
+    canonical: `${SITE_URL}/metodo-raiz/`,
+    ogImage: 'https://res.cloudinary.com/rus3f4tb/image/upload/f_auto,q_auto/v1792769718/Anatolia-Zapata-Coach-RAIZ.png',
+    ogType: 'website',
+    h1: 'El Método RAÍZ. Filosofía y Metodología de Toma de Decisiones.',
+  },
+  'cursos-retos': {
+    title: 'Cursos & Retos | Experiencias de Aprendizaje · RAÍZ',
+    description:
+      'Aprende, explora y pon en práctica nuevas formas de elegir con los talleres online y retos de autoexploración de Anatolia Zapata.',
+    canonical: `${SITE_URL}/cursos-retos/`,
+    ogImage: 'https://res.cloudinary.com/rus3f4tb/image/upload/f_auto,q_auto/v1792769718/Anatolia-Zapata-Coach-RAIZ.png',
+    ogType: 'website',
+    h1: 'Cursos & Retos de Autoexploración Consciente.',
   },
   'mapa-raiz': {
     title: 'Descubre tu Mapa RAÍZ | Herramienta de exploración personal',

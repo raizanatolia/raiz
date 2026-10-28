@@ -45,6 +45,7 @@ const SHARED_ORG_SCHEMA = {
   sameAs: [
     'https://www.instagram.com/anatoliazapata/',
     'https://www.tiktok.com/@anatoliacoach',
+    'https://www.youtube.com/@anatoliazapatap',
     'https://pe.linkedin.com/in/anatolia-%C3%BArsula-zapata-paiva-939786142',
   ],
   founder: {
@@ -65,6 +66,7 @@ const SHARED_PERSON_SCHEMA = {
   sameAs: [
     'https://www.instagram.com/anatoliazapata/',
     'https://www.tiktok.com/@anatoliacoach',
+    'https://www.youtube.com/@anatoliazapatap',
     'https://pe.linkedin.com/in/anatolia-%C3%BArsula-zapata-paiva-939786142',
   ],
   worksFor: {
@@ -274,6 +276,56 @@ const ROUTES: RouteConfig[] = [
         <h1 class="text-4xl md:text-5xl font-serif text-[#363D28] leading-tight mb-6">Soy Anatolia Zapata.</h1>
         <p class="text-lg font-sans text-[#363D28]/85 font-light leading-relaxed max-w-2xl mb-8">
           Aprendí que cuidar a quienes amas no debería significar dejar de elegirte a ti misma. Mamá de dos, ingeniera industrial, coach y creadora del Método RAÍZ.
+        </p>
+      </header>
+    `,
+  },
+  {
+    id: 'metodo-raiz',
+    path: 'metodo-raiz',
+    title: 'El Método RAÍZ | Filosofía y Metodología · Anatolia Zapata',
+    description:
+      'Comprender tu historia, reconocer tus recursos y elegir con conciencia. Descubre la metodología creada por Anatolia Zapata.',
+    canonical: `${SITE_URL}/metodo-raiz/`,
+    ogImage: 'https://res.cloudinary.com/rus3f4tb/image/upload/f_auto,q_auto/v1792769718/Anatolia-Zapata-Coach-RAIZ.png',
+    ogType: 'website',
+    h1: 'El Método RAÍZ. Filosofía y Metodología de Toma de Decisiones.',
+    isCommercial: true,
+    getSchemaJson: () => [
+      SHARED_ORG_SCHEMA,
+      makeBreadcrumbs('Método RAÍZ', `${SITE_URL}/metodo-raiz/`),
+    ],
+    getStaticBody: () => `
+      <header class="py-12 px-6 max-w-5xl mx-auto">
+        <p class="text-xs uppercase tracking-widest text-[#363D28] font-bold mb-3">MÉTODO RAÍZ</p>
+        <h1 class="text-4xl md:text-5xl font-serif text-[#222918] leading-tight mb-6">El Método RAÍZ</h1>
+        <p class="text-lg font-sans text-[#222918]/85 font-normal leading-relaxed max-w-2xl mb-8">
+          Comprender desde dónde decides, reconocer tus recursos internos y elegir con conciencia el camino que quieres construir.
+        </p>
+      </header>
+    `,
+  },
+  {
+    id: 'cursos-retos',
+    path: 'cursos-retos',
+    title: 'Cursos & Retos | Experiencias de Aprendizaje · RAÍZ',
+    description:
+      'Aprende, explora y pon en práctica nuevas formas de elegir con los talleres online y retos de autoexploración de Anatolia Zapata.',
+    canonical: `${SITE_URL}/cursos-retos/`,
+    ogImage: 'https://res.cloudinary.com/rus3f4tb/image/upload/f_auto,q_auto/v1792769718/Anatolia-Zapata-Coach-RAIZ.png',
+    ogType: 'website',
+    h1: 'Cursos & Retos de Autoexploración Consciente.',
+    isCommercial: true,
+    getSchemaJson: () => [
+      SHARED_ORG_SCHEMA,
+      makeBreadcrumbs('Cursos & Retos', `${SITE_URL}/cursos-retos/`),
+    ],
+    getStaticBody: () => `
+      <header class="py-12 px-6 max-w-5xl mx-auto">
+        <p class="text-xs uppercase tracking-widest text-[#363D28] font-bold mb-3">CURSOS & RETOS</p>
+        <h1 class="text-4xl md:text-5xl font-serif text-[#222918] leading-tight mb-6">Cursos & Retos</h1>
+        <p class="text-lg font-sans text-[#222918]/85 font-normal leading-relaxed max-w-2xl mb-8">
+          Aprende, explora y pon en práctica nuevas formas de elegir. Espacios de aprendizaje flexible para avanzar a tu propio ritmo.
         </p>
       </header>
     `,

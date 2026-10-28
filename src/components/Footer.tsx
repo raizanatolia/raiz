@@ -228,10 +228,10 @@ export default function Footer({ onNavigate, currentPage = 'home' }: FooterProps
               </a>
 
               <a
-                href={CONTACT.socials.tiktok}
+                href={CONTACT.socials.youtube}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="Canal y videos de Anatolia Zapata"
+                aria-label="Canal de YouTube de Anatolia Zapata"
                 className="w-9 h-9 rounded-full bg-[#F5EFEB]/8 hover:bg-[#F5EFEB]/15 flex items-center justify-center transition-colors hover:text-white"
               >
                 <Youtube className="w-4 h-4" />

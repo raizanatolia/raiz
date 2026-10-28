@@ -1,6 +1,6 @@
 import { PageId, CONTACT } from '../data/content';
 import { BRAND_ASSETS } from '../data/images';
-import { Instagram, Linkedin } from 'lucide-react';
+import { Instagram, Linkedin, Youtube } from 'lucide-react';
 
 interface HeroProps {
   onNavigate: (page: PageId) => void;
@@ -145,7 +145,7 @@ export default function Hero({ onNavigate }: HeroProps) {
           </div>
 
           {/* Social Channels Row */}
-          <div className="flex items-center justify-center flex-wrap gap-4 sm:gap-8 text-xs sm:text-sm font-semibold text-[#222918]">
+          <div className="flex items-center justify-center flex-wrap gap-4 sm:gap-6 text-xs sm:text-sm font-semibold text-[#222918]">
             {/* Instagram */}
             <a
               href={CONTACT.socials.instagram}
@@ -177,6 +177,20 @@ export default function Hero({ onNavigate }: HeroProps) {
                 <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64c.298-.002.595.042.88.13V9.4a6.33 6.33 0 0 0-1-.08A6.34 6.34 0 0 0 3 15.66a6.34 6.34 0 0 0 10.82 4.49 6.27 6.27 0 0 0 1.86-4.49V8.69a8.18 8.18 0 0 0 4.91 1.62v-3.62h-1z" />
               </svg>
               <span>TikTok</span>
+            </a>
+
+            <span className="text-[#363D28]/25 font-light select-none" aria-hidden="true">|</span>
+
+            {/* YouTube */}
+            <a
+              href={CONTACT.socials.youtube}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Canal de YouTube de Anatolia Zapata"
+              className="inline-flex items-center gap-2 hover:text-[#5A6836] transition-colors py-1 group"
+            >
+              <Youtube className="w-4 h-4 sm:w-[18px] sm:h-[18px] text-[#222918] group-hover:text-[#5A6836] transition-colors" />
+              <span>YouTube</span>
             </a>
 
             <span className="text-[#363D28]/25 font-light select-none" aria-hidden="true">|</span>
