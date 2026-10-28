@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { PageId } from '../data/content';
-import { IMAGES, getImageUrl } from '../data/images';
+import { IMAGES, BRAND_ASSETS, getImageUrl } from '../data/images';
 import { ArrowRight, Mail } from 'lucide-react';
 import OrganicTrace from '../components/OrganicTrace';
 
