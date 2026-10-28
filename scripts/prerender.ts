@@ -400,6 +400,44 @@ const ROUTES: RouteConfig[] = [
     `,
   },
   {
+    id: 'bitacora-raiz',
+    path: 'bitacora-raiz',
+    title: 'Bitácora RAÍZ | Un espacio para volver a ti · Anatolia Zapata',
+    description:
+      'Una herramienta de escritura y reflexión personal que te invita a hacer una pausa, conectar contigo y transformar tus pensamientos en decisiones más conscientes.',
+    canonical: `${SITE_URL}/bitacora-raiz/`,
+    ogImage: 'https://res.cloudinary.com/rus3f4tb/image/upload/f_auto,q_auto/v1792769718/Anatolia-Zapata-Coach-RAIZ.png',
+    ogType: 'product',
+    h1: 'Bitácora RAÍZ. Un espacio para volver a ti.',
+    isCommercial: true,
+    getSchemaJson: () => [
+      SHARED_ORG_SCHEMA,
+      makeBreadcrumbs('Bitácora RAÍZ', `${SITE_URL}/bitacora-raiz/`),
+      {
+        '@context': 'https://schema.org',
+        '@type': 'Product',
+        name: 'Bitácora RAÍZ',
+        description: 'Herramienta de escritura y reflexión personal creada por Anatolia Zapata.',
+        brand: { '@type': 'Brand', name: 'RAÍZ' },
+        offers: {
+          '@type': 'Offer',
+          priceCurrency: 'USD',
+          price: '33.00',
+          availability: 'https://schema.org/InStock',
+        },
+      },
+    ],
+    getStaticBody: () => `
+      <header class="py-12 px-6 max-w-5xl mx-auto text-center">
+        <p class="text-xs uppercase tracking-widest text-[#5A6836] font-bold mb-3">BITÁCORA RAÍZ</p>
+        <h1 class="text-4xl md:text-5xl font-sans font-black text-[#222918] uppercase tracking-tight mb-4">Un espacio para volver a ti.</h1>
+        <p class="text-lg font-sans text-[#363D28]/90 font-medium leading-relaxed max-w-xl mx-auto mb-6">
+          Una herramienta de escritura y reflexión personal que te invita a hacer una pausa, conectar contigo y transformar tus pensamientos en decisiones más conscientes.
+        </p>
+      </header>
+    `,
+  },
+  {
     id: 'contacto',
     path: 'contacto',
     title: 'Contacto | Conversemos con Anatolia Zapata · RAÍZ',

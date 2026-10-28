@@ -74,7 +74,7 @@ export default function Header({ currentPage, onNavigate }: HeaderProps) {
 
         {/* Desktop Navigation */}
         <nav
-          className="hidden lg:flex items-center gap-6 xl:gap-8"
+          className="hidden lg:flex items-center gap-3.5 xl:gap-6"
           aria-label="Navegación principal"
         >
           {NAV_LINKS.map((link) => {
@@ -86,8 +86,8 @@ export default function Header({ currentPage, onNavigate }: HeaderProps) {
                 key={link.href}
                 href={link.href}
                 onClick={(e) => handleLinkClick(link.href, e)}
-                className={`text-sm font-sans font-medium transition-colors relative py-1 group ${
-                  isActive ? 'text-[#363D28] font-semibold' : 'text-[#363D28]/80 hover:text-[#363D28]'
+                className={`text-xs xl:text-sm font-sans font-medium transition-colors relative py-1 group whitespace-nowrap ${
+                  isActive ? 'text-[#363D28] font-bold' : 'text-[#363D28]/80 hover:text-[#363D28]'
                 }`}
               >
                 <span>{link.label}</span>
@@ -101,15 +101,15 @@ export default function Header({ currentPage, onNavigate }: HeaderProps) {
           })}
         </nav>
 
-        {/* CTA Destacado: Descubre tu Mapa RAÍZ → */}
+        {/* CTA Destacado: Mapa RAÍZ → */}
         <div className="hidden sm:flex items-center">
           <a
             href="#/mapa-raiz"
             onClick={(e) => handleLinkClick('#/mapa-raiz', e)}
-            className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-semibold tracking-wider uppercase bg-[#363D28] text-[#F2EBDD] hover:bg-[#222719] transition-all duration-200 shadow-xs focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#363D28]"
+            className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-bold tracking-wider uppercase bg-[#363D28] text-[#F2EBDD] hover:bg-[#222719] transition-all duration-200 shadow-xs focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#363D28] whitespace-nowrap"
           >
-            <span>Descubre tu Mapa RAÍZ</span>
-            <ArrowUpRight className="w-3.5 h-3.5" aria-hidden="true" />
+            <span>Mapa RAÍZ</span>
+            <span aria-hidden="true" className="font-sans text-sm">→</span>
           </a>
         </div>
 

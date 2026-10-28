@@ -15,6 +15,7 @@ export type PageId =
   | 'cursos-retos'
   | 'mapa-raiz'
   | 'viaje-raiz'
+  | 'bitacora-raiz'
   | 'contacto'
   | 'politica-de-privacidad'
   | 'libro-de-reclamaciones';
@@ -55,10 +56,11 @@ export const CONTACT = {
 
 export const NAV_LINKS: NavLink[] = [
   { label: 'Inicio', href: '#/' },
-  { label: 'Sobre mi', href: '#/sobre-mi' },
   { label: 'Método Raíz', href: '#/metodo-raiz' },
   { label: 'Cursos & Retos', href: '#/cursos-retos' },
+  { label: 'Organizaciones', href: '#/organizaciones' },
   { label: 'Viaje Raíz', href: '#/viaje-raiz' },
+  { label: 'Sobre mi', href: '#/sobre-mi' },
   { label: 'Contacto', href: '#/contacto' },
 ];
 
@@ -134,6 +136,15 @@ export const PAGE_METADATA: Record<PageId, PageMeta> = {
     ogImage: 'https://res.cloudinary.com/rus3f4tb/image/upload/f_auto,q_auto/v1793036682/bg-hero-raiz-anatolia-zapata-viaje-raiz.png',
     ogType: 'website',
     h1: 'Viaje RAÍZ. Un espacio para comprender tus decisiones y construir con mayor conciencia.',
+  },
+  'bitacora-raiz': {
+    title: 'Bitácora RAÍZ | Un espacio para volver a ti · Anatolia Zapata',
+    description:
+      'Una herramienta de escritura y reflexión personal que te invita a hacer una pausa, conectar contigo y transformar tus pensamientos en decisiones más conscientes.',
+    canonical: `${SITE_URL}/bitacora-raiz/`,
+    ogImage: 'https://res.cloudinary.com/rus3f4tb/image/upload/f_auto,q_auto/v1792769718/Anatolia-Zapata-Coach-RAIZ.png',
+    ogType: 'product',
+    h1: 'Bitácora RAÍZ. Un espacio para volver a ti.',
   },
   contacto: {
     title: 'Contacto | Conversemos con Anatolia Zapata · RAÍZ',

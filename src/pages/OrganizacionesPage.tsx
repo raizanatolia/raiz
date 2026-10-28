@@ -1,58 +1,43 @@
+import { useState } from 'react';
 import { PageId } from '../data/content';
 import { BRAND_ASSETS } from '../data/images';
-import { HeartHandshake, Users, Compass, Layers, MessageSquare } from 'lucide-react';
-import LeadContactForm from '../components/LeadContactForm';
+import { Users, Sprout, Heart, Mic, Layers, Sliders, ShieldCheck, Zap, ArrowRight, CheckCircle2 } from 'lucide-react';
 
 interface OrganizacionesPageProps {
   onNavigate: (page: PageId) => void;
 }
 
-const AREAS_DE_TRABAJO = [
+const CLIENT_LOGOS = [
   {
-    icon: HeartHandshake,
-    title: 'Desarrollo humano y bienestar',
-    description: 'Espacios para fortalecer la gestión emocional, la energía vital del equipo y la prevención del agotamiento.',
+    name: 'COGA',
+    logo: 'https://res.cloudinary.com/rus3f4tb/image/upload/v1793207342/coga.png',
   },
   {
-    icon: Users,
-    title: 'Género y desarrollo',
-    description: 'Mirada consciente sobre la corresponsabilidad, equidad, conciliación y desarrollo del talento femenino.',
+    name: 'EUROPLAST',
+    logo: 'https://res.cloudinary.com/rus3f4tb/image/upload/v1793207342/channels4_profile.jpg',
   },
   {
-    icon: Compass,
-    title: 'Liderazgo con perspectiva',
-    description: 'Herramientas para que líderes comprendan desde dónde toman decisiones e impulsen una cultura de confianza y claridad.',
+    name: 'JAMFEC S.A.C.',
+    logo: 'https://res.cloudinary.com/rus3f4tb/image/upload/v1793207342/jamfec-sac.png',
   },
   {
-    icon: Layers,
-    title: 'Programas a medida',
-    description: 'Intervenciones diseñadas específicamente para los desafíos y momentos de transformación que vive tu organización.',
-  },
-];
-
-const FORMATOS = [
-  {
-    title: 'Talleres prácticos',
-    description: 'Dinámicas participativas orientadas a generar reflexión, herramientas aplicables y acuerdos de equipo.',
+    name: 'GOLD FIELDS',
+    logo: 'https://res.cloudinary.com/rus3f4tb/image/upload/v1793207343/gold-fields.png',
   },
   {
-    title: 'Conferencias inspiradoras',
-    description: 'Ponencias que abren conversaciones necesarias sobre conciencia en la toma de decisiones, bienestar y género.',
+    name: 'CUMBRA',
+    logo: 'https://res.cloudinary.com/rus3f4tb/image/upload/v1793207342/cumbra.png',
   },
   {
-    title: 'Programas de acompañamiento',
-    description: 'Procesos de mediano plazo para consolidar hábitos, comunicación asertiva y coherencia en la cultura interna.',
+    name: 'RACLI',
+    logo: 'https://res.cloudinary.com/rus3f4tb/image/upload/v1793207342/racli.png',
   },
-];
-
-const PROCESO_PASOS = [
-  { step: '01', title: 'Conversamos', description: 'Escuchamos el contexto, la cultura y el desafío específico de tu equipo.' },
-  { step: '02', title: 'Diseñamos', description: 'Elaboramos una propuesta personalizada ajustada a tus tiempos y objetivos.' },
-  { step: '03', title: 'Facilitamos', description: 'Desplegamos la experiencia con cercanía, rigor metodológico y empatía.' },
-  { step: '04', title: 'Damos seguimiento', description: 'Acompañamos la integración de aprendizajes si el alcance contratado lo contempla.' },
 ];
 
 export default function OrganizacionesPage({ onNavigate }: OrganizacionesPageProps) {
+  const [formSubmitted, setFormSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const scrollToForm = () => {
     const el = document.getElementById('formulario-organizaciones');
     if (el) {
@@ -60,200 +45,464 @@ export default function OrganizacionesPage({ onNavigate }: OrganizacionesPagePro
     }
   };
 
+  const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    const formData = new FormData(e.currentTarget);
+
+    fetch('https://formsubmit.co/ajax/raizanatolia@gmail.com', {
+      method: 'POST',
+      body: formData,
+    })
+      .then((res) => res.json())
+      .then(() => {
+        setIsSubmitting(false);
+        setFormSubmitted(true);
+      })
+      .catch(() => {
+        setIsSubmitting(false);
+        setFormSubmitted(true);
+      });
+  };
+
   return (
-    <div className="pb-20 md:pb-28">
-      {/* Hero Organizaciones con background Cloudinary y velo marfil suave */}
-      <section className="relative isolate min-h-[500px] md:min-h-[580px] lg:min-h-[640px] flex items-center pt-32 pb-20 md:pt-40 md:pb-24 lg:pt-44 lg:pb-28 overflow-hidden border-t-0 border-b border-[#363D28]/10 mb-12 md:mb-16 outline-none">
-        {/* Layer de Fondo: Imagen oficial + capita marfil súper suave */}
-        <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
-          {/* Base marfil */}
-          <div className="absolute inset-0 bg-[#F2EBDD]" />
-
-          {/* Fotografía de fondo de Organizaciones con encuadre prioritario en parte superior */}
-          <img
-            src={BRAND_ASSETS.heroOrganizacionesBackground}
-            alt=""
-            aria-hidden="true"
-            className="absolute inset-0 w-full h-full object-cover object-[right_top] md:object-[right_top] pointer-events-none"
-            style={{ objectPosition: 'right top' }}
-          />
-
-          {/* Capita marfil súper suave para armonizar con la paleta editorial y asegurar legibilidad sin opacar la fotografía */}
-          <div className="absolute inset-0 bg-[#F2EBDD]/20 pointer-events-none" />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#F2EBDD] via-[#F2EBDD]/75 to-transparent sm:to-[#F2EBDD]/10 pointer-events-none" />
-          <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#F2EBDD] to-transparent pointer-events-none" />
-        </div>
-
-        {/* Contenido Hero */}
-        <div className="relative max-w-6xl mx-auto px-5 sm:px-8 w-full z-10">
-          <div className="max-w-3xl">
-            <div className="flex items-center gap-2.5 mb-3.5">
-              <span className="w-6 h-[1.5px] bg-[#A18347]" aria-hidden="true" />
-              <span className="text-xs font-sans tracking-[0.24em] uppercase text-[#363D28]/90 font-semibold">
-                RAÍZ PARA ORGANIZACIONES
-              </span>
+    <div className="bg-[#FAF5EE] text-[#222918] font-sans min-h-screen pt-28 pb-16 md:pt-36 md:pb-24">
+      {/* ------------------------------------------------------------- */}
+      {/* HERO: PARA ORGANIZACIONES (Fiel a Imagen de Referencia 5) */}
+      {/* ------------------------------------------------------------- */}
+      <section className="max-w-6xl mx-auto px-5 sm:px-8 mb-16 md:mb-20">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 items-center">
+          {/* Lado Izquierdo: Textos y CTA */}
+          <div className="lg:col-span-7 space-y-6 text-left">
+            {/* Pill Eyebrow */}
+            <div className="inline-block bg-[#F4EDE2] text-[#222918] text-xs font-black px-4 py-1.5 rounded-full uppercase tracking-wider border border-[#363D28]/10 shadow-2xs">
+              PARA ORGANIZACIONES
             </div>
 
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-normal text-[#363D28] tracking-tight leading-[1.14] mb-5">
-              Personas más conscientes{' '}
-              <span className="italic block sm:inline">para entornos más humanos.</span>
-            </h1>
-
-            <p className="text-base sm:text-lg font-sans text-[#363D28]/85 font-light leading-relaxed max-w-2xl mb-7">
-              Diseño y facilito experiencias de desarrollo humano, bienestar, liderazgo y género, adaptadas al
-              contexto y las necesidades de cada organización.
-            </p>
-
-            <button
-              type="button"
-              onClick={scrollToForm}
-              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full text-xs sm:text-sm font-semibold tracking-wider uppercase bg-[#363D28] text-[#F2EBDD] hover:bg-[#222719] transition-all shadow-xs focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#363D28]"
-            >
-              <MessageSquare className="w-4 h-4" />
-              <span>Conversemos sobre tu organización</span>
-            </button>
-          </div>
-        </div>
-      </section>
-
-      {/* Una mirada integral */}
-      <section className="py-20 bg-[#FAF7F2] border-y border-[#363D28]/10 mb-20 md:mb-28">
-        <div className="max-w-5xl mx-auto px-5 sm:px-8">
-          <div className="max-w-3xl">
-            <span className="text-xs font-sans tracking-[0.24em] uppercase text-[#A18347] font-semibold block mb-3">
-              FILOSOFÍA DE EQUIPO
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-serif font-normal text-[#363D28] leading-tight mb-5">
-              Una mirada integral
-            </h2>
-            <p className="text-lg sm:text-xl font-serif text-[#363D28] mb-4">
-              Las organizaciones están hechas de personas.
-            </p>
-            <p className="text-base sm:text-lg font-sans text-[#363D28]/80 font-light leading-relaxed">
-              Cada equipo tiene historias, recursos, desafíos y un contexto que influye en su manera de colaborar,
-              liderar y tomar decisiones. El enfoque RAÍZ permite abrir espacios honestos para alinear propósitos y
-              sostener resultados sin descuidar a las personas.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Áreas de trabajo */}
-      <section className="max-w-6xl mx-auto px-5 sm:px-8 mb-20 md:mb-28">
-        <div className="max-w-2xl mb-14">
-          <span className="text-xs font-sans tracking-[0.24em] uppercase text-[#A18347] font-semibold block mb-2">
-            LÍNEAS TEMÁTICAS
-          </span>
-          <h2 className="text-3xl sm:text-4xl font-serif text-[#363D28] leading-tight mb-4">
-            Áreas de trabajo
-          </h2>
-          <p className="text-base font-sans text-[#363D28]/80 font-light">
-            Temas esenciales para construir culturas laborales reflexivas y sostenibles:
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-20">
-          {AREAS_DE_TRABAJO.map((area, idx) => {
-            const Icon = area.icon;
-            return (
-              <div
-                key={idx}
-                className="p-8 rounded-2xl bg-[#FAF7F2] border border-[#363D28]/12 flex flex-col justify-between"
-              >
-                <div>
-                  <div className="w-10 h-10 rounded-full bg-[#363D28]/5 flex items-center justify-center text-[#363D28] mb-5">
-                    <Icon className="w-5 h-5 stroke-[1.6]" />
-                  </div>
-                  <h3 className="text-xl font-serif font-semibold text-[#363D28] mb-3">
-                    {area.title}
-                  </h3>
-                  <p className="text-sm font-sans text-[#363D28]/80 font-light leading-relaxed">
-                    {area.description}
-                  </p>
-                </div>
+            {/* Titular Impactante con Chispas */}
+            <div className="relative inline-block">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-black uppercase tracking-tight text-[#222918] leading-[1.12]">
+                Equipos más conscientes, colaborativos y efectivos.
+              </h1>
+              {/* Chispas decorativas arriba */}
+              <div className="hidden sm:block absolute -top-4 -right-8 text-[#222918] text-xl font-mono tracking-tighter select-none font-bold">
+                ///
               </div>
-            );
-          })}
-        </div>
+            </div>
 
-        {/* Formatos y experiencias */}
-        <div className="p-8 sm:p-12 rounded-3xl bg-[#EAE2D2] border border-[#363D28]/15 mb-20">
-          <div className="max-w-2xl mb-10">
-            <span className="text-xs font-sans uppercase tracking-widest text-[#A18347] font-semibold block mb-2">
-              MODALIDADES
-            </span>
-            <h3 className="text-2xl sm:text-3xl font-serif text-[#363D28]">
-              Formatos y experiencias
-            </h3>
+            {/* Párrafo explicativo */}
+            <p className="text-base sm:text-lg text-[#363D28]/90 font-normal leading-relaxed max-w-xl">
+              Programas y experiencias que fortalecen el liderazgo, el bienestar y la cultura del equipo.
+            </p>
+
+            {/* Botón CTA Verde Oliva */}
+            <div className="pt-2">
+              <button
+                type="button"
+                onClick={scrollToForm}
+                className="inline-flex items-center gap-2.5 px-8 py-4 rounded-full text-xs sm:text-sm font-black uppercase tracking-wider bg-[#54662E] hover:bg-[#3D4C1F] text-[#FAF7F2] shadow-md hover:shadow-lg transition-all"
+              >
+                <span>CONVERSEMOS SOBRE TU ORGANIZACIÓN</span>
+                <span aria-hidden="true" className="font-sans text-base">→</span>
+              </button>
+            </div>
           </div>
 
+          {/* Lado Derecho: Fotografía de Facilitación en Empresa */}
+          <div className="lg:col-span-5 flex justify-center lg:justify-end">
+            <div className="relative w-full max-w-md rounded-3xl overflow-hidden shadow-xl border border-[#363D28]/10 bg-[#EFE7D8]">
+              <img
+                src={BRAND_ASSETS.heroOrganizacionesBackground}
+                alt="Anatolia Zapata facilitando taller en organización"
+                className="w-full h-80 sm:h-96 object-cover object-top"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ------------------------------------------------------------- */}
+      {/* 3 PILARES: LIDERAZGO, EQUIPOS Y BIENESTAR */}
+      {/* ------------------------------------------------------------- */}
+      <section className="max-w-5xl mx-auto px-5 sm:px-8 mb-20 md:mb-28">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+          {/* Pilar 1 */}
+          <div className="flex flex-col items-center space-y-3 p-4">
+            <div className="w-14 h-14 rounded-full bg-[#DFEC9C] flex items-center justify-center text-[#222918] shadow-2xs">
+              <Users className="w-7 h-7 stroke-[2]" />
+            </div>
+            <h3 className="font-black text-lg text-[#222918]">
+              Liderazgo consciente
+            </h3>
+            <p className="text-sm text-[#363D28]/85 font-normal leading-relaxed max-w-xs">
+              Líderes que inspiran, escuchan y movilizan.
+            </p>
+          </div>
+
+          {/* Pilar 2 */}
+          <div className="flex flex-col items-center space-y-3 p-4">
+            <div className="w-14 h-14 rounded-full bg-[#DFEC9C] flex items-center justify-center text-[#222918] shadow-2xs">
+              <Sprout className="w-7 h-7 stroke-[2]" />
+            </div>
+            <h3 className="font-black text-lg text-[#222918]">
+              Desarrollo de equipos
+            </h3>
+            <p className="text-sm text-[#363D28]/85 font-normal leading-relaxed max-w-xs">
+              Equipos más conectados, con confianza y foco.
+            </p>
+          </div>
+
+          {/* Pilar 3 */}
+          <div className="flex flex-col items-center space-y-3 p-4">
+            <div className="w-14 h-14 rounded-full bg-[#DFEC9C] flex items-center justify-center text-[#222918] shadow-2xs">
+              <Heart className="w-7 h-7 stroke-[2]" />
+            </div>
+            <h3 className="font-black text-lg text-[#222918]">
+              Bienestar y cultura de cuidado
+            </h3>
+            <p className="text-sm text-[#363D28]/85 font-normal leading-relaxed max-w-xs">
+              Entornos laborales más saludables, inclusivos y sostenibles.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ------------------------------------------------------------- */}
+      {/* SECCIÓN: FORMATOS Y EXPERIENCIAS */}
+      {/* ------------------------------------------------------------- */}
+      <section className="max-w-6xl mx-auto px-5 sm:px-8 mb-20 md:mb-28">
+        <div className="bg-[#FAF5EE] border border-[#363D28]/12 rounded-3xl p-8 sm:p-12 shadow-2xs space-y-10">
+          <div className="text-center space-y-3">
+            <div className="inline-block bg-[#DFEC9C] text-[#222918] text-xs font-black px-4 py-1.5 rounded-full uppercase tracking-wider">
+              FORMATOS Y EXPERIENCIAS
+            </div>
+            <div className="relative inline-flex items-center justify-center">
+              <h2 className="text-2xl sm:text-4xl font-black uppercase text-[#222918] tracking-tight">
+                ¿Cómo podemos trabajar juntos?
+              </h2>
+              <div className="hidden sm:block absolute -top-3 -right-8 text-[#222918] text-lg font-mono tracking-tighter select-none font-bold">
+                ///
+              </div>
+            </div>
+          </div>
+
+          {/* 3 Tarjetas de Formatos */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {FORMATOS.map((f, i) => (
-              <div key={i} className="p-6 rounded-2xl bg-[#F2EBDD] border border-[#363D28]/10">
-                <h4 className="text-lg font-serif font-semibold text-[#363D28] mb-2">
-                  {f.title}
-                </h4>
-                <p className="text-sm font-sans text-[#363D28]/80 font-light leading-relaxed">
-                  {f.description}
+            {/* Formato 1: Talleres prácticos */}
+            <div className="bg-[#FAF7F2] p-6 sm:p-8 rounded-2xl border border-[#363D28]/10 flex flex-col items-start space-y-4 shadow-2xs hover:border-[#363D28]/30 transition-all">
+              <div className="w-12 h-12 rounded-full bg-[#DFEC9C] flex items-center justify-center text-[#222918]">
+                <Users className="w-6 h-6 stroke-[2]" />
+              </div>
+              <h3 className="font-bold text-lg sm:text-xl text-[#222918]">
+                Talleres prácticos
+              </h3>
+              <p className="text-sm text-[#363D28]/85 font-normal leading-relaxed">
+                Dinámicas participativas para reflexionar, aplicar herramientas y generar acuerdos.
+              </p>
+            </div>
+
+            {/* Formato 2: Conferencias */}
+            <div className="bg-[#FAF7F2] p-6 sm:p-8 rounded-2xl border border-[#363D28]/10 flex flex-col items-start space-y-4 shadow-2xs hover:border-[#363D28]/30 transition-all">
+              <div className="w-12 h-12 rounded-full bg-[#DFEC9C] flex items-center justify-center text-[#222918]">
+                <Mic className="w-6 h-6 stroke-[2]" />
+              </div>
+              <h3 className="font-bold text-lg sm:text-xl text-[#222918]">
+                Conferencias
+              </h3>
+              <p className="text-sm text-[#363D28]/85 font-normal leading-relaxed">
+                Ideas que abren conversaciones sobre liderazgo, bienestar y decisiones conscientes.
+              </p>
+            </div>
+
+            {/* Formato 3: Programas de acompañamiento */}
+            <div className="bg-[#FAF7F2] p-6 sm:p-8 rounded-2xl border border-[#363D28]/10 flex flex-col items-start space-y-4 shadow-2xs hover:border-[#363D28]/30 transition-all">
+              <div className="w-12 h-12 rounded-full bg-[#DFEC9C] flex items-center justify-center text-[#222918]">
+                <Layers className="w-6 h-6 stroke-[2]" />
+              </div>
+              <h3 className="font-bold text-lg sm:text-xl text-[#222918]">
+                Programas de acompañamiento
+              </h3>
+              <p className="text-sm text-[#363D28]/85 font-normal leading-relaxed">
+                Procesos para fortalecer hábitos, comunicación y colaboración en los equipos.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ------------------------------------------------------------- */}
+      {/* NUESTRA FORMA DE TRABAJAR: 4 PASOS */}
+      {/* ------------------------------------------------------------- */}
+      <section className="max-w-6xl mx-auto px-5 sm:px-8 mb-20 md:mb-28 space-y-12">
+        <div className="text-center space-y-3">
+          <div className="inline-block bg-[#DFEC9C] text-[#222918] text-xs font-black px-4 py-1.5 rounded-full uppercase tracking-wider">
+            NUESTRA FORMA DE TRABAJAR
+          </div>
+          <div className="relative inline-flex items-center justify-center">
+            <h2 className="text-2xl sm:text-4xl font-black uppercase text-[#222918] tracking-tight">
+              Un proceso pensado para tu equipo
+            </h2>
+            <div className="hidden sm:block absolute -top-3 -right-8 text-[#222918] text-lg font-mono tracking-tighter select-none font-bold">
+              ///
+            </div>
+          </div>
+        </div>
+
+        {/* 4 Pasos en Grid con Líneas Divisorias */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 relative">
+          {/* Paso 01 */}
+          <div className="bg-[#F6F0E8] p-6 rounded-2xl border border-[#363D28]/10 space-y-3 flex flex-col justify-between">
+            <div>
+              <div className="inline-block bg-[#DFEC9C] text-[#222918] font-black text-xs px-3 py-1 rounded-full mb-3">
+                01
+              </div>
+              <h3 className="font-bold text-lg text-[#222918] mb-2">
+                Conversamos
+              </h3>
+              <p className="text-xs sm:text-sm text-[#363D28]/85 font-normal leading-relaxed">
+                Entendemos el contexto y los desafíos.
+              </p>
+            </div>
+          </div>
+
+          {/* Paso 02 */}
+          <div className="bg-[#F6F0E8] p-6 rounded-2xl border border-[#363D28]/10 space-y-3 flex flex-col justify-between">
+            <div>
+              <div className="inline-block bg-[#DFEC9C] text-[#222918] font-black text-xs px-3 py-1 rounded-full mb-3">
+                02
+              </div>
+              <h3 className="font-bold text-lg text-[#222918] mb-2">
+                Diseñamos
+              </h3>
+              <p className="text-xs sm:text-sm text-[#363D28]/85 font-normal leading-relaxed">
+                Adaptamos la propuesta a tus objetivos.
+              </p>
+            </div>
+          </div>
+
+          {/* Paso 03 */}
+          <div className="bg-[#F6F0E8] p-6 rounded-2xl border border-[#363D28]/10 space-y-3 flex flex-col justify-between">
+            <div>
+              <div className="inline-block bg-[#DFEC9C] text-[#222918] font-black text-xs px-3 py-1 rounded-full mb-3">
+                03
+              </div>
+              <h3 className="font-bold text-lg text-[#222918] mb-2">
+                Facilitamos
+              </h3>
+              <p className="text-xs sm:text-sm text-[#363D28]/85 font-normal leading-relaxed">
+                Creamos una experiencia participativa.
+              </p>
+            </div>
+          </div>
+
+          {/* Paso 04 */}
+          <div className="bg-[#F6F0E8] p-6 rounded-2xl border border-[#363D28]/10 space-y-3 flex flex-col justify-between">
+            <div>
+              <div className="inline-block bg-[#DFEC9C] text-[#222918] font-black text-xs px-3 py-1 rounded-full mb-3">
+                04
+              </div>
+              <h3 className="font-bold text-lg text-[#222918] mb-2">
+                Damos seguimiento
+              </h3>
+              <p className="text-xs sm:text-sm text-[#363D28]/85 font-normal leading-relaxed">
+                Revisamos aprendizajes y próximos pasos, según el alcance.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ------------------------------------------------------------- */}
+      {/* SECCIÓN FORMULARIO Y CONTACTO DE PROPUESTA */}
+      {/* ------------------------------------------------------------- */}
+      <section id="formulario-organizaciones" className="max-w-6xl mx-auto px-5 sm:px-8 mb-20 md:mb-28">
+        <div className="bg-[#F6F0E8] rounded-3xl p-8 sm:p-12 border border-[#363D28]/12 shadow-xs">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 items-start">
+            {/* Lado Izquierdo: Textos de Invitación */}
+            <div className="lg:col-span-5 space-y-6">
+              <div className="space-y-3">
+                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black uppercase text-[#222918] leading-tight">
+                  Cada organización tiene una{' '}
+                  <span className="relative inline-block">
+                    historia.
+                    <span className="absolute left-0 bottom-1 w-full h-2 bg-[#DFEC9C] -z-10 rounded-full" />
+                  </span>{' '}
+                  Conversemos sobre la tuya.
+                </h2>
+                <p className="text-sm sm:text-base text-[#363D28]/85 font-normal leading-relaxed">
+                  Cuéntanos qué necesita tu equipo y exploremos una propuesta a su medida.
                 </p>
               </div>
-            ))}
-          </div>
-        </div>
 
-        {/* Proceso de trabajo (4 pasos) */}
-        <div className="max-w-4xl mx-auto mb-20">
-          <div className="text-center mb-12">
-            <span className="text-xs font-sans tracking-[0.24em] uppercase text-[#A18347] font-semibold block mb-2">
-              METODOLOGÍA DE COLABORACIÓN
-            </span>
-            <h3 className="text-2xl sm:text-3xl font-serif text-[#363D28]">
-              Proceso de trabajo
-            </h3>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {PROCESO_PASOS.map((paso) => (
-              <div key={paso.step} className="p-6 rounded-2xl bg-[#FAF7F2] border border-[#363D28]/10 flex flex-col justify-between">
-                <div>
-                  <span className="text-xl font-serif text-[#A18347] font-medium block mb-2">
-                    {paso.step}
+              {/* 3 Badges de Valor */}
+              <div className="space-y-3 pt-2">
+                <div className="flex items-center gap-3 bg-[#FAF5EE] p-3 rounded-xl border border-[#363D28]/10">
+                  <div className="w-8 h-8 rounded-lg bg-[#DFEC9C] flex items-center justify-center text-[#222918] shrink-0">
+                    <Sliders className="w-4 h-4" />
+                  </div>
+                  <span className="text-xs sm:text-sm font-bold text-[#222918]">
+                    Diseño a medida
                   </span>
-                  <h4 className="text-base font-serif font-semibold text-[#363D28] mb-2">
-                    {paso.title}
-                  </h4>
-                  <p className="text-xs sm:text-sm font-sans text-[#363D28]/80 font-light leading-relaxed">
-                    {paso.description}
+                </div>
+
+                <div className="flex items-center gap-3 bg-[#FAF5EE] p-3 rounded-xl border border-[#363D28]/10">
+                  <div className="w-8 h-8 rounded-lg bg-[#DFEC9C] flex items-center justify-center text-[#222918] shrink-0">
+                    <ShieldCheck className="w-4 h-4" />
+                  </div>
+                  <span className="text-xs sm:text-sm font-bold text-[#222918]">
+                    Confidencialidad
+                  </span>
+                </div>
+
+                <div className="flex items-center gap-3 bg-[#FAF5EE] p-3 rounded-xl border border-[#363D28]/10">
+                  <div className="w-8 h-8 rounded-lg bg-[#DFEC9C] flex items-center justify-center text-[#222918] shrink-0">
+                    <Zap className="w-4 h-4" />
+                  </div>
+                  <span className="text-xs sm:text-sm font-bold text-[#222918]">
+                    Respuesta ágil
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* Lado Derecho: Formulario */}
+            <div className="lg:col-span-7 bg-[#FAF5EE] p-6 sm:p-8 rounded-2xl border border-[#363D28]/12 shadow-xs">
+              {formSubmitted ? (
+                <div className="text-center py-10 space-y-4">
+                  <div className="w-14 h-14 bg-[#DFEC9C] rounded-full flex items-center justify-center mx-auto text-[#222918]">
+                    <CheckCircle2 className="w-8 h-8" />
+                  </div>
+                  <h3 className="text-2xl font-bold uppercase text-[#222918]">
+                    ¡Propuesta solicitada con éxito!
+                  </h3>
+                  <p className="text-sm text-[#363D28]/80 max-w-md mx-auto">
+                    Anatolia Zapata y su equipo revisarán tus requerimientos y te responderán en menos de 24 horas hábiles.
                   </p>
                 </div>
+              ) : (
+                <form onSubmit={handleFormSubmit} className="space-y-4">
+                  <input type="hidden" name="_subject" value="Nueva solicitud corporativa desde RAÍZ Organizaciones" />
+                  <input type="hidden" name="origen" value="Landing Organizaciones" />
+
+                  <div>
+                    <label className="block text-xs font-bold uppercase tracking-wider text-[#363D28] mb-1.5">
+                      Nombre y apellido
+                    </label>
+                    <input
+                      type="text"
+                      name="nombre"
+                      required
+                      placeholder="Ej. Valeria Mendoza"
+                      className="w-full px-4 py-3 rounded-xl bg-white border border-[#363D28]/20 focus:outline-none focus:ring-2 focus:ring-[#5A6836] text-sm"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-bold uppercase tracking-wider text-[#363D28] mb-1.5">
+                      Empresa u organización
+                    </label>
+                    <input
+                      type="text"
+                      name="organizacion"
+                      required
+                      placeholder="Nombre de tu empresa o institución"
+                      className="w-full px-4 py-3 rounded-xl bg-white border border-[#363D28]/20 focus:outline-none focus:ring-2 focus:ring-[#5A6836] text-sm"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-bold uppercase tracking-wider text-[#363D28] mb-1.5">
+                      Correo corporativo
+                    </label>
+                    <input
+                      type="email"
+                      name="email"
+                      required
+                      placeholder="nombre@tuempresa.com"
+                      className="w-full px-4 py-3 rounded-xl bg-white border border-[#363D28]/20 focus:outline-none focus:ring-2 focus:ring-[#5A6836] text-sm"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-bold uppercase tracking-wider text-[#363D28] mb-1.5">
+                      ¿Qué experiencia buscan?
+                    </label>
+                    <select
+                      name="experiencia"
+                      required
+                      defaultValue=""
+                      className="w-full px-4 py-3 rounded-xl bg-white border border-[#363D28]/20 focus:outline-none focus:ring-2 focus:ring-[#5A6836] text-sm text-[#222918]"
+                    >
+                      <option value="" disabled>Selecciona una opción</option>
+                      <option value="Talleres prácticos">Talleres prácticos</option>
+                      <option value="Conferencias">Conferencias</option>
+                      <option value="Programas de acompañamiento">Programas de acompañamiento</option>
+                      <option value="Diagnóstico y asesoría de bienestar">Diagnóstico y asesoría de bienestar</option>
+                      <option value="Otro">Otro formato</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-bold uppercase tracking-wider text-[#363D28] mb-1.5">
+                      ¿Qué necesitan? (opcional)
+                    </label>
+                    <textarea
+                      name="mensaje"
+                      rows={3}
+                      placeholder="Cuéntanos sobre el número de personas, objetivos principales o fecha tentativa..."
+                      className="w-full px-4 py-3 rounded-xl bg-white border border-[#363D28]/20 focus:outline-none focus:ring-2 focus:ring-[#5A6836] text-sm resize-none"
+                    />
+                  </div>
+
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="w-full bg-[#54662E] hover:bg-[#3D4C1F] text-[#FAF7F2] font-black uppercase tracking-wider py-4 rounded-xl text-xs sm:text-sm transition-all flex items-center justify-center gap-2 shadow-md hover:shadow-lg"
+                  >
+                    {isSubmitting ? (
+                      <span>Enviando propuesta...</span>
+                    ) : (
+                      <>
+                        <span>SOLICITAR UNA PROPUESTA</span>
+                        <ArrowRight className="w-4 h-4" />
+                      </>
+                    )}
+                  </button>
+                </form>
+              )}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ------------------------------------------------------------- */}
+      {/* FRANJA DE LOGOS CORPORATIVOS: Organizaciones que han confiado */}
+      {/* ------------------------------------------------------------- */}
+      <section className="border-t border-[#363D28]/10 bg-[#FAF7F2] py-10 px-5 sm:px-8">
+        <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
+          <div className="shrink-0 text-center md:text-left md:border-r md:border-[#363D28]/20 md:pr-8">
+            <p className="text-xs sm:text-sm font-bold text-[#363D28] max-w-[200px] leading-snug">
+              Organizaciones que han confiado en mi trabajo
+            </p>
+          </div>
+
+          <div className="flex-1 flex flex-wrap items-center justify-center md:justify-around gap-8 sm:gap-10">
+            {CLIENT_LOGOS.map((client, idx) => (
+              <div
+                key={idx}
+                className="h-10 sm:h-12 flex items-center justify-center grayscale hover:grayscale-0 opacity-80 hover:opacity-100 transition-all"
+                title={client.name}
+              >
+                <img
+                  src={client.logo}
+                  alt={client.name}
+                  className="max-h-8 sm:max-h-10 max-w-[120px] sm:max-w-[140px] object-contain"
+                />
               </div>
             ))}
           </div>
         </div>
-
-        {/* Cierre previo al formulario */}
-        <div className="p-8 sm:p-12 rounded-3xl bg-[#FAF7F2] border border-[#363D28]/15 text-center max-w-3xl mx-auto mb-10">
-          <h3 className="text-2xl sm:text-3xl font-serif text-[#363D28] mb-4">
-            Cada organización es única.
-          </h3>
-          <p className="text-base font-sans text-[#363D28]/80 font-light leading-relaxed mb-8">
-            Por eso, las propuestas se diseñan considerando sus objetivos, su contexto y el tipo de experiencia
-            que necesita su equipo.
-          </p>
-
-          <button
-            type="button"
-            onClick={scrollToForm}
-            className="inline-flex items-center gap-2 px-8 py-4 rounded-full text-xs sm:text-sm font-semibold tracking-wider uppercase bg-[#363D28] text-[#F2EBDD] hover:bg-[#222719] transition-all shadow-xs"
-          >
-            <MessageSquare className="w-4 h-4" />
-            <span>Solicita una propuesta</span>
-          </button>
-        </div>
       </section>
-
-      {/* Formulario de Consultas Comerciales: id="formulario-organizaciones" */}
-      <LeadContactForm variant="organizacion" id="formulario-organizaciones" onNavigate={onNavigate} />
     </div>
   );
 }

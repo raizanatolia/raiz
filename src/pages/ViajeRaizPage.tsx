@@ -358,6 +358,22 @@ export default function ViajeRaizPage({ onNavigate }: ViajeRaizPageProps) {
                 <p className="text-sm sm:text-base text-[#363D28]/90 font-normal leading-relaxed max-w-xs">
                   Un espacio para poner en papel lo que descubres, ordenar tus ideas y llevar tus aprendizajes a la vida cotidiana.
                 </p>
+
+                {/* Botón para conocer la Bitácora */}
+                <div>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      window.location.hash = '#/bitacora-raiz';
+                      onNavigate('bitacora-raiz');
+                      window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }}
+                    className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider bg-[#222918] text-[#FAF7F2] hover:bg-[#5A6836] transition-all shadow-2xs"
+                  >
+                    <span>Conocer la Bitácora</span>
+                    <span aria-hidden="true">→</span>
+                  </button>
+                </div>
               </div>
 
               {/* Location Badge */}

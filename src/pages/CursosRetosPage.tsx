@@ -1,236 +1,634 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { PageId } from '../data/content';
-import { BookOpen, Sparkles, Calendar, CheckCircle2, ArrowRight, Mail, Users, Star } from 'lucide-react';
+import { BRAND_ASSETS } from '../data/images';
+import { Play, X, Search, Sparkles, ExternalLink, Sprout, ArrowUpRight, Youtube, CheckCircle2 } from 'lucide-react';
 
 interface CursosRetosPageProps {
   onNavigate: (page: PageId) => void;
 }
 
-const COURSES_DATA = [
+interface VideoItem {
+  id: string;
+  youtubeUrl: string;
+  title: string;
+  description: string;
+  category: 'reto' | 'disciplina' | 'herramientas';
+  categoryLabel: string;
+  duration?: string;
+  dayNumber?: string;
+}
+
+const YOUTUBE_VIDEOS: VideoItem[] = [
   {
-    badge: 'RETO GRATUITO · 7 DÍAS',
-    title: 'Reto 7 Días: Reconecta con tu Raíz',
-    subtitle: 'Un ejercicio diario de 5 minutos en audio y bitácora digital',
-    description:
-      'Diseñado para mujeres ocupadas que quieren hacer una pausa consciente en su rutina, observar qué emociones o exigencias están acelerando sus días y recalibrar su atención.',
-    details: [
-      '7 audios breves guiados por Anatolia Zapata',
-      'Bitácora digital descargable con preguntas de reflexión',
-      'Acceso flexible desde tu celular',
-    ],
-    status: 'Inscripciones abiertas',
-    ctaText: 'Quiero unirme al Reto 7 Días',
-    ctaAction: 'https://wa.me/51940497864?text=Hola%20Anatolia,%20quiero%20inscripciones%20para%20el%20Reto%207%20D%C3%ADas',
+    id: 'Ofdd5Xm3NMU',
+    youtubeUrl: 'https://youtu.be/Ofdd5Xm3NMU?si=XUWEmwVLpw9zpRnZ',
+    title: 'De CAOS a CALMA - Cómo recuperar el Control cuando el estrés te supera',
+    description: 'Día 6 del Reto del Estrés a la Calma. Herramientas de regulación del sistema nervioso y retorno a tu centro.',
+    category: 'reto',
+    categoryLabel: 'Reto Del Estrés a la Calma',
+    duration: '45:26',
+    dayNumber: 'Día 6',
   },
   {
-    badge: 'TALLER INTENSIVO ONLINE',
-    title: 'Decisiones sin Culpa',
-    subtitle: 'Aprende a establecer límites sanos y tomar decisiones en coherencia',
-    description:
-      'Un taller práctico de 2 encuentros donde trabajamos los automatismos del «sí fácil», el miedo a decepcionar a otros y cómo construir acuerdos sostenibles en tu familia y trabajo.',
-    details: [
-      '2 sesiones en vivo de 90 minutos vía Zoom',
-      'Guía de ejercicios y plantillas de acuerdos familiares/laborales',
-      'Grabación disponible por 30 días',
-    ],
-    status: 'Próxima edición: Consultar fechas',
-    ctaText: 'Consultar por próxima edición',
-    ctaAction: 'https://wa.me/51940497864?text=Hola%20Anatolia,%20quiero%20informaci%C3%B3n%20del%20taller%20Decisiones%20sin%20Culpa',
+    id: '1VXnzir_KpI',
+    youtubeUrl: 'https://youtu.be/1VXnzir_KpI?si=mfHrSwCw0qcjuZ6l',
+    title: 'El truco de la PAUSA - Haz ESTO antes de responder (y evita el estrés)',
+    description: 'Día 5 del Reto del Estrés a la Calma. Cómo crear un espacio entre el estímulo y tu respuesta cotidiana.',
+    category: 'reto',
+    categoryLabel: 'Reto Del Estrés a la Calma',
+    duration: '27:48',
+    dayNumber: 'Día 5',
   },
   {
-    badge: 'CURSO DIGITAL Y BITÁCORA',
-    title: 'Bitácora RAÍZ: Tu Guía de Trabajo Personal',
-    subtitle: 'Un sistema estructurado para pasar del caos a la claridad escrita',
-    description:
-      'Aprende la metodología de registro consciente de Anatolia Zapata para utilizar tu Bitácora como una herramienta diaria de orden mental, gestión emocional y foco en lo importante.',
-    details: [
-      'Cuaderno de trabajo Bitácora RAÍZ (Físico o Virtual)',
-      'Acceso a la plataforma de video con las 5 lecciones guiadas',
-      'Ejercicios prácticos de seguimiento mensual',
-    ],
-    status: 'Disponible todo el año',
-    ctaText: 'Quiero mi Bitácora y Curso',
-    ctaAction: 'https://wa.me/51940497864?text=Hola%20Anatolia,%20quiero%20informaci%C3%B3n%20de%20Bit%C3%A1cora%20RA%C3%8DZ',
+    id: 'aWK6cgdQWXw',
+    youtubeUrl: 'https://youtu.be/aWK6cgdQWXw?si=VTlmHdF0TZHneJiw',
+    title: 'Esto lo cambia TODO - La Ecuación que cambiará tu vida: Causa sobre Efecto',
+    description: 'Día 4 del Reto del Estrés a la Calma. Pasa de reaccionar a las circunstancias a liderar tus elecciones.',
+    category: 'reto',
+    categoryLabel: 'Reto Del Estrés a la Calma',
+    duration: '29:09',
+    dayNumber: 'Día 4',
+  },
+  {
+    id: '_UQrdHIaHeM',
+    youtubeUrl: 'https://youtu.be/_UQrdHIaHeM?si=kxEBxW2ytbTNPGn6',
+    title: 'Hackea tu Cerebro - El interruptor mental que apaga el caos en minutos',
+    description: 'Día 3 del Reto del Estrés a la Calma. Neurociencia práctica para desacelerar la mente sobreexigida.',
+    category: 'reto',
+    categoryLabel: 'Reto Del Estrés a la Calma',
+    duration: '38:28',
+    dayNumber: 'Día 3',
+  },
+  {
+    id: 'HDR1q2YGzn4',
+    youtubeUrl: 'https://youtu.be/HDR1q2YGzn4?si=HsKuVkvFNjVMHeBu',
+    title: 'Suelta la Carga - Enfócate en lo que SÍ puedes controlar',
+    description: 'Día 2 del Reto del Estrés a la Calma. Soltar la culpa y gestionar la carga mental cotidiana.',
+    category: 'reto',
+    categoryLabel: 'Reto Del Estrés a la Calma',
+    duration: '30:33',
+    dayNumber: 'Día 2',
+  },
+  {
+    id: 'jTrD0f4JglA',
+    youtubeUrl: 'https://youtu.be/jTrD0f4JglA?si=PkNDYA0mu3_PzSnD',
+    title: 'Técnica de Reprogramación - Deja de reaccionar: El secreto para dominar tus emociones',
+    description: 'Día 1 del Reto del Estrés a la Calma. Primer paso para identificar tus detonantes emocionales.',
+    category: 'reto',
+    categoryLabel: 'Reto Del Estrés a la Calma',
+    duration: '38:17',
+    dayNumber: 'Día 1',
+  },
+  {
+    id: 'x3_O8eoqE1c',
+    youtubeUrl: 'https://youtu.be/x3_O8eoqE1c?si=ZMy6P9VmwHgeevxn',
+    title: 'Cómo ser una persona disciplinada #1 - Decisiones y Hábitos',
+    description: 'Parte 1 del Mini Curso en YouTube. Construye la disciplina desde la compasión y no desde la autoexigencia.',
+    category: 'disciplina',
+    categoryLabel: 'Mini Curso Disciplina',
+    duration: '15:20',
+  },
+  {
+    id: 'Mfr8vX8OhFQ',
+    youtubeUrl: 'https://youtu.be/Mfr8vX8OhFQ?si=l-fGVbkHTqM1oLNt',
+    title: 'Cómo ser una persona disciplinada #2 - Sistemas y Sostenibilidad',
+    description: 'Parte 2 del Mini Curso en YouTube. Cómo sostener compromisos contigo misma en momentos de cansancio.',
+    category: 'disciplina',
+    categoryLabel: 'Mini Curso Disciplina',
+    duration: '18:10',
+  },
+  {
+    id: 'lqamda5kSaw',
+    youtubeUrl: 'https://youtu.be/lqamda5kSaw?si=PY3rP-Kk86jIFQsS',
+    title: '¿Pierdes el control y luego te arrepientes? La herramienta infalible para tu bienestar',
+    description: 'Aprende a pausar el impulso antes de hablar o reaccionar en momentos de tensión familiar o laboral.',
+    category: 'herramientas',
+    categoryLabel: 'Tips y Herramientas',
+    duration: '3:09',
+  },
+  {
+    id: 'MOGfLEkk-Cw',
+    youtubeUrl: 'https://youtu.be/MOGfLEkk-Cw?si=87x1bEoj2svHJova',
+    title: 'Soy mamá y estoy agotada: ¿Cómo recargarme sin culpas?',
+    description: 'Reflexiones y pautas prácticas para sostener la energía vital en medio de la crianza y el trabajo.',
+    category: 'herramientas',
+    categoryLabel: 'Tips y Herramientas',
+    duration: '3:16',
+  },
+  {
+    id: 'hTt8FcRbbSw',
+    youtubeUrl: 'https://youtu.be/hTt8FcRbbSw?si=X4XlXyVAqQDEASMi',
+    title: '¿CÓMO SACO TIEMPO PARA MÍ SI SOY MAMÁ Y TRABAJO? ¡AQUÍ EMPIEZA EL CAMBIO!',
+    description: 'Estrategias de organización consciente para recuperar espacios propios sin sentir desatención.',
+    category: 'herramientas',
+    categoryLabel: 'Tips y Herramientas',
+    duration: '9:20',
+  },
+  {
+    id: 'Se5oUXmMz3w',
+    youtubeUrl: 'https://youtu.be/Se5oUXmMz3w?si=UxDEtIkOVQ0tJ_2b',
+    title: 'Pausa consciente y rueda de la vida en la práctica',
+    description: 'Aprende a autoevaluar tus 5 recursos y equilibrar las áreas clave de tu presente.',
+    category: 'herramientas',
+    categoryLabel: 'Tips y Herramientas',
+    duration: '12:45',
+  },
+  {
+    id: 'n8InueHaVxk',
+    youtubeUrl: 'https://youtu.be/n8InueHaVxk?si=bycpN6To-2_qugfd',
+    title: 'Estrategias de desarrollo personal y bienestar cotidiano con Anatolia Zapata',
+    description: 'Clase especial para comprender los automatismos y reprogramar las decisiones de tu día a día.',
+    category: 'herramientas',
+    categoryLabel: 'Tips y Herramientas',
+    duration: '22:15',
   },
 ];
 
 export default function CursosRetosPage({ onNavigate }: CursosRetosPageProps) {
-  const [formSubmitted, setFormSubmitted] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [activeCategory, setActiveCategory] = useState<'todos' | 'reto' | 'disciplina' | 'herramientas'>('todos');
+  const [searchQuery, setSearchQuery] = useState('');
+  const [selectedVideo, setSelectedVideo] = useState<VideoItem | null>(null);
 
-  const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    const formData = new FormData(e.currentTarget);
+  const filteredVideos = useMemo(() => {
+    return YOUTUBE_VIDEOS.filter((video) => {
+      const matchesCategory = activeCategory === 'todos' || video.category === activeCategory;
+      const matchesSearch =
+        video.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        video.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        video.categoryLabel.toLowerCase().includes(searchQuery.toLowerCase());
+      return matchesCategory && matchesSearch;
+    });
+  }, [activeCategory, searchQuery]);
 
-    fetch('https://formsubmit.co/ajax/raizanatolia@gmail.com', {
-      method: 'POST',
-      body: formData,
-    })
-      .then((res) => res.json())
-      .then(() => {
-        setIsSubmitting(false);
-        setFormSubmitted(true);
-      })
-      .catch(() => {
-        setIsSubmitting(false);
-        setFormSubmitted(true);
-      });
+  const handleFilterCategory = (cat: 'todos' | 'reto' | 'disciplina' | 'herramientas') => {
+    setActiveCategory(cat);
+    const galleryElem = document.getElementById('galeria-youtube');
+    if (galleryElem) {
+      galleryElem.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   return (
     <div className="bg-[#FAF5EE] text-[#222918] font-sans min-h-screen pt-28 pb-20 md:pt-36 md:pb-28">
       {/* ------------------------------------------------------------- */}
-      {/* HERO CURSOS & RETOS */}
+      {/* HERO: PEQUEÑOS PASOS. NUEVAS FORMAS DE ELEGIR. (Referencia Img) */}
       {/* ------------------------------------------------------------- */}
-      <section className="max-w-5xl mx-auto px-5 sm:px-8 mb-16 md:mb-20 text-center space-y-6">
-        <div className="inline-block">
-          <span className="text-xs sm:text-sm font-semibold tracking-[0.2em] uppercase text-[#363D28] block mb-1">
-            APRENDIZAJE Y EXPERIENCIAS FLEXIBLES · RAÍZ
-          </span>
-          <div className="w-16 h-[2px] bg-[#A18347] mx-auto" />
-        </div>
-
-        <div className="relative inline-block">
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-[#222918] uppercase leading-none">
-            CURSOS & RETOS
-          </h1>
-          <div className="w-full h-3 sm:h-4 bg-[#D8E488] rounded-full mt-1 opacity-90 -skew-x-6 mx-auto" />
-        </div>
-
-        <p className="text-xl sm:text-2xl font-serif text-[#222918] leading-relaxed max-w-3xl mx-auto font-normal">
-          Aprende, explora y pon en práctica nuevas formas de elegir. Espacios de aprendizaje flexible para avanzar a tu propio ritmo.
-        </p>
-
-        <p className="text-base sm:text-lg text-[#363D28]/85 font-light leading-relaxed max-w-2xl mx-auto">
-          Si buscas una primera aproximación al Método RAÍZ antes de iniciar un proceso de acompañamiento 1 a 1, o deseas profundizar en temas específicos como límites, gestión del tiempo y escritura consciente.
-        </p>
-      </section>
-
-      {/* ------------------------------------------------------------- */}
-      {/* LISTADO DE CURSOS Y RETOS */}
-      {/* ------------------------------------------------------------- */}
-      <section className="max-w-5xl mx-auto px-5 sm:px-8 mb-20 md:mb-28 space-y-8">
-        {COURSES_DATA.map((course, idx) => (
-          <div
-            key={idx}
-            className="bg-[#F6F0E8] rounded-3xl p-8 sm:p-10 border border-[#363D28]/12 shadow-xs space-y-6 hover:border-[#363D28]/30 transition-all"
-          >
-            <div className="flex flex-wrap items-center justify-between gap-3">
-              <span className="bg-[#D8E488] text-[#222918] text-xs font-extrabold uppercase px-3.5 py-1.5 rounded-full tracking-wider">
-                {course.badge}
-              </span>
-              <span className="text-xs font-semibold text-[#363D28]/80 bg-[#FAF5EE] px-3 py-1 rounded-full border border-[#363D28]/10">
-                {course.status}
-              </span>
-            </div>
-
-            <div className="space-y-2">
-              <h2 className="text-2xl sm:text-3xl font-black text-[#222918] uppercase">
-                {course.title}
-              </h2>
-              <p className="text-base sm:text-lg font-serif italic text-[#5A6836]">
-                {course.subtitle}
-              </p>
-            </div>
-
-            <p className="text-sm sm:text-base text-[#363D28]/90 leading-relaxed font-normal">
-              {course.description}
-            </p>
-
-            <div className="space-y-2 pt-2">
-              <span className="text-xs font-bold uppercase tracking-wider text-[#363D28]">
-                ¿Qué incluye esta experiencia?
-              </span>
-              <ul className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs sm:text-sm text-[#363D28]/85 font-normal">
-                {course.details.map((detail, i) => (
-                  <li key={i} className="flex items-start gap-2 bg-[#FAF5EE] p-3 rounded-xl border border-[#363D28]/10">
-                    <CheckCircle2 className="w-4 h-4 text-[#5A6836] shrink-0 mt-0.5" />
-                    <span>{detail}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div className="pt-2">
-              <a
-                href={course.ctaAction}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2.5 px-8 py-4 rounded-full bg-[#111111] hover:bg-[#363D28] text-white font-extrabold text-xs sm:text-sm uppercase tracking-wider shadow-md hover:shadow-lg transition-all"
-              >
-                <span>{course.ctaText}</span>
-                <ArrowRight className="w-4 h-4" />
-              </a>
-            </div>
-          </div>
-        ))}
-      </section>
-
-      {/* ------------------------------------------------------------- */}
-      {/* FORMULARIO DE NOTIFICACIONES / Novedades */}
-      {/* ------------------------------------------------------------- */}
-      <section className="max-w-4xl mx-auto px-5 sm:px-8">
-        <div className="bg-[#222918] text-[#FAF7F2] rounded-3xl p-8 sm:p-12 shadow-xl space-y-8">
-          <div className="text-center space-y-3 max-w-xl mx-auto">
-            <span className="text-xs font-bold uppercase tracking-[0.2em] text-[#D8E488]">
-              NOVEDADES Y PRÓXIMAS FECHAS
-            </span>
-            <h3 className="text-2xl sm:text-3xl font-black uppercase text-white tracking-tight">
-              ¿Quieres enterarte antes de abrir inscripciones?
-            </h3>
-            <p className="text-sm text-[#FAF7F2]/80 leading-relaxed">
-              Déjanos tu nombre y correo para avisarte con prioridad sobre los nuevos retos y talleres en vivo organizados por Anatolia Zapata.
-            </p>
-          </div>
-
-          {formSubmitted ? (
-            <div className="bg-[#FAF5EE] text-[#222918] p-8 rounded-2xl text-center space-y-3 max-w-md mx-auto">
-              <CheckCircle2 className="w-10 h-10 text-[#5A6836] mx-auto" />
-              <h4 className="font-bold text-lg uppercase">¡Te has registrado con éxito!</h4>
-              <p className="text-sm text-[#363D28]/80">
-                Te mantendremos al tanto de las próximas convocatorias y cursos de RAÍZ.
-              </p>
-            </div>
-          ) : (
-            <form onSubmit={handleFormSubmit} className="max-w-md mx-auto space-y-4">
-              <input type="hidden" name="_subject" value="Nueva suscripción a Cursos y Retos RAÍZ" />
-              <div>
-                <input
-                  type="text"
-                  name="nombre"
-                  required
-                  placeholder="Tu Nombre"
-                  className="w-full px-4 py-3.5 rounded-xl bg-white text-[#222918] text-sm focus:outline-none focus:ring-2 focus:ring-[#D8E488]"
-                />
+      <section className="max-w-6xl mx-auto px-5 sm:px-8 mb-12 md:mb-16">
+        <div className="bg-[#F6F0E8] rounded-3xl p-8 sm:p-12 md:p-16 border border-[#363D28]/10 relative overflow-hidden shadow-xs">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
+            <div className="lg:col-span-7 space-y-5 text-left">
+              {/* Badge */}
+              <div className="inline-block bg-[#DFEC9C] text-[#222918] text-xs font-black px-4 py-1.5 rounded-full uppercase tracking-wider">
+                APRENDE A TU RITMO
               </div>
-              <div>
-                <input
-                  type="email"
-                  name="email"
-                  required
-                  placeholder="Tu Correo Electrónico"
-                  className="w-full px-4 py-3.5 rounded-xl bg-white text-[#222918] text-sm focus:outline-none focus:ring-2 focus:ring-[#D8E488]"
+
+              {/* Titular con chispas */}
+              <div className="relative inline-block">
+                <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black uppercase tracking-tight text-[#222918] leading-[1.08]">
+                  Pequeños pasos.<br />
+                  Nuevas formas de elegir.
+                </h1>
+                {/* Chispas arriba a la derecha */}
+                <div className="hidden sm:block absolute -top-4 -right-8 text-[#222918] text-xl font-mono tracking-tighter select-none font-bold">
+                  ///
+                </div>
+              </div>
+
+              {/* Subtítulo */}
+              <p className="text-base sm:text-lg text-[#363D28]/90 font-normal leading-relaxed max-w-xl">
+                Explora cursos, herramientas y retos gratuitos para comprenderte mejor y llevar lo que aprendes a tu vida.
+              </p>
+            </div>
+
+            {/* Imagen decorativa de hojas/naturaleza */}
+            <div className="lg:col-span-5 flex justify-center lg:justify-end">
+              <div className="relative w-full max-w-sm rounded-2xl overflow-hidden shadow-sm border border-[#363D28]/10 bg-[#FAF5EE] p-4">
+                <img
+                  src={BRAND_ASSETS.senseComprender}
+                  alt="Aprende a tu ritmo con Anatolia Zapata"
+                  className="w-full h-48 sm:h-56 object-cover rounded-xl"
                 />
+                <div className="mt-3 text-center">
+                  <span className="text-xs font-bold uppercase tracking-wider text-[#5A6836]">
+                    Contenido 100% Gratuito en YouTube
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ------------------------------------------------------------- */}
+      {/* SECCIÓN: EMPIEZA POR AQUÍ (3 Tarjetas Principales) */}
+      {/* ------------------------------------------------------------- */}
+      <section className="max-w-6xl mx-auto px-5 sm:px-8 mb-16 md:mb-20 space-y-8">
+        {/* Titulo con chispas */}
+        <div className="text-center space-y-2">
+          <div className="relative inline-flex items-center justify-center">
+            <h2 className="text-2xl sm:text-4xl font-black uppercase text-[#222918] tracking-tight">
+              Empieza por aquí
+            </h2>
+            <div className="absolute -top-3 -right-8 text-[#222918] text-lg font-mono tracking-tighter select-none font-bold">
+              ///
+            </div>
+          </div>
+        </div>
+
+        {/* Grid de 3 Tarjetas */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+          {/* Card 1: MINI CURSO EN YOUTUBE */}
+          <div className="bg-[#FAF5EE] rounded-3xl p-6 sm:p-8 border border-[#363D28]/12 shadow-xs hover:border-[#363D28]/30 transition-all flex flex-col justify-between space-y-6">
+            <div className="space-y-4">
+              <div className="rounded-2xl overflow-hidden aspect-video bg-[#363D28] relative group cursor-pointer" onClick={() => handleFilterCategory('disciplina')}>
+                <img
+                  src="https://img.youtube.com/vi/x3_O8eoqE1c/hqdefault.jpg"
+                  alt="Mini curso cómo ser una persona disciplinada"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform"
+                />
+                <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
+                  <div className="w-12 h-12 bg-white/90 rounded-full flex items-center justify-center shadow-lg">
+                    <Play className="w-6 h-6 text-[#5A6836] fill-[#5A6836] ml-0.5" />
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <span className="inline-block bg-[#DFEC9C] text-[#222918] text-xs font-black px-3.5 py-1 rounded-full uppercase tracking-wider mb-2">
+                  MINI CURSO EN YOUTUBE
+                </span>
+                <h3 className="text-xl font-bold text-[#222918] leading-snug">
+                  Cómo ser una persona disciplinada
+                </h3>
+              </div>
+
+              <p className="text-sm text-[#363D28]/85 font-normal leading-relaxed">
+                Una serie para explorar la disciplina desde tus decisiones y hábitos.
+              </p>
+            </div>
+
+            <div>
+              <button
+                type="button"
+                onClick={() => handleFilterCategory('disciplina')}
+                className="w-full py-3 px-5 rounded-full border-2 border-[#222918] hover:bg-[#222918] hover:text-white text-[#222918] font-black text-xs uppercase tracking-wider inline-flex items-center justify-center gap-2 transition-all"
+              >
+                <span>VER MINI CURSO</span>
+                <ArrowUpRight className="w-4 h-4" />
+              </button>
+            </div>
+          </div>
+
+          {/* Card 2: VIDEOS GRATUITOS */}
+          <div className="bg-[#FAF5EE] rounded-3xl p-6 sm:p-8 border border-[#363D28]/12 shadow-xs hover:border-[#363D28]/30 transition-all flex flex-col justify-between space-y-6">
+            <div className="space-y-4">
+              <div className="rounded-2xl overflow-hidden aspect-video bg-[#363D28] relative group cursor-pointer" onClick={() => handleFilterCategory('herramientas')}>
+                <img
+                  src="https://img.youtube.com/vi/lqamda5kSaw/hqdefault.jpg"
+                  alt="Tips y herramientas Anatolia Zapata"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform"
+                />
+                <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
+                  <div className="w-12 h-12 bg-white/90 rounded-full flex items-center justify-center shadow-lg">
+                    <Play className="w-6 h-6 text-[#5A6836] fill-[#5A6836] ml-0.5" />
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <span className="inline-block bg-[#DFEC9C] text-[#222918] text-xs font-black px-3.5 py-1 rounded-full uppercase tracking-wider mb-2">
+                  VIDEOS GRATUITOS
+                </span>
+                <h3 className="text-xl font-bold text-[#222918] leading-snug">
+                  Tips y herramientas
+                </h3>
+              </div>
+
+              <p className="text-sm text-[#363D28]/85 font-normal leading-relaxed">
+                Ideas prácticas para reflexionar y aplicar en tu día a día.
+              </p>
+            </div>
+
+            <div>
+              <button
+                type="button"
+                onClick={() => handleFilterCategory('herramientas')}
+                className="w-full py-3 px-5 rounded-full border-2 border-[#222918] hover:bg-[#222918] hover:text-white text-[#222918] font-black text-xs uppercase tracking-wider inline-flex items-center justify-center gap-2 transition-all"
+              >
+                <span>EXPLORAR VIDEOS</span>
+                <ArrowUpRight className="w-4 h-4" />
+              </button>
+            </div>
+          </div>
+
+          {/* Card 3: RETO GRATUITO · 6 DÍAS */}
+          <div className="bg-[#FAF5EE] rounded-3xl p-6 sm:p-8 border border-[#363D28]/12 shadow-xs hover:border-[#363D28]/30 transition-all flex flex-col justify-between space-y-6">
+            <div className="space-y-4">
+              <div className="rounded-2xl overflow-hidden aspect-video bg-[#363D28] relative group cursor-pointer" onClick={() => handleFilterCategory('reto')}>
+                <img
+                  src="https://img.youtube.com/vi/Ofdd5Xm3NMU/hqdefault.jpg"
+                  alt="Reto gratuito del estrés a la calma"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform"
+                />
+                <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
+                  <div className="w-12 h-12 bg-white/90 rounded-full flex items-center justify-center shadow-lg">
+                    <Play className="w-6 h-6 text-[#5A6836] fill-[#5A6836] ml-0.5" />
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <span className="inline-block bg-[#DFEC9C] text-[#222918] text-xs font-black px-3.5 py-1 rounded-full uppercase tracking-wider mb-2">
+                  RETO GRATUITO · 6 DÍAS
+                </span>
+                <h3 className="text-xl font-bold text-[#222918] leading-snug">
+                  Del estrés a la calma
+                </h3>
+              </div>
+
+              <p className="text-sm text-[#363D28]/85 font-normal leading-relaxed">
+                Seis días para practicar herramientas que te ayuden a responder al estrés de otra manera.
+              </p>
+            </div>
+
+            <div>
+              <button
+                type="button"
+                onClick={() => handleFilterCategory('reto')}
+                className="w-full py-3 px-5 rounded-full border-2 border-[#222918] hover:bg-[#222918] hover:text-white text-[#222918] font-black text-xs uppercase tracking-wider inline-flex items-center justify-center gap-2 transition-all"
+              >
+                <span>EMPEZAR EL RETO</span>
+                <ArrowUpRight className="w-4 h-4" />
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ------------------------------------------------------------- */}
+      {/* BANNER INTERMEDIO VERDE OLIVA */}
+      {/* ------------------------------------------------------------- */}
+      <section className="bg-[#5A6836] text-[#FAF7F2] py-8 sm:py-10 px-5 sm:px-8">
+        <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="flex items-center gap-4 text-left">
+            <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center shrink-0">
+              <Sprout className="w-7 h-7 text-[#DFEC9C]" />
+            </div>
+            <p className="text-base sm:text-xl font-bold tracking-tight text-white leading-snug">
+              Empieza con una herramienta. Sigue a tu ritmo.
+            </p>
+          </div>
+
+          <div className="relative inline-block shrink-0">
+            <a
+              href="https://www.youtube.com/@anatoliazapatap"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-white hover:bg-[#DFEC9C] text-[#222918] font-black text-xs sm:text-sm uppercase tracking-wider px-8 py-4 rounded-full inline-flex items-center gap-2 shadow-md hover:shadow-lg transition-all"
+            >
+              <Youtube className="w-4 h-4 text-red-600" />
+              <span>EXPLORAR EN YOUTUBE</span>
+              <span aria-hidden="true" className="font-sans text-lg">→</span>
+            </a>
+            {/* Chispas a la derecha */}
+            <div className="hidden sm:block absolute -top-3 -right-6 text-white text-base font-mono tracking-tighter opacity-80 select-none font-bold">
+              ///
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ------------------------------------------------------------- */}
+      {/* GALERÍA COMPLETA DE VIDEOS EN YOUTUBE */}
+      {/* ------------------------------------------------------------- */}
+      <section id="galeria-youtube" className="max-w-6xl mx-auto px-5 sm:px-8 py-16 md:py-24 space-y-10">
+        <div className="text-center space-y-3 max-w-2xl mx-auto">
+          <span className="text-xs font-bold uppercase tracking-[0.2em] text-[#5A6836]">
+            CANAL OFICIAL ANATOLIA ZAPATA
+          </span>
+          <h2 className="text-3xl sm:text-4xl font-black uppercase text-[#222918] tracking-tight">
+            Galería de Clases y Videos
+          </h2>
+          <p className="text-sm sm:text-base text-[#363D28]/85 font-normal">
+            Haz clic en cualquier video para reproducirlo directamente sin salir de la página.
+          </p>
+        </div>
+
+        {/* Filtros y Buscador */}
+        <div className="space-y-4">
+          <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3">
+            <button
+              type="button"
+              onClick={() => setActiveCategory('todos')}
+              className={`px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold uppercase tracking-wider transition-all ${
+                activeCategory === 'todos'
+                  ? 'bg-[#222918] text-[#FAF7F2] shadow-sm'
+                  : 'bg-[#F6F0E8] text-[#363D28] hover:bg-[#363D28]/10'
+              }`}
+            >
+              Todos ({YOUTUBE_VIDEOS.length})
+            </button>
+            <button
+              type="button"
+              onClick={() => setActiveCategory('reto')}
+              className={`px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold uppercase tracking-wider transition-all ${
+                activeCategory === 'reto'
+                  ? 'bg-[#5A6836] text-[#FAF7F2] shadow-sm'
+                  : 'bg-[#F6F0E8] text-[#363D28] hover:bg-[#363D28]/10'
+              }`}
+            >
+              Reto Del Estrés a la Calma (6)
+            </button>
+            <button
+              type="button"
+              onClick={() => setActiveCategory('disciplina')}
+              className={`px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold uppercase tracking-wider transition-all ${
+                activeCategory === 'disciplina'
+                  ? 'bg-[#5A6836] text-[#FAF7F2] shadow-sm'
+                  : 'bg-[#F6F0E8] text-[#363D28] hover:bg-[#363D28]/10'
+              }`}
+            >
+              Mini Curso Disciplina (2)
+            </button>
+            <button
+              type="button"
+              onClick={() => setActiveCategory('herramientas')}
+              className={`px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold uppercase tracking-wider transition-all ${
+                activeCategory === 'herramientas'
+                  ? 'bg-[#5A6836] text-[#FAF7F2] shadow-sm'
+                  : 'bg-[#F6F0E8] text-[#363D28] hover:bg-[#363D28]/10'
+              }`}
+            >
+              Tips y Herramientas (5)
+            </button>
+          </div>
+
+          {/* Campo de Búsqueda */}
+          <div className="max-w-md mx-auto relative">
+            <Search className="w-4 h-4 text-[#363D28]/50 absolute left-4 top-3.5" />
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="Buscar por tema (ej. estrés, límites, culpa...)"
+              className="w-full pl-11 pr-4 py-3 rounded-full bg-white border border-[#363D28]/15 text-xs sm:text-sm text-[#222918] focus:outline-none focus:ring-2 focus:ring-[#5A6836]"
+            />
+            {searchQuery && (
+              <button
+                type="button"
+                onClick={() => setSearchQuery('')}
+                className="absolute right-3 top-3 text-xs text-[#363D28]/60 hover:text-[#222918] bg-gray-100 px-2 py-0.5 rounded-full"
+              >
+                Limpiar
+              </button>
+            )}
+          </div>
+        </div>
+
+        {/* Grid de Videos */}
+        {filteredVideos.length === 0 ? (
+          <div className="text-center py-12 bg-[#F6F0E8] rounded-3xl p-8 max-w-md mx-auto space-y-3">
+            <p className="text-base font-bold text-[#222918]">
+              No se encontraron videos con ese término.
+            </p>
+            <button
+              type="button"
+              onClick={() => {
+                setActiveCategory('todos');
+                setSearchQuery('');
+              }}
+              className="text-xs font-bold text-[#5A6836] underline"
+            >
+              Mostrar todos los videos
+            </button>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+            {filteredVideos.map((video) => (
+              <div
+                key={video.id}
+                onClick={() => setSelectedVideo(video)}
+                className="group bg-[#FAF5EE] rounded-3xl overflow-hidden border border-[#363D28]/12 shadow-xs hover:shadow-md hover:border-[#363D28]/30 transition-all cursor-pointer flex flex-col justify-between"
+              >
+                <div>
+                  {/* Thumbnail de YouTube */}
+                  <div className="relative aspect-video bg-[#222918] overflow-hidden">
+                    <img
+                      src={`https://img.youtube.com/vi/${video.id}/hqdefault.jpg`}
+                      alt={video.title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                    <div className="absolute inset-0 bg-black/25 group-hover:bg-black/10 transition-colors flex items-center justify-center">
+                      <div className="w-14 h-14 bg-white/90 group-hover:bg-[#DFEC9C] rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-all">
+                        <Play className="w-7 h-7 text-[#222918] fill-[#222918] ml-0.5" />
+                      </div>
+                    </div>
+
+                    {/* Tag Día o Duración */}
+                    {video.dayNumber && (
+                      <span className="absolute top-3 left-3 bg-[#DFEC9C] text-[#222918] font-black text-xs px-3 py-1 rounded-full shadow-xs uppercase">
+                        {video.dayNumber}
+                      </span>
+                    )}
+
+                    {video.duration && (
+                      <span className="absolute bottom-3 right-3 bg-black/80 text-white font-mono text-xs px-2.5 py-0.5 rounded-md backdrop-blur-xs">
+                        {video.duration}
+                      </span>
+                    )}
+                  </div>
+
+                  {/* Info del Video */}
+                  <div className="p-5 space-y-2">
+                    <span className="text-[11px] font-bold uppercase tracking-wider text-[#5A6836]">
+                      {video.categoryLabel}
+                    </span>
+                    <h3 className="font-bold text-base text-[#222918] leading-snug group-hover:text-[#5A6836] transition-colors line-clamp-2">
+                      {video.title}
+                    </h3>
+                    <p className="text-xs text-[#363D28]/80 leading-relaxed line-clamp-2 font-normal">
+                      {video.description}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Footer de la tarjeta */}
+                <div className="p-5 pt-0 text-right">
+                  <span className="text-xs font-bold text-[#222918] inline-flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                    <span>Reproducir clase</span>
+                    <Play className="w-3 h-3 fill-current" />
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+      </section>
+
+      {/* ------------------------------------------------------------- */}
+      {/* MODAL DE REPRODUCCIÓN DE YOUTUBE */}
+      {/* ------------------------------------------------------------- */}
+      {selectedVideo && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-xs">
+          <div className="relative w-full max-w-4xl bg-[#FAF5EE] rounded-3xl overflow-hidden shadow-2xl border border-[#363D28]/20">
+            {/* Header Modal */}
+            <div className="flex items-center justify-between p-4 px-6 border-b border-[#363D28]/10 bg-[#F6F0E8]">
+              <div className="flex items-center gap-2 max-w-md truncate">
+                <span className="bg-[#DFEC9C] text-[#222918] text-xs font-bold px-3 py-1 rounded-full uppercase shrink-0">
+                  {selectedVideo.categoryLabel}
+                </span>
+                <span className="text-sm font-bold text-[#222918] truncate">
+                  {selectedVideo.title}
+                </span>
               </div>
               <button
-                type="submit"
-                disabled={isSubmitting}
-                className="w-full bg-[#D8E488] hover:bg-[#c8d870] text-[#222918] font-black text-xs sm:text-sm uppercase tracking-wider py-4 rounded-xl shadow-md transition-all flex items-center justify-center gap-2"
+                type="button"
+                onClick={() => setSelectedVideo(null)}
+                className="w-9 h-9 rounded-full bg-[#363D28]/10 hover:bg-[#363D28]/20 flex items-center justify-center text-[#222918] transition-all shrink-0"
+                aria-label="Cerrar reproductor"
               >
-                {isSubmitting ? (
-                  <span>Registrando...</span>
-                ) : (
-                  <>
-                    <Mail className="w-4 h-4" />
-                    <span>Quiero recibir novedades</span>
-                  </>
-                )}
+                <X className="w-5 h-5" />
               </button>
-            </form>
-          )}
+            </div>
+
+            {/* Contenedor Iframe YouTube */}
+            <div className="p-4 sm:p-6 space-y-4">
+              <div className="relative rounded-2xl overflow-hidden bg-black aspect-video shadow-inner border border-[#363D28]/10">
+                <iframe
+                  src={`https://www.youtube-nocookie.com/embed/${selectedVideo.id}?autoplay=1&rel=0`}
+                  title={selectedVideo.title}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  className="w-full h-full border-0"
+                />
+              </div>
+
+              {/* Detalles y Enlace a YouTube */}
+              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pt-2">
+                <div className="space-y-1 max-w-2xl">
+                  <h3 className="font-bold text-base sm:text-lg text-[#222918]">
+                    {selectedVideo.title}
+                  </h3>
+                  <p className="text-xs sm:text-sm text-[#363D28]/85 leading-relaxed font-normal">
+                    {selectedVideo.description}
+                  </p>
+                </div>
+
+                <a
+                  href={selectedVideo.youtubeUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#222918] hover:bg-[#5A6836] text-white text-xs font-bold uppercase tracking-wider shrink-0 transition-all shadow-xs"
+                >
+                  <Youtube className="w-4 h-4 text-red-500 fill-current" />
+                  <span>Ver en YouTube</span>
+                  <ExternalLink className="w-3.5 h-3.5" />
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
-      </section>
+      )}
     </div>
   );
 }

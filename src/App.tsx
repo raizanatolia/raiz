@@ -14,6 +14,7 @@ import MetodoRaizPage from './pages/MetodoRaizPage';
 import CursosRetosPage from './pages/CursosRetosPage';
 import MapaRaizPage from './pages/MapaRaizPage';
 import ViajeRaizPage from './pages/ViajeRaizPage';
+import BitacoraRaizPage from './pages/BitacoraRaizPage';
 import ContactoPage from './pages/ContactoPage';
 import PoliticaPrivacidadPage from './pages/PoliticaPrivacidadPage';
 import LibroReclamacionesPage from './pages/LibroReclamacionesPage';
@@ -36,6 +37,7 @@ export function resolvePageFromUrl(): PageId {
     'cursos-retos': 'cursos-retos',
     'mapa-raiz': 'mapa-raiz',
     'viaje-raiz': 'viaje-raiz',
+    'bitacora-raiz': 'bitacora-raiz',
     contacto: 'contacto',
     'politica-de-privacidad': 'politica-de-privacidad',
     'libro-de-reclamaciones': 'libro-de-reclamaciones',
@@ -152,6 +154,7 @@ export default function App() {
         {currentPage === 'cursos-retos' && <CursosRetosPage onNavigate={handleNavigate} />}
         {currentPage === 'mapa-raiz' && <MapaRaizPage onNavigate={handleNavigate} />}
         {currentPage === 'viaje-raiz' && <ViajeRaizPage onNavigate={handleNavigate} />}
+        {currentPage === 'bitacora-raiz' && <BitacoraRaizPage onNavigate={handleNavigate} />}
         {currentPage === 'contacto' && <ContactoPage onNavigate={handleNavigate} />}
         {currentPage === 'politica-de-privacidad' && <PoliticaPrivacidadPage onNavigate={handleNavigate} />}
         {currentPage === 'libro-de-reclamaciones' && <LibroReclamacionesPage onNavigate={handleNavigate} />}
