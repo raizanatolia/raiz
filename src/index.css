@@ -1,5 +1,21 @@
 @import "tailwindcss";
 
+@theme {
+  --color-raiz-ivory: #F2EBDD;
+  --color-raiz-ivory-light: #FBF8F2;
+  --color-raiz-ivory-tint: #EAE2D2;
+  --color-raiz-olive: #363D28;
+  --color-raiz-olive-muted: #535C3E;
+  --color-raiz-olive-dark: #222719;
+  --color-raiz-ochre: #A18347;
+  --color-raiz-ochre-light: #C4A76C;
+  --color-raiz-sage: #78866A;
+  --color-raiz-earth: #463F37;
+  --color-raiz-graphite: #232323;
+  --color-accent-lime: #D3E07C;
+  --color-accent-pink: #FFD6E8;
+}
+
 @layer base {
   :root {
     --color-ivory: #F2EBDD;
@@ -10,6 +26,11 @@
     --color-olive-dark: #222719;
     --color-ochre: #A18347;
     --color-ochre-light: #C4A76C;
+    --color-sage: #78866A;
+    --color-earth: #463F37;
+    --color-graphite: #232323;
+    --color-accent-lime: #D3E07C;
+    --color-accent-pink: #FFD6E8;
     --color-hairline: rgba(54, 61, 40, 0.14);
   }
 

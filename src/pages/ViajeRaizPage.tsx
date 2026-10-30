@@ -190,11 +190,11 @@ export default function ViajeRaizPage({ onNavigate }: ViajeRaizPageProps) {
 
             {/* Título Principal con brocha verde claro / lima */}
             <div className="relative inline-block">
-              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-black font-sans tracking-tight text-[#222918] uppercase leading-none">
+              <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black font-sans tracking-tight text-[#222918] uppercase leading-none">
                 VIAJE RAÍZ
               </h1>
               {/* Lime brush underline graphic effect */}
-              <div className="w-full h-3 sm:h-3.5 bg-[#DFEC9C] rounded-full mt-1.5 opacity-90 -skew-x-6" />
+              <div className="w-full h-3 sm:h-3.5 bg-[#D3E07C] rounded-full mt-1.5 opacity-90 -skew-x-6" />
             </div>
 
             {/* Titular Impactante */}
@@ -208,7 +208,7 @@ export default function ViajeRaizPage({ onNavigate }: ViajeRaizPageProps) {
             </p>
 
             {/* Callout destacado en verde lima redondeado (exacto a la referencia) */}
-            <div className="inline-block bg-[#DFEC9C] text-[#222918] font-bold text-base sm:text-lg p-4 sm:p-5 rounded-2xl shadow-2xs leading-snug max-w-xl">
+            <div className="inline-block bg-[#D3E07C] text-[#222918] font-bold text-base sm:text-lg p-4 sm:p-5 rounded-2xl shadow-2xs leading-snug max-w-xl">
               Pero nadie te dijo que la adultez venía con cero manual, ¿verdad?
             </div>
           </div>
@@ -236,7 +236,7 @@ export default function ViajeRaizPage({ onNavigate }: ViajeRaizPageProps) {
             {/* Pill de \ VIDEO / */}
             <div className="inline-flex items-center gap-2">
               <span className="font-mono text-base font-bold text-[#222918] select-none -rotate-12">\</span>
-              <span className="bg-[#DFEC9C] text-[#222918] px-5 py-1.5 rounded-full font-black text-xs uppercase tracking-widest shadow-2xs">
+              <span className="bg-[#D3E07C] text-[#222918] px-5 py-1.5 rounded-full font-black text-xs uppercase tracking-widest shadow-2xs">
                 VIDEO
               </span>
               <span className="font-mono text-base font-bold text-[#222918] select-none rotate-12">/</span>
@@ -298,7 +298,7 @@ export default function ViajeRaizPage({ onNavigate }: ViajeRaizPageProps) {
           {/* Manifiesto y Reflexión */}
           <div className="pt-2 max-w-2xl mx-auto space-y-4">
             {/* Destacado Verde Lima */}
-            <div className="bg-[#DFEC9C] text-[#222918] font-bold text-base sm:text-lg md:text-xl py-3 px-6 rounded-2xl md:rounded-full inline-block text-center shadow-2xs leading-snug">
+            <div className="bg-[#D3E07C] text-[#222918] font-bold text-base sm:text-lg md:text-xl py-3 px-6 rounded-2xl md:rounded-full inline-block text-center shadow-2xs leading-snug">
               Creo que desarrollarte y cuidar a quienes amas no deberían ser caminos opuestos.
             </div>
 
@@ -337,13 +337,13 @@ export default function ViajeRaizPage({ onNavigate }: ViajeRaizPageProps) {
 
             {/* VIAJE RAÍZ? dentro de bubble verde lima orgánico */}
             <div className="mt-2 block">
-              <div className="inline-block bg-[#DFEC9C] px-8 py-2 sm:py-2.5 rounded-[2rem] shadow-xs">
+              <div className="inline-block bg-[#D3E07C] px-8 py-2 sm:py-2.5 rounded-[2rem] shadow-xs">
                 <span className="text-3xl sm:text-4xl md:text-5xl font-black uppercase text-[#222918] tracking-tight">
                   VIAJE RAÍZ?
                 </span>
               </div>
               {/* Línea curva sutil de brocha debajo */}
-              <div className="w-4/5 mx-auto h-[3px] bg-[#DFEC9C] rounded-full mt-1.5 opacity-90" />
+              <div className="w-4/5 mx-auto h-[3px] bg-[#D3E07C] rounded-full mt-1.5 opacity-90" />
             </div>
           </div>
 
@@ -354,7 +354,7 @@ export default function ViajeRaizPage({ onNavigate }: ViajeRaizPageProps) {
               <div className="space-y-5 flex flex-col items-center w-full">
                 {/* Icono circular con chispas a la izquierda */}
                 <div className="relative">
-                  <div className="w-20 h-20 sm:w-22 sm:h-22 rounded-full bg-[#DFEC9C] flex items-center justify-center shadow-xs">
+                  <div className="w-20 h-20 sm:w-22 sm:h-22 rounded-full bg-[#D3E07C] flex items-center justify-center shadow-xs">
                     {/* SVG Laptop lineal estilo dibujo de ref */}
                     <svg
                       className="w-11 h-11 text-[#222918]"
@@ -378,7 +378,7 @@ export default function ViajeRaizPage({ onNavigate }: ViajeRaizPageProps) {
                 </div>
 
                 {/* Pill Titular en 2 líneas */}
-                <div className="bg-[#DFEC9C] text-[#222918] font-black text-sm sm:text-base uppercase tracking-wide py-2.5 px-6 rounded-full shadow-xs leading-tight min-w-[200px]">
+                <div className="bg-[#D3E07C] text-[#222918] font-black text-sm sm:text-base uppercase tracking-wide py-2.5 px-6 rounded-full shadow-xs leading-tight min-w-[200px]">
                   12 SESIONES<br />ONLINE
                 </div>
 
@@ -401,7 +401,7 @@ export default function ViajeRaizPage({ onNavigate }: ViajeRaizPageProps) {
             <div className="flex flex-col items-center justify-between text-center px-4 sm:px-6 md:px-8 py-8 md:py-2 space-y-6">
               <div className="space-y-5 flex flex-col items-center w-full">
                 {/* Icono circular */}
-                <div className="w-20 h-20 sm:w-22 sm:h-22 rounded-full bg-[#DFEC9C] flex items-center justify-center shadow-xs">
+                <div className="w-20 h-20 sm:w-22 sm:h-22 rounded-full bg-[#D3E07C] flex items-center justify-center shadow-xs">
                   {/* SVG Cuaderno con espiral y líneas */}
                   <svg
                     className="w-11 h-11 text-[#222918]"
@@ -428,7 +428,7 @@ export default function ViajeRaizPage({ onNavigate }: ViajeRaizPageProps) {
                 </div>
 
                 {/* Pill Titular en 2 líneas */}
-                <div className="bg-[#DFEC9C] text-[#222918] font-black text-sm sm:text-base uppercase tracking-wide py-2.5 px-6 rounded-full shadow-xs leading-tight min-w-[200px]">
+                <div className="bg-[#D3E07C] text-[#222918] font-black text-sm sm:text-base uppercase tracking-wide py-2.5 px-6 rounded-full shadow-xs leading-tight min-w-[200px]">
                   TU BITÁCORA.<br />TU HISTORIA.
                 </div>
 
@@ -464,7 +464,7 @@ export default function ViajeRaizPage({ onNavigate }: ViajeRaizPageProps) {
             <div className="flex flex-col items-center justify-between text-center px-4 sm:px-6 md:px-8 py-8 md:py-2 space-y-6">
               <div className="space-y-5 flex flex-col items-center w-full">
                 {/* Icono circular */}
-                <div className="w-20 h-20 sm:w-22 sm:h-22 rounded-full bg-[#DFEC9C] flex items-center justify-center shadow-xs">
+                <div className="w-20 h-20 sm:w-22 sm:h-22 rounded-full bg-[#D3E07C] flex items-center justify-center shadow-xs">
                   {/* SVG Caja de regalo con lazo */}
                   <svg
                     className="w-11 h-11 text-[#222918]"
@@ -485,7 +485,7 @@ export default function ViajeRaizPage({ onNavigate }: ViajeRaizPageProps) {
                 </div>
 
                 {/* Pill Titular en 2 líneas */}
-                <div className="bg-[#DFEC9C] text-[#222918] font-black text-sm sm:text-base uppercase tracking-wide py-2.5 px-6 rounded-full shadow-xs leading-tight min-w-[200px]">
+                <div className="bg-[#D3E07C] text-[#222918] font-black text-sm sm:text-base uppercase tracking-wide py-2.5 px-6 rounded-full shadow-xs leading-tight min-w-[200px]">
                   TU KIT DE<br />BIENVENIDA.
                 </div>
 
@@ -598,14 +598,14 @@ export default function ViajeRaizPage({ onNavigate }: ViajeRaizPageProps) {
               <div className="p-4 sm:p-5 rounded-2xl border bg-white border-[#222918] shadow-xs flex items-center justify-between gap-4 select-none">
                 <div className="flex items-start sm:items-center gap-3.5 sm:gap-4 flex-1">
                   <div className="w-11 h-11 rounded-full flex items-center justify-center shrink-0 bg-[#222918] text-[#FAF7F2]">
-                    <CheckCircle2 className="w-5 h-5 text-[#DFEC9C]" />
+                    <CheckCircle2 className="w-5 h-5 text-[#D3E07C]" />
                   </div>
                   <div className="space-y-1">
                     <div className="flex flex-wrap items-center gap-2">
                       <h4 className="font-bold text-[#222918] text-sm sm:text-base leading-snug">
                         Viaje RAÍZ (12 sesiones individuales)
                       </h4>
-                      <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-[#DFEC9C] text-[#222918]">
+                      <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-[#D3E07C] text-[#222918]">
                         Marcado por defecto
                       </span>
                     </div>
@@ -767,7 +767,7 @@ export default function ViajeRaizPage({ onNavigate }: ViajeRaizPageProps) {
                   <span className="text-lg font-bold text-[#222918]">
                     Tu plan seleccionado
                   </span>
-                  <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-[#DFEC9C] text-[#222918]">
+                  <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-[#D3E07C] text-[#222918]">
                     {currentPlan.badge}
                   </span>
                 </div>

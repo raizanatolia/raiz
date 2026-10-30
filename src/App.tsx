@@ -130,13 +130,27 @@ export default function App() {
     };
 
     setMetaTag('meta[name="description"]', 'content', meta.description);
+    setMetaTag('link[rel="canonical"]', 'href', meta.canonical);
     setMetaTag('meta[property="og:title"]', 'content', meta.title);
     setMetaTag('meta[property="og:description"]', 'content', meta.description);
     setMetaTag('meta[property="og:url"]', 'content', meta.canonical);
     setMetaTag('meta[property="og:image"]', 'content', meta.ogImage);
-    setMetaTag('link[rel="canonical"]', 'href', meta.canonical);
+    setMetaTag('meta[property="og:image:secure_url"]', 'content', meta.ogImage);
+    setMetaTag('meta[property="og:image:type"]', 'content', 'image/jpeg');
+    setMetaTag('meta[property="og:image:width"]', 'content', '1200');
+    setMetaTag('meta[property="og:image:height"]', 'content', '630');
+    setMetaTag(
+      'meta[property="og:image:alt"]',
+      'content',
+      'RAÍZ · Anatolia Zapata · Espacio de acompañamiento para tomar decisiones con mayor conciencia'
+    );
+    setMetaTag('meta[property="og:type"]', 'content', meta.ogType || 'website');
+    setMetaTag('meta[property="og:site_name"]', 'content', 'RAÍZ · Anatolia Zapata');
+    setMetaTag('meta[property="og:locale"]', 'content', 'es_PE');
+    setMetaTag('meta[name="twitter:card"]', 'content', 'summary_large_image');
     setMetaTag('meta[name="twitter:title"]', 'content', meta.title);
     setMetaTag('meta[name="twitter:description"]', 'content', meta.description);
+    setMetaTag('meta[name="twitter:image"]', 'content', meta.ogImage);
   }, [currentPage]);
 
   return (

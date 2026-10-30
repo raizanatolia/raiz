@@ -122,13 +122,13 @@ export default function BitacoraRaizPage({ onNavigate }: BitacoraRaizPageProps) 
 
           {/* Barra Verde Oliva Pegada al Pie del Contenedor */}
           <div className="bg-[#54662E] text-white py-4 sm:py-4.5 px-6 sm:px-10 flex flex-wrap items-center justify-center gap-3 sm:gap-4 text-center">
-            <Sprout className="w-6 h-6 text-[#DFEC9C] shrink-0" />
+            <Sprout className="w-6 h-6 text-[#D3E07C] shrink-0" />
             <div className="hidden sm:block w-[1.5px] h-5 bg-white/30" />
             <p className="text-base sm:text-lg font-bold tracking-tight text-white">
               Empieza por ti.{' '}
               <span className="relative inline-block ml-1">
                 Una página a la vez.
-                <svg className="absolute -bottom-1 left-0 w-full h-2 text-[#DFEC9C]" viewBox="0 0 100 8" preserveAspectRatio="none" fill="none">
+                <svg className="absolute -bottom-1 left-0 w-full h-2 text-[#D3E07C]" viewBox="0 0 100 8" preserveAspectRatio="none" fill="none">
                   <path d="M0 6 Q 50 1, 100 6" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
                 </svg>
               </span>
@@ -165,7 +165,7 @@ export default function BitacoraRaizPage({ onNavigate }: BitacoraRaizPageProps) 
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div className="bg-[#F6F0E8] p-6 rounded-3xl border border-[#363D28]/10 space-y-3">
-            <div className="w-10 h-10 rounded-full bg-[#DFEC9C] flex items-center justify-center text-[#222918] font-black text-sm">
+            <div className="w-10 h-10 rounded-full bg-[#D3E07C] flex items-center justify-center text-[#222918] font-black text-sm">
               01
             </div>
             <h3 className="font-bold text-lg text-[#222918]">Pausas conscientes</h3>
@@ -175,7 +175,7 @@ export default function BitacoraRaizPage({ onNavigate }: BitacoraRaizPageProps) 
           </div>
 
           <div className="bg-[#F6F0E8] p-6 rounded-3xl border border-[#363D28]/10 space-y-3">
-            <div className="w-10 h-10 rounded-full bg-[#DFEC9C] flex items-center justify-center text-[#222918] font-black text-sm">
+            <div className="w-10 h-10 rounded-full bg-[#D3E07C] flex items-center justify-center text-[#222918] font-black text-sm">
               02
             </div>
             <h3 className="font-bold text-lg text-[#222918]">Los 5 recursos en papel</h3>
@@ -185,7 +185,7 @@ export default function BitacoraRaizPage({ onNavigate }: BitacoraRaizPageProps) 
           </div>
 
           <div className="bg-[#F6F0E8] p-6 rounded-3xl border border-[#363D28]/10 space-y-3">
-            <div className="w-10 h-10 rounded-full bg-[#DFEC9C] flex items-center justify-center text-[#222918] font-black text-sm">
+            <div className="w-10 h-10 rounded-full bg-[#D3E07C] flex items-center justify-center text-[#222918] font-black text-sm">
               03
             </div>
             <h3 className="font-bold text-lg text-[#222918]">Plan de acción gradual</h3>

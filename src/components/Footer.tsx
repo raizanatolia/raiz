@@ -9,11 +9,11 @@ import {
   CheckCircle2,
   Instagram,
   Linkedin,
-  Facebook,
   Youtube,
   AlertCircle,
   Loader2,
 } from 'lucide-react';
+import { TikTokIcon } from './SocialIcons';
 
 interface FooterProps {
   onNavigate: (page: PageId) => void;
@@ -195,14 +195,14 @@ export default function Footer({ onNavigate, currentPage = 'home' }: FooterProps
               </div>
             </div>
 
-            {/* Social Icons Row */}
-            <div className="flex items-center gap-4 text-[#F5EFEB]/85 pt-2">
+            {/* Social Icons Row (min 44x44px touch targets for WCAG) */}
+            <div className="flex items-center gap-3 text-[#F5EFEB]/85 pt-2">
               <a
                 href={CONTACT.socials.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram de Anatolia Zapata"
-                className="w-9 h-9 rounded-full bg-[#F5EFEB]/8 hover:bg-[#F5EFEB]/15 flex items-center justify-center transition-colors hover:text-white"
+                className="w-11 h-11 rounded-full bg-[#F5EFEB]/8 hover:bg-[#F5EFEB]/15 flex items-center justify-center transition-colors hover:text-white"
               >
                 <Instagram className="w-4 h-4" />
               </a>
@@ -212,7 +212,7 @@ export default function Footer({ onNavigate, currentPage = 'home' }: FooterProps
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="LinkedIn de Anatolia Zapata"
-                className="w-9 h-9 rounded-full bg-[#F5EFEB]/8 hover:bg-[#F5EFEB]/15 flex items-center justify-center transition-colors hover:text-white"
+                className="w-11 h-11 rounded-full bg-[#F5EFEB]/8 hover:bg-[#F5EFEB]/15 flex items-center justify-center transition-colors hover:text-white"
               >
                 <Linkedin className="w-4 h-4" />
               </a>
@@ -222,9 +222,9 @@ export default function Footer({ onNavigate, currentPage = 'home' }: FooterProps
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="TikTok de Anatolia Zapata"
-                className="w-9 h-9 rounded-full bg-[#F5EFEB]/8 hover:bg-[#F5EFEB]/15 flex items-center justify-center transition-colors hover:text-white"
+                className="w-11 h-11 rounded-full bg-[#F5EFEB]/8 hover:bg-[#F5EFEB]/15 flex items-center justify-center transition-colors hover:text-white"
               >
-                <Facebook className="w-4 h-4" />
+                <TikTokIcon className="w-4 h-4" />
               </a>
 
               <a
@@ -232,7 +232,7 @@ export default function Footer({ onNavigate, currentPage = 'home' }: FooterProps
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Canal de YouTube de Anatolia Zapata"
-                className="w-9 h-9 rounded-full bg-[#F5EFEB]/8 hover:bg-[#F5EFEB]/15 flex items-center justify-center transition-colors hover:text-white"
+                className="w-11 h-11 rounded-full bg-[#F5EFEB]/8 hover:bg-[#F5EFEB]/15 flex items-center justify-center transition-colors hover:text-white"
               >
                 <Youtube className="w-4 h-4" />
               </a>

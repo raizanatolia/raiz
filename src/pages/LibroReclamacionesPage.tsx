@@ -145,10 +145,10 @@ export default function LibroReclamacionesPage({ onNavigate }: LibroReclamacione
           <div className="pt-2">
             <a
               href="mailto:raizanatolia@gmail.com?subject=Libro%20de%20Reclamaciones%20-%20RA%C3%8DZ"
-              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full text-xs sm:text-sm font-semibold tracking-wider uppercase bg-[#363D28] text-[#F2EBDD] hover:bg-[#222719] transition-all shadow-xs"
+              className="inline-flex items-center justify-center text-center gap-2 px-5 sm:px-6 py-3.5 rounded-full text-xs sm:text-sm font-semibold tracking-wider uppercase bg-[#363D28] text-[#F2EBDD] hover:bg-[#222719] transition-all shadow-xs max-w-full"
             >
-              <Mail className="w-4 h-4" />
-              <span>Enviar Hoja de Reclamación a raizanatolia@gmail.com</span>
+              <Mail className="w-4 h-4 shrink-0" />
+              <span>Enviar Hoja de Reclamación <span className="hidden sm:inline">a raizanatolia@gmail.com</span></span>
             </a>
           </div>
         </section>

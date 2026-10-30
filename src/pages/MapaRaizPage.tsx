@@ -322,7 +322,7 @@ export default function MapaRaizPage({ onNavigate }: MapaRaizPageProps) {
               <span className="text-[10px] sm:text-[11px] font-bold tracking-wider uppercase px-2.5 py-1 rounded-md bg-white text-[#363D28] border border-[#363D28]/15">
                 RESULTADOS
               </span>
-              <span className="text-[10px] sm:text-[11px] font-bold tracking-wider uppercase px-2.5 py-1 rounded-md bg-[#DFEC9C] text-[#222918] border border-[#363D28]/15">
+              <span className="text-[10px] sm:text-[11px] font-bold tracking-wider uppercase px-2.5 py-1 rounded-md bg-[#D3E07C] text-[#222918] border border-[#363D28]/15">
                 GRATUITO
               </span>
             </div>

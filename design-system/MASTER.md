@@ -19,16 +19,31 @@ Este documento recopila las decisiones visuales, tokens de estilo, arquitectura 
 
 ## 2. Tokens de Color y Atmósfera
 
-| Token | Código HEX | Rol y Aplicación |
+### Paleta Principal y Complementaria Oficial
+
+| Token Semántico | Código HEX | Rol y Aplicación |
 |---|---|---|
-| **Marfil Cálido** | `#F2EBDD` | Superficie principal del sitio. Aporta serenidad, calidez humana y descanso visual. |
-| **Marfil Puro** | `#FAF7F2` | Fondo de bloques destacados, tarjetas de lectura y secciones de identificación. |
-| **Marfil Tint** | `#EAE2D2` | Fondos de secciones alternas, contenedores sutiles y tarjetas de enfoque. |
-| **Verde Oliva Profundo** | `#363D28` | Color de texto principal, titulares, botones primarios y acentos con alto contraste. |
-| **Verde Oliva Oscuro** | `#242A1A` | Fondo del footer y estados hover de botones primarios. |
-| **Ocre Dorado Mate** | `#A18347` | Acento discreto para líneas sutiles, números editoriales y detalles orgánicos. No se usa en texto pequeño. |
-| **Ocre Luminoso** | `#C4A76C` | Acentos sobre fondos oscuros (como en el bloque de Mapa RAÍZ y Footer). |
-| **Borde / Hairline** | `rgba(54, 61, 40, 0.12)` | Delimitadores orgánicos ultrafinos en lugar de sombras pesadas o bordes toscos. |
+| `--color-ivory` / `Marfil Cálido` | `#F2EBDD` | Superficie principal y fondo base del sitio. Serenidad, descanso visual y calidez humana. |
+| `--color-ivory-light` / `Marfil Puro` | `#FAF7F2` | Fondo de bloques destacados, tarjetas de lectura y secciones de identificación. |
+| `--color-ivory-tint` / `Marfil Tint` | `#EAE2D2` | Fondos de secciones alternas, contenedores de foco y barras fijadas. |
+| `--color-olive` / `Verde Oliva Profundo` | `#363D28` | Color de texto principal, titulares, botones primarios y acentos con alto contraste. |
+| `--color-olive-dark` / `Verde Oliva Oscuro` | `#242A1A` | Fondo del footer y estados hover de botones primarios. |
+| `--color-ochre` / `Ocre Dorado Mate` | `#A18347` | Acento natural discreto para líneas sutiles, números editoriales y detalles orgánicos. |
+| `--color-ochre-light` / `Ocre Luminoso` | `#C4A76C` | Acentos sobre fondos oscuros (como en el bloque de Mapa RAÍZ y Footer). |
+| `--color-sage` / `Salvia` | `#78866A` | Tono vegetal de apoyo y armonización botánica. |
+| `--color-earth` / `Tierra Ancestral` | `#463F37` | Matiz orgánico de arraigo para textos sutiles y sombras naturales. |
+| `--color-graphite` / `Grafito` | `#232323` | Contraste de máxima precisión tipográfica. |
+| `--color-accent-lime` / `Verde Lima Suave` | `#D3E07C` | **Complementario aprobado:** Énfasis editorial, palabras destacadas, pequeñas etiquetas, pills de método y acentos de atención comercial. |
+| `--color-accent-pink` / `Rosa Suave` | `#FFD6E8` | **Complementario aprobado:** Acompañamiento discreto del verde lima para pequeños destacados selectos de contenido (ej. "2 MINUTOS", micro-pills). |
+| `--color-hairline` / `Borde Orgánico` | `rgba(54, 61, 40, 0.14)` | Delimitadores orgánicos ultrafinos en lugar de sombras pesadas o bordes toscos. |
+
+### Jerarquía y Reglas de Uso de Color
+
+1. **Dominancia visual:** El verde oliva (`#363D28`) y el marfil (`#F2EBDD` / `#FAF7F2`) dominan el 85% de la interfaz.
+2. **Acentos naturales:** El ocre (`#A18347`) y la salvia (`#78866A`) continúan funcionando como acentos orgánicos sutiles.
+3. **Énfasis comercial:** El verde lima suave (`#D3E07C`) se emplea puntualmente para palabras clave, pills de categoría y subrayados dinámicos. No se usa indiscriminadamente para todos los botones.
+4. **Discreción rosa:** El rosa suave (`#FFD6E8`) se utiliza con menor frecuencia que el verde lima, reservado a pequeños acentos en combinación armónica.
+5. **Accesibilidad WCAG AA/AAA:** Tanto el verde lima como el rosa suave deben emplearse exclusivamente como fondos de badges o destacados con texto oscuro (`#222918` o `#363D28`), garantizando legibilidad y contraste superior a 7:1. Nunca como texto fino sobre fondo claro.
 
 ---
 

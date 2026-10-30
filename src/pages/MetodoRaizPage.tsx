@@ -40,7 +40,7 @@ export default function MetodoRaizPage({ onNavigate }: MetodoRaizPageProps) {
             <span className="text-3xl sm:text-5xl md:text-6xl font-black uppercase tracking-tight text-[#222918]">
               también tienen
             </span>
-            <div className="inline-block bg-[#DFEC9C] px-4 sm:px-6 py-1 sm:py-2 rounded-2xl shadow-xs">
+            <div className="inline-block bg-[#D3E07C] px-4 sm:px-6 py-1 sm:py-2 rounded-2xl shadow-xs">
               <span className="text-3xl sm:text-5xl md:text-6xl font-black uppercase tracking-tight text-[#222918]">
                 RAÍZ.
               </span>
@@ -108,7 +108,7 @@ export default function MetodoRaizPage({ onNavigate }: MetodoRaizPageProps) {
                 Método RAÍZ
               </h2>
               {/* Underline verde lima */}
-              <div className="w-full h-2.5 bg-[#DFEC9C] rounded-full mt-1" />
+              <div className="w-full h-2.5 bg-[#D3E07C] rounded-full mt-1" />
             </div>
           </div>
 
@@ -116,7 +116,7 @@ export default function MetodoRaizPage({ onNavigate }: MetodoRaizPageProps) {
           <div className="lg:col-span-8 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-6 text-center">
             {/* Recurso 1: Perspectiva */}
             <div className="flex flex-col items-center space-y-2 bg-[#F6F0E8] p-4 rounded-2xl border border-[#363D28]/8">
-              <div className="w-12 h-12 rounded-full bg-[#DFEC9C] flex items-center justify-center text-[#222918] shadow-2xs">
+              <div className="w-12 h-12 rounded-full bg-[#D3E07C] flex items-center justify-center text-[#222918] shadow-2xs">
                 <Sprout className="w-6 h-6" />
               </div>
               <h3 className="font-bold text-sm sm:text-base text-[#222918] pt-1">
@@ -129,7 +129,7 @@ export default function MetodoRaizPage({ onNavigate }: MetodoRaizPageProps) {
 
             {/* Recurso 2: Gestión emocional */}
             <div className="flex flex-col items-center space-y-2 bg-[#F6F0E8] p-4 rounded-2xl border border-[#363D28]/8">
-              <div className="w-12 h-12 rounded-full bg-[#DFEC9C] flex items-center justify-center text-[#222918] shadow-2xs">
+              <div className="w-12 h-12 rounded-full bg-[#D3E07C] flex items-center justify-center text-[#222918] shadow-2xs">
                 <Heart className="w-6 h-6" />
               </div>
               <h3 className="font-bold text-sm sm:text-base text-[#222918] pt-1">
@@ -142,7 +142,7 @@ export default function MetodoRaizPage({ onNavigate }: MetodoRaizPageProps) {
 
             {/* Recurso 3: Dirección */}
             <div className="flex flex-col items-center space-y-2 bg-[#F6F0E8] p-4 rounded-2xl border border-[#363D28]/8">
-              <div className="w-12 h-12 rounded-full bg-[#DFEC9C] flex items-center justify-center text-[#222918] shadow-2xs">
+              <div className="w-12 h-12 rounded-full bg-[#D3E07C] flex items-center justify-center text-[#222918] shadow-2xs">
                 <Compass className="w-6 h-6" />
               </div>
               <h3 className="font-bold text-sm sm:text-base text-[#222918] pt-1">
@@ -155,7 +155,7 @@ export default function MetodoRaizPage({ onNavigate }: MetodoRaizPageProps) {
 
             {/* Recurso 4: Energía vital */}
             <div className="flex flex-col items-center space-y-2 bg-[#F6F0E8] p-4 rounded-2xl border border-[#363D28]/8">
-              <div className="w-12 h-12 rounded-full bg-[#DFEC9C] flex items-center justify-center text-[#222918] shadow-2xs">
+              <div className="w-12 h-12 rounded-full bg-[#D3E07C] flex items-center justify-center text-[#222918] shadow-2xs">
                 <Sun className="w-6 h-6" />
               </div>
               <h3 className="font-bold text-sm sm:text-base text-[#222918] pt-1">
@@ -168,7 +168,7 @@ export default function MetodoRaizPage({ onNavigate }: MetodoRaizPageProps) {
 
             {/* Recurso 5: Acción consistente */}
             <div className="flex flex-col items-center space-y-2 bg-[#F6F0E8] p-4 rounded-2xl border border-[#363D28]/8 col-span-2 sm:col-span-1">
-              <div className="w-12 h-12 rounded-full bg-[#DFEC9C] flex items-center justify-center text-[#222918] shadow-2xs">
+              <div className="w-12 h-12 rounded-full bg-[#D3E07C] flex items-center justify-center text-[#222918] shadow-2xs">
                 <BarChart3 className="w-6 h-6" />
               </div>
               <h3 className="font-bold text-sm sm:text-base text-[#222918] pt-1">
@@ -190,7 +190,7 @@ export default function MetodoRaizPage({ onNavigate }: MetodoRaizPageProps) {
           {/* Lado Izquierdo: Icono Hoja + Mensaje */}
           <div className="flex items-center gap-4 text-left">
             <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center shrink-0">
-              <Sprout className="w-7 h-7 text-[#DFEC9C]" />
+              <Sprout className="w-7 h-7 text-[#D3E07C]" />
             </div>
             <div className="space-y-1">
               <h3 className="text-lg sm:text-xl font-bold tracking-tight text-white">
@@ -207,7 +207,7 @@ export default function MetodoRaizPage({ onNavigate }: MetodoRaizPageProps) {
             <button
               type="button"
               onClick={handleNavigateMapa}
-              className="bg-white hover:bg-[#DFEC9C] text-[#222918] font-black text-xs sm:text-sm uppercase tracking-wider px-8 py-4 rounded-full inline-flex items-center gap-2 shadow-md hover:shadow-lg transition-all"
+              className="bg-white hover:bg-[#D3E07C] text-[#222918] font-black text-xs sm:text-sm uppercase tracking-wider px-8 py-4 rounded-full inline-flex items-center gap-2 shadow-md hover:shadow-lg transition-all"
             >
               <span>QUIERO MI MAPA RAÍZ</span>
               <span aria-hidden="true" className="font-sans text-lg">→</span>
@@ -229,7 +229,7 @@ export default function MetodoRaizPage({ onNavigate }: MetodoRaizPageProps) {
             {/* Header del Modal */}
             <div className="flex items-center justify-between p-4 px-6 border-b border-[#363D28]/10 bg-[#F6F0E8]">
               <div className="flex items-center gap-2">
-                <span className="bg-[#DFEC9C] text-[#222918] text-xs font-bold px-3 py-1 rounded-full uppercase">
+                <span className="bg-[#D3E07C] text-[#222918] text-xs font-bold px-3 py-1 rounded-full uppercase">
                   MÉTODO RAÍZ EN 3 MINUTOS
                 </span>
               </div>
@@ -252,7 +252,7 @@ export default function MetodoRaizPage({ onNavigate }: MetodoRaizPageProps) {
                   className="w-full h-full object-cover opacity-60"
                 />
                 <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-white space-y-3">
-                  <div className="w-16 h-16 bg-[#DFEC9C] rounded-full flex items-center justify-center text-[#222918] shadow-lg">
+                  <div className="w-16 h-16 bg-[#D3E07C] rounded-full flex items-center justify-center text-[#222918] shadow-lg">
                     <Play className="w-8 h-8 fill-[#222918] ml-1" />
                   </div>
                   <p className="text-base sm:text-lg font-bold max-w-md">

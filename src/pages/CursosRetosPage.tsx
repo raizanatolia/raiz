@@ -188,7 +188,7 @@ export default function CursosRetosPage({ onNavigate }: CursosRetosPageProps) {
           {/* Contenido principal en el lado izquierdo */}
           <div className="relative z-10 p-6 sm:p-10 md:p-14 lg:p-16 max-w-2xl text-left space-y-5">
             {/* Badge */}
-            <div className="inline-block bg-[#DFEC9C] text-[#222918] text-xs font-black px-4 py-1.5 rounded-full uppercase tracking-wider shadow-2xs">
+            <div className="inline-block bg-[#D3E07C] text-[#222918] text-xs font-black px-4 py-1.5 rounded-full uppercase tracking-wider shadow-2xs">
               APRENDE A TU RITMO
             </div>
 
@@ -258,7 +258,7 @@ export default function CursosRetosPage({ onNavigate }: CursosRetosPageProps) {
               </div>
 
               <div>
-                <span className="inline-block bg-[#DFEC9C] text-[#222918] text-xs font-black px-3.5 py-1 rounded-full uppercase tracking-wider mb-2">
+                <span className="inline-block bg-[#D3E07C] text-[#222918] text-xs font-black px-3.5 py-1 rounded-full uppercase tracking-wider mb-2">
                   MINI CURSO EN YOUTUBE
                 </span>
                 <h3 className="text-xl font-bold text-[#222918] leading-snug">
@@ -300,7 +300,7 @@ export default function CursosRetosPage({ onNavigate }: CursosRetosPageProps) {
               </div>
 
               <div>
-                <span className="inline-block bg-[#DFEC9C] text-[#222918] text-xs font-black px-3.5 py-1 rounded-full uppercase tracking-wider mb-2">
+                <span className="inline-block bg-[#D3E07C] text-[#222918] text-xs font-black px-3.5 py-1 rounded-full uppercase tracking-wider mb-2">
                   VIDEOS GRATUITOS
                 </span>
                 <h3 className="text-xl font-bold text-[#222918] leading-snug">
@@ -342,7 +342,7 @@ export default function CursosRetosPage({ onNavigate }: CursosRetosPageProps) {
               </div>
 
               <div>
-                <span className="inline-block bg-[#DFEC9C] text-[#222918] text-xs font-black px-3.5 py-1 rounded-full uppercase tracking-wider mb-2">
+                <span className="inline-block bg-[#D3E07C] text-[#222918] text-xs font-black px-3.5 py-1 rounded-full uppercase tracking-wider mb-2">
                   RETO GRATUITO · 6 DÍAS
                 </span>
                 <h3 className="text-xl font-bold text-[#222918] leading-snug">
@@ -376,7 +376,7 @@ export default function CursosRetosPage({ onNavigate }: CursosRetosPageProps) {
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-4 text-left">
             <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center shrink-0">
-              <Sprout className="w-7 h-7 text-[#DFEC9C]" />
+              <Sprout className="w-7 h-7 text-[#D3E07C]" />
             </div>
             <p className="text-base sm:text-xl font-bold tracking-tight text-white leading-snug">
               Empieza con una herramienta. Sigue a tu ritmo.
@@ -388,7 +388,7 @@ export default function CursosRetosPage({ onNavigate }: CursosRetosPageProps) {
               href="https://www.youtube.com/@anatoliazapatap"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-white hover:bg-[#DFEC9C] text-[#222918] font-black text-xs sm:text-sm uppercase tracking-wider px-8 py-4 rounded-full inline-flex items-center gap-2 shadow-md hover:shadow-lg transition-all"
+              className="bg-white hover:bg-[#D3E07C] text-[#222918] font-black text-xs sm:text-sm uppercase tracking-wider px-8 py-4 rounded-full inline-flex items-center gap-2 shadow-md hover:shadow-lg transition-all"
             >
               <Youtube className="w-4 h-4 text-red-600" />
               <span>EXPLORAR EN YOUTUBE</span>
@@ -523,14 +523,14 @@ export default function CursosRetosPage({ onNavigate }: CursosRetosPageProps) {
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                     />
                     <div className="absolute inset-0 bg-black/25 group-hover:bg-black/10 transition-colors flex items-center justify-center">
-                      <div className="w-14 h-14 bg-white/90 group-hover:bg-[#DFEC9C] rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-all">
+                      <div className="w-14 h-14 bg-white/90 group-hover:bg-[#D3E07C] rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-all">
                         <Play className="w-7 h-7 text-[#222918] fill-[#222918] ml-0.5" />
                       </div>
                     </div>
 
                     {/* Tag Día o Duración */}
                     {video.dayNumber && (
-                      <span className="absolute top-3 left-3 bg-[#DFEC9C] text-[#222918] font-black text-xs px-3 py-1 rounded-full shadow-xs uppercase">
+                      <span className="absolute top-3 left-3 bg-[#D3E07C] text-[#222918] font-black text-xs px-3 py-1 rounded-full shadow-xs uppercase">
                         {video.dayNumber}
                       </span>
                     )}
@@ -578,7 +578,7 @@ export default function CursosRetosPage({ onNavigate }: CursosRetosPageProps) {
             {/* Header Modal */}
             <div className="flex items-center justify-between p-4 px-6 border-b border-[#363D28]/10 bg-[#F6F0E8]">
               <div className="flex items-center gap-2 max-w-md truncate">
-                <span className="bg-[#DFEC9C] text-[#222918] text-xs font-bold px-3 py-1 rounded-full uppercase shrink-0">
+                <span className="bg-[#D3E07C] text-[#222918] text-xs font-bold px-3 py-1 rounded-full uppercase shrink-0">
                   {selectedVideo.categoryLabel}
                 </span>
                 <span className="text-sm font-bold text-[#222918] truncate">

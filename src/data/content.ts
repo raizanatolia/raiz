@@ -64,112 +64,120 @@ export const NAV_LINKS: NavLink[] = [
   { label: 'Contacto', href: '#/contacto' },
 ];
 
+export const OFFICIAL_OG_IMAGE =
+  'https://res.cloudinary.com/rus3f4tb/image/upload/v1793378140/og-anatolia-zapata-raiz-lq.jpg';
+export const OFFICIAL_OG_IMAGE_ALT =
+  'RAÍZ · Anatolia Zapata · Espacio de acompañamiento para tomar decisiones con mayor conciencia';
+export const OFFICIAL_OG_WIDTH = 1200;
+export const OFFICIAL_OG_HEIGHT = 630;
+export const OFFICIAL_OG_TYPE = 'image/jpeg';
+
 export const PAGE_METADATA: Record<PageId, PageMeta> = {
   home: {
-    title: 'RAÍZ · Anatolia Zapata | Decide con mayor conciencia',
+    title: 'RAÍZ · Anatolia Zapata | Decide con Mayor Conciencia',
     description:
-      'Comprende qué influye en tus decisiones, reconoce tus recursos y explora nuevas posibilidades con RAÍZ, el enfoque de acompañamiento de Anatolia Zapata.',
+      'Descubre qué influye en tus decisiones, reconoce tus recursos internos y construye tu siguiente etapa con RAÍZ y el acompañamiento de Anatolia Zapata.',
     canonical: `${SITE_URL}/`,
-    ogImage: 'https://res.cloudinary.com/rus3f4tb/image/upload/f_auto,q_auto/v1792769718/Anatolia-Zapata-Coach-RAIZ.png',
+    ogImage: OFFICIAL_OG_IMAGE,
     ogType: 'website',
     h1: 'Sabes que necesitas un cambio. Es momento de descubrir qué quieres construir.',
   },
   personas: {
-    title: 'RAÍZ para personas | Acompañamiento personal · Anatolia Zapata',
+    title: 'RAÍZ para Personas | Acompañamiento y Crecimiento Consciente',
     description:
-      'Un espacio para mujeres que buscan comprender sus decisiones, reconocer sus recursos y construir su siguiente etapa personal o profesional.',
+      'Un espacio dedicado a mujeres que buscan comprender sus patrones, reconectar con sus recursos internos y elegir su siguiente paso con convicción y calma.',
     canonical: `${SITE_URL}/personas/`,
-    ogImage: 'https://res.cloudinary.com/rus3f4tb/image/upload/f_auto,q_auto/v1793034612/anatolia-zapata-raiz-personas.png',
+    ogImage: OFFICIAL_OG_IMAGE,
     ogType: 'website',
     h1: 'Un espacio para comprender, elegir y construir tu siguiente etapa.',
   },
   organizaciones: {
-    title: 'RAÍZ para organizaciones | Desarrollo humano y bienestar · Anatolia Zapata',
+    title: 'RAÍZ para Organizaciones | Bienestar y Liderazgo Consciente',
     description:
-      'Experiencias y programas de desarrollo humano, bienestar, liderazgo con perspectiva y género para crear entornos más conscientes.',
+      'Programas, conferencias y talleres a medida de desarrollo humano, bienestar y liderazgo consciente para equipos y organizaciones con Anatolia Zapata.',
     canonical: `${SITE_URL}/organizaciones/`,
-    ogImage: 'https://res.cloudinary.com/rus3f4tb/image/upload/f_auto,q_auto/v1793034612/anatolia-zapata-raiz-organizaciones.png',
+    ogImage: OFFICIAL_OG_IMAGE,
     ogType: 'website',
     h1: 'Personas más conscientes para entornos más humanos.',
   },
   'sobre-mi': {
-    title: 'Sobre mí | Anatolia Zapata · Creadora del Método RAÍZ',
+    title: 'Sobre Mí | Anatolia Zapata · Creadora del Método RAÍZ',
     description:
-      'Conoce la historia de Anatolia Zapata, mamá de dos, ingeniera industrial, coach y creadora del Método RAÍZ.',
+      'Mamá de dos, ingeniera industrial, coach y fundadora de RAÍZ. Conoce la historia y vocación de Anatolia Zapata acompañando procesos de cambio consciente.',
     canonical: `${SITE_URL}/sobre-mi/`,
-    ogImage: 'https://res.cloudinary.com/rus3f4tb/image/upload/f_auto,q_auto/v1792769718/Anatolia-Zapata-Coach-RAIZ.png',
+    ogImage: OFFICIAL_OG_IMAGE,
     ogType: 'profile',
     h1: 'Soy Anatolia Zapata.',
   },
   'metodo-raiz': {
-    title: 'El Método RAÍZ | Filosofía y Metodología · Anatolia Zapata',
+    title: 'Método RAÍZ | Filosofía y Toma de Decisiones Conscientes',
     description:
-      'Comprender tu historia, reconocer tus recursos y elegir con conciencia. Descubre la metodología creada por Anatolia Zapata.',
+      'Conoce la metodología creada por Anatolia Zapata: comprender tu historia, reconocer tus recursos y elegir con conciencia el camino que quieres construir.',
     canonical: `${SITE_URL}/metodo-raiz/`,
-    ogImage: 'https://res.cloudinary.com/rus3f4tb/image/upload/f_auto,q_auto/v1792769718/Anatolia-Zapata-Coach-RAIZ.png',
+    ogImage: OFFICIAL_OG_IMAGE,
     ogType: 'website',
     h1: 'El Método RAÍZ. Filosofía y Metodología de Toma de Decisiones.',
   },
   'cursos-retos': {
-    title: 'Cursos & Retos | Experiencias de Aprendizaje · RAÍZ',
+    title: 'Cursos y Retos | Aprendizaje y Reflexión · RAÍZ',
     description:
-      'Aprende, explora y pon en práctica nuevas formas de elegir con los talleres online y retos de autoexploración de Anatolia Zapata.',
+      'Explora talleres online y retos prácticos de autoexploración guiados por Anatolia Zapata para aprender a elegir a tu propio ritmo con mayor serenidad.',
     canonical: `${SITE_URL}/cursos-retos/`,
-    ogImage: 'https://res.cloudinary.com/rus3f4tb/image/upload/f_auto,q_auto/v1792769718/Anatolia-Zapata-Coach-RAIZ.png',
+    ogImage: OFFICIAL_OG_IMAGE,
     ogType: 'website',
     h1: 'Cursos & Retos de Autoexploración Consciente.',
   },
   'mapa-raiz': {
-    title: 'Descubre tu Mapa RAÍZ | Herramienta de exploración personal',
+    title: 'Mapa RAÍZ | Herramienta de Autoexploración Personal',
     description:
-      'Una herramienta de exploración personal para observar cinco recursos fundamentales que influyen en tus decisiones cotidianas.',
+      'Explora tus 5 recursos cotidianos (Perspectiva, Emociones, Dirección, Energía y Acción) con el Mapa RAÍZ, la herramienta interactiva de Anatolia Zapata.',
     canonical: `${SITE_URL}/mapa-raiz/`,
-    ogImage: 'https://res.cloudinary.com/rus3f4tb/image/upload/v1793037854/bg-conoce-tu-mapa-raiz.png',
+    ogImage: OFFICIAL_OG_IMAGE,
     ogType: 'website',
     h1: '¿Estás reaccionando o eligiendo?',
   },
   'viaje-raiz': {
-    title: 'Viaje RAÍZ | Acompañamiento personalizado de 12 sesiones',
+    title: 'Viaje RAÍZ | Acompañamiento Individual de 12 Sesiones',
     description:
-      'Un proceso personalizado de 12 sesiones a lo largo de tres meses, orientado a explorar tu historia, tus recursos y lo que deseas construir.',
+      'Proceso personalizado de 12 sesiones individuales durante 3 meses con Anatolia Zapata para comprender tu historia y construir tu siguiente capítulo.',
     canonical: `${SITE_URL}/viaje-raiz/`,
-    ogImage: 'https://res.cloudinary.com/rus3f4tb/image/upload/f_auto,q_auto/v1793036682/bg-hero-raiz-anatolia-zapata-viaje-raiz.png',
+    ogImage: OFFICIAL_OG_IMAGE,
     ogType: 'website',
     h1: 'Viaje RAÍZ. Un espacio para comprender tus decisiones y construir con mayor conciencia.',
   },
   'bitacora-raiz': {
-    title: 'Bitácora RAÍZ | Un espacio para volver a ti · Anatolia Zapata',
+    title: 'Bitácora RAÍZ | Espacio de Escritura y Reflexión',
     description:
-      'Una herramienta de escritura y reflexión personal que te invita a hacer una pausa, conectar contigo y transformar tus pensamientos en decisiones más conscientes.',
+      'Cuaderno guiado de escritura consciente para pausar, ordenar pensamientos y registrar tus decisiones. Disponible en edición física (Perú) y digital PDF.',
     canonical: `${SITE_URL}/bitacora-raiz/`,
-    ogImage: 'https://res.cloudinary.com/rus3f4tb/image/upload/f_auto,q_auto/v1792769718/Anatolia-Zapata-Coach-RAIZ.png',
+    ogImage: OFFICIAL_OG_IMAGE,
     ogType: 'product',
     h1: 'Bitácora RAÍZ. Un espacio para volver a ti.',
   },
   contacto: {
     title: 'Contacto | Conversemos con Anatolia Zapata · RAÍZ',
     description:
-      'Conversemos sobre tu proceso personal o explora una propuesta de desarrollo humano a medida para tu equipo u organización.',
+      'Inicia una conversación directa sobre tu proceso en Viaje RAÍZ o solicita una propuesta formativa para tu organización escribiendo a Anatolia Zapata.',
     canonical: `${SITE_URL}/contacto/`,
-    ogImage: 'https://res.cloudinary.com/rus3f4tb/image/upload/f_auto,q_auto/v1792769718/Anatolia-Zapata-Coach-RAIZ.png',
+    ogImage: OFFICIAL_OG_IMAGE,
     ogType: 'website',
     h1: 'Cada decisión deja una huella. Conversemos sobre la tuya.',
   },
   'politica-de-privacidad': {
-    title: 'Política de Privacidad y Protección de Datos Personales | RAÍZ',
+    title: 'Política de Privacidad y Protección de Datos | RAÍZ',
     description:
-      'Información sobre el tratamiento de datos personales, finalidades, derechos ARCO y cumplimiento de la Ley N.º 29733 en RAÍZ.',
+      'Información legal sobre el tratamiento de datos personales, finalidades y ejercicio de derechos ARCO en RAÍZ conforme a la Ley N.º 29733 de Perú.',
     canonical: `${SITE_URL}/politica-de-privacidad/`,
-    ogImage: 'https://res.cloudinary.com/rus3f4tb/image/upload/f_auto,q_auto/v1792769718/Anatolia-Zapata-Coach-RAIZ.png',
+    ogImage: OFFICIAL_OG_IMAGE,
     ogType: 'website',
     h1: 'Política de Privacidad y Protección de Datos Personales',
   },
   'libro-de-reclamaciones': {
     title: 'Libro de Reclamaciones Virtual | RAÍZ · Anatolia Zapata',
     description:
-      'Información sobre el Libro de Reclamaciones conforme al Código de Protección y Defensa del Consumidor (Ley N.º 29571) y Ley N.º 32495.',
+      'Hoja de reclamación virtual conforme a la Ley N.º 29571 (Código del Consumidor de Perú) y Ley N.º 32495 para canalizar quejas o reclamos ante INDECOPI.',
     canonical: `${SITE_URL}/libro-de-reclamaciones/`,
-    ogImage: 'https://res.cloudinary.com/rus3f4tb/image/upload/f_auto,q_auto/v1792769718/Anatolia-Zapata-Coach-RAIZ.png',
+    ogImage: OFFICIAL_OG_IMAGE,
     ogType: 'website',
     h1: 'Libro de Reclamaciones Virtual',
   },

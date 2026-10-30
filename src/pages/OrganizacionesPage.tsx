@@ -279,7 +279,7 @@ export default function OrganizacionesPage({ onNavigate: _onNavigate }: Organiza
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-4 relative z-10">
               {/* Paso 01 */}
               <div className="flex flex-col items-center text-center space-y-2.5 px-3">
-                <div className="w-10 h-10 rounded-full bg-[#DFEC9C] text-[#222918] font-bold text-sm flex items-center justify-center shadow-xs">
+                <div className="w-10 h-10 rounded-full bg-[#D3E07C] text-[#222918] font-bold text-sm flex items-center justify-center shadow-xs">
                   01
                 </div>
                 <h3 className="font-bold text-base text-[#222918]">
@@ -292,7 +292,7 @@ export default function OrganizacionesPage({ onNavigate: _onNavigate }: Organiza
 
               {/* Paso 02 */}
               <div className="flex flex-col items-center text-center space-y-2.5 px-3">
-                <div className="w-10 h-10 rounded-full bg-[#DFEC9C] text-[#222918] font-bold text-sm flex items-center justify-center shadow-xs">
+                <div className="w-10 h-10 rounded-full bg-[#D3E07C] text-[#222918] font-bold text-sm flex items-center justify-center shadow-xs">
                   02
                 </div>
                 <h3 className="font-bold text-base text-[#222918]">
@@ -305,7 +305,7 @@ export default function OrganizacionesPage({ onNavigate: _onNavigate }: Organiza
 
               {/* Paso 03 */}
               <div className="flex flex-col items-center text-center space-y-2.5 px-3">
-                <div className="w-10 h-10 rounded-full bg-[#DFEC9C] text-[#222918] font-bold text-sm flex items-center justify-center shadow-xs">
+                <div className="w-10 h-10 rounded-full bg-[#D3E07C] text-[#222918] font-bold text-sm flex items-center justify-center shadow-xs">
                   03
                 </div>
                 <h3 className="font-bold text-base text-[#222918]">
@@ -318,7 +318,7 @@ export default function OrganizacionesPage({ onNavigate: _onNavigate }: Organiza
 
               {/* Paso 04 */}
               <div className="flex flex-col items-center text-center space-y-2.5 px-3">
-                <div className="w-10 h-10 rounded-full bg-[#DFEC9C] text-[#222918] font-bold text-sm flex items-center justify-center shadow-xs">
+                <div className="w-10 h-10 rounded-full bg-[#D3E07C] text-[#222918] font-bold text-sm flex items-center justify-center shadow-xs">
                   04
                 </div>
                 <h3 className="font-bold text-base text-[#222918]">
