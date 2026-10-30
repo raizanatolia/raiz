@@ -17,7 +17,7 @@ export default function MetodoRaizPage({ onNavigate }: MetodoRaizPageProps) {
   };
 
   return (
-    <div className="bg-[#FAF5EE] text-[#222918] font-sans min-h-screen pt-28 pb-16 md:pt-36 md:pb-24">
+    <div className="bg-[#FAF5EE] text-[#222918] font-sans min-h-screen pt-28 md:pt-36 pb-0">
       {/* ------------------------------------------------------------- */}
       {/* HERO: TUS DECISIONES TAMBIÉN TIENEN RAÍZ. (Referencia Pestaña 2) */}
       {/* ------------------------------------------------------------- */}
@@ -183,9 +183,9 @@ export default function MetodoRaizPage({ onNavigate }: MetodoRaizPageProps) {
       </section>
 
       {/* ------------------------------------------------------------- */}
-      {/* BANNER INFERIOR VERDE OLIVA: QUIERO MI MAPA RAÍZ */}
+      {/* BANNER INFERIOR VERDE OLIVA: QUIERO MI MAPA RAÍZ (PEGADO AL FOOTER) */}
       {/* ------------------------------------------------------------- */}
-      <section className="bg-[#5A6836] text-[#FAF7F2] py-8 sm:py-10 px-5 sm:px-8 mt-12">
+      <section className="bg-[#5A6836] text-[#FAF7F2] py-8 sm:py-10 px-5 sm:px-8 mt-16 sm:mt-24 mb-0 w-full">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
           {/* Lado Izquierdo: Icono Hoja + Mensaje */}
           <div className="flex items-center gap-4 text-left">

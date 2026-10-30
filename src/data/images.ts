@@ -16,7 +16,9 @@ export const BRAND_ASSETS = {
   heroPersonasBackground: 'https://res.cloudinary.com/rus3f4tb/image/upload/f_auto,q_auto/v1793034612/anatolia-zapata-raiz-personas.png',
   heroOrganizacionesBackground: 'https://res.cloudinary.com/rus3f4tb/image/upload/f_auto,q_auto/v1793034612/anatolia-zapata-raiz-organizaciones.png',
   heroViajeRaizBackground: 'https://res.cloudinary.com/rus3f4tb/image/upload/f_auto,q_auto/v1793036682/bg-hero-raiz-anatolia-zapata-viaje-raiz.png',
+  heroViajeRaizImage: 'https://res.cloudinary.com/rus3f4tb/image/upload/v1793340180/image-hero-viaje-raiz.png',
   heroMapaRaizBackground: 'https://res.cloudinary.com/rus3f4tb/image/upload/v1793037854/bg-conoce-tu-mapa-raiz.png',
+  heroCursosBackground: 'https://res.cloudinary.com/rus3f4tb/image/upload/v1793340061/bg-hero-anatolia-zapata-cursos.png',
   // Retrato oficial de Anatolia Zapata
   anatoliaPhoto: 'https://res.cloudinary.com/rus3f4tb/image/upload/f_auto,q_auto/v1792769718/Anatolia-Zapata-Coach-RAIZ.png',
   anatoliaHeroTransparent: 'https://res.cloudinary.com/rus3f4tb/image/upload/f_auto,q_auto/v1793118223/anatolia-zapata-transparente.png',
@@ -26,6 +28,8 @@ export const BRAND_ASSETS = {
   senseComprender: 'https://res.cloudinary.com/rus3f4tb/image/upload/f_auto,q_auto/v1792773744/raiz-anatolia-zapata-comprender.png',
   senseReconocer: 'https://res.cloudinary.com/rus3f4tb/image/upload/f_auto,q_auto/v1792773744/raiz-anatolia-zapata-reconocer.png',
   senseElegir: 'https://res.cloudinary.com/rus3f4tb/image/upload/f_auto,q_auto/v1792773744/raiz-anatolia-zapata-elegir.png',
+  // Mockup oficial de Bitácora RAÍZ
+  bitacoraMockup: '/assets/cards/bitacora_mockup_clean.png',
 };
 
 export const CLOUDINARY_CONFIG = {

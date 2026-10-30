@@ -1,7 +1,18 @@
 import { useState } from 'react';
 import { PageId } from '../data/content';
 import { BRAND_ASSETS } from '../data/images';
-import { Users, Sprout, Heart, Mic, Layers, Sliders, ShieldCheck, Zap, ArrowRight, CheckCircle2 } from 'lucide-react';
+import {
+  Users,
+  Sprout,
+  Heart,
+  Mic,
+  Layers,
+  Sliders,
+  ShieldCheck,
+  Zap,
+  ArrowRight,
+  CheckCircle2,
+} from 'lucide-react';
 
 interface OrganizacionesPageProps {
   onNavigate: (page: PageId) => void;
@@ -14,7 +25,7 @@ const CLIENT_LOGOS = [
   },
   {
     name: 'EUROPLAST',
-    logo: 'https://res.cloudinary.com/rus3f4tb/image/upload/v1793207342/channels4_profile.jpg',
+    logo: 'https://res.cloudinary.com/rus3f4tb/image/upload/v1793207342/europlast.png',
   },
   {
     name: 'JAMFEC S.A.C.',
@@ -32,9 +43,33 @@ const CLIENT_LOGOS = [
     name: 'RACLI',
     logo: 'https://res.cloudinary.com/rus3f4tb/image/upload/v1793207342/racli.png',
   },
+  {
+    name: 'Organización Aliada',
+    logo: 'https://res.cloudinary.com/rus3f4tb/image/upload/v1793207342/channels4_profile.jpg',
+  },
 ];
 
-export default function OrganizacionesPage({ onNavigate }: OrganizacionesPageProps) {
+/* 3 sketch accent lines bursting out */
+function SketchBurst() {
+  return (
+    <span className="inline-block relative ml-1.5 align-middle select-none">
+      <svg
+        className="w-5 h-5 text-[#52632C] -mt-3.5 inline-block"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2.5"
+        strokeLinecap="round"
+      >
+        <path d="M5 14L8 7" />
+        <path d="M12 13L12 4" />
+        <path d="M19 14L16 7" />
+      </svg>
+    </span>
+  );
+}
+
+export default function OrganizacionesPage({ onNavigate: _onNavigate }: OrganizacionesPageProps) {
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -66,317 +101,290 @@ export default function OrganizacionesPage({ onNavigate }: OrganizacionesPagePro
   };
 
   return (
-    <div className="bg-[#FAF5EE] text-[#222918] font-sans min-h-screen pt-28 pb-16 md:pt-36 md:pb-24">
-      {/* ------------------------------------------------------------- */}
-      {/* HERO: PARA ORGANIZACIONES (Fiel a Imagen de Referencia 5) */}
-      {/* ------------------------------------------------------------- */}
-      <section className="max-w-6xl mx-auto px-5 sm:px-8 mb-16 md:mb-20">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 items-center">
-          {/* Lado Izquierdo: Textos y CTA */}
-          <div className="lg:col-span-7 space-y-6 text-left">
-            {/* Pill Eyebrow */}
-            <div className="inline-block bg-[#F4EDE2] text-[#222918] text-xs font-black px-4 py-1.5 rounded-full uppercase tracking-wider border border-[#363D28]/10 shadow-2xs">
+    <div className="bg-[#FAF5EE] text-[#222918] font-sans min-h-screen pt-24 pb-16 md:pt-28 md:pb-24">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16 md:space-y-20">
+
+        {/* ============================================================= */}
+        {/* 1. HERO SECTION: FOTO COMO BACKGROUND PREMIUM QUE CAPTURA    */}
+        {/*    TODO EL HERO CON DEGRADADO EDITORIAL ELEGANTE              */}
+        {/* ============================================================= */}
+        <section className="relative rounded-[32px] overflow-hidden min-h-[520px] sm:min-h-[580px] md:min-h-[640px] flex items-center shadow-lg border border-[#222918]/15 bg-[#FAF7F2]">
+          {/* Foto como background cubriendo el 100% del hero */}
+          <div
+            className="absolute inset-0 bg-cover bg-center md:bg-[center_top_18%] transition-transform duration-1000"
+            style={{ backgroundImage: `url(${BRAND_ASSETS.heroOrganizacionesBackground})` }}
+          />
+
+          {/* Degradado marfil premium superpuesto para máxima legibilidad del texto sin opacar la foto */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#FAF5EE] via-[#FAF5EE]/90 via-55% to-[#FAF5EE]/20 md:to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#FAF5EE]/70 via-transparent to-transparent md:hidden" />
+
+          {/* Contenido principal en el lado izquierdo con tipografía nítida */}
+          <div className="relative z-10 p-6 sm:p-10 md:p-14 lg:p-16 max-w-2xl text-left space-y-5">
+            {/* Badge superior */}
+            <span className="inline-block bg-[#EAE2D0] text-[#3D4726] text-[11px] font-bold tracking-wider uppercase px-3.5 py-1 rounded-full shadow-2xs">
               PARA ORGANIZACIONES
-            </div>
+            </span>
 
-            {/* Titular Impactante con Chispas */}
-            <div className="relative inline-block">
-              <h1 className="text-3xl sm:text-4xl md:text-5xl font-black uppercase tracking-tight text-[#222918] leading-[1.12]">
-                Equipos más conscientes, colaborativos y efectivos.
-              </h1>
-              {/* Chispas decorativas arriba */}
-              <div className="hidden sm:block absolute -top-4 -right-8 text-[#222918] text-xl font-mono tracking-tighter select-none font-bold">
-                ///
-              </div>
-            </div>
+            {/* Titular principal con trazos sketch */}
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-[#222918] tracking-tight leading-[1.12]">
+              Equipos más conscientes, colaborativos y{' '}
+              <span className="inline-block whitespace-nowrap">
+                efectivos.
+                <SketchBurst />
+              </span>
+            </h1>
 
-            {/* Párrafo explicativo */}
-            <p className="text-base sm:text-lg text-[#363D28]/90 font-normal leading-relaxed max-w-xl">
+            {/* Subtítulo */}
+            <p className="text-base sm:text-lg text-[#363D28] font-normal leading-relaxed max-w-xl">
               Programas y experiencias que fortalecen el liderazgo, el bienestar y la cultura del equipo.
             </p>
 
-            {/* Botón CTA Verde Oliva */}
+            {/* Botón CTA */}
             <div className="pt-2">
               <button
                 type="button"
                 onClick={scrollToForm}
-                className="inline-flex items-center gap-2.5 px-8 py-4 rounded-full text-xs sm:text-sm font-black uppercase tracking-wider bg-[#54662E] hover:bg-[#3D4C1F] text-[#FAF7F2] shadow-md hover:shadow-lg transition-all"
+                className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full bg-[#52632C] hover:bg-[#435224] text-white text-xs sm:text-sm font-bold uppercase tracking-wider transition-all shadow-md hover:shadow-lg active:scale-[0.98]"
               >
                 <span>CONVERSEMOS SOBRE TU ORGANIZACIÓN</span>
-                <span aria-hidden="true" className="font-sans text-base">→</span>
+                <ArrowRight className="w-4 h-4" />
               </button>
             </div>
           </div>
+        </section>
 
-          {/* Lado Derecho: Fotografía de Facilitación en Empresa */}
-          <div className="lg:col-span-5 flex justify-center lg:justify-end">
-            <div className="relative w-full max-w-md rounded-3xl overflow-hidden shadow-xl border border-[#363D28]/10 bg-[#EFE7D8]">
-              <img
-                src={BRAND_ASSETS.heroOrganizacionesBackground}
-                alt="Anatolia Zapata facilitando taller en organización"
-                className="w-full h-80 sm:h-96 object-cover object-top"
-              />
+        {/* ============================================================= */}
+        {/* 2. TRES PILARES DE IMPACTO                                    */}
+        {/* ============================================================= */}
+        <section className="px-2">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-0 md:divide-x md:divide-[#222918]/12">
+            {/* Pilar 1: Liderazgo consciente */}
+            <div className="flex flex-col items-center text-center px-4 space-y-3">
+              <div className="w-14 h-14 rounded-full bg-[#EAE2D0]/80 flex items-center justify-center text-[#52632C] mb-1">
+                <Users className="w-6 h-6 stroke-[1.75]" />
+              </div>
+              <h3 className="font-extrabold text-base sm:text-lg text-[#222918] leading-snug">
+                Liderazgo<br />consciente
+              </h3>
+              <p className="text-xs sm:text-sm text-[#4A533B] font-normal leading-relaxed max-w-xs">
+                Líderes que inspiran, escuchan y movilizan.
+              </p>
+            </div>
+
+            {/* Pilar 2: Desarrollo de equipos */}
+            <div className="flex flex-col items-center text-center px-4 space-y-3">
+              <div className="w-14 h-14 rounded-full bg-[#EAE2D0]/80 flex items-center justify-center text-[#52632C] mb-1">
+                <Sprout className="w-6 h-6 stroke-[1.75]" />
+              </div>
+              <h3 className="font-extrabold text-base sm:text-lg text-[#222918] leading-snug">
+                Desarrollo<br />de equipos
+              </h3>
+              <p className="text-xs sm:text-sm text-[#4A533B] font-normal leading-relaxed max-w-xs">
+                Equipos más conectados, con confianza y foco.
+              </p>
+            </div>
+
+            {/* Pilar 3: Bienestar y cultura de cuidado */}
+            <div className="flex flex-col items-center text-center px-4 space-y-3">
+              <div className="w-14 h-14 rounded-full bg-[#EAE2D0]/80 flex items-center justify-center text-[#52632C] mb-1">
+                <Heart className="w-6 h-6 stroke-[1.75]" />
+              </div>
+              <h3 className="font-extrabold text-base sm:text-lg text-[#222918] leading-snug">
+                Bienestar<br />y cultura de cuidado
+              </h3>
+              <p className="text-xs sm:text-sm text-[#4A533B] font-normal leading-relaxed max-w-xs">
+                Entornos laborales más saludables, inclusivos y sostenibles.
+              </p>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* ------------------------------------------------------------- */}
-      {/* 3 PILARES: LIDERAZGO, EQUIPOS Y BIENESTAR */}
-      {/* ------------------------------------------------------------- */}
-      <section className="max-w-5xl mx-auto px-5 sm:px-8 mb-20 md:mb-28">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-          {/* Pilar 1 */}
-          <div className="flex flex-col items-center space-y-3 p-4">
-            <div className="w-14 h-14 rounded-full bg-[#DFEC9C] flex items-center justify-center text-[#222918] shadow-2xs">
-              <Users className="w-7 h-7 stroke-[2]" />
-            </div>
-            <h3 className="font-black text-lg text-[#222918]">
-              Liderazgo consciente
-            </h3>
-            <p className="text-sm text-[#363D28]/85 font-normal leading-relaxed max-w-xs">
-              Líderes que inspiran, escuchan y movilizan.
-            </p>
-          </div>
-
-          {/* Pilar 2 */}
-          <div className="flex flex-col items-center space-y-3 p-4">
-            <div className="w-14 h-14 rounded-full bg-[#DFEC9C] flex items-center justify-center text-[#222918] shadow-2xs">
-              <Sprout className="w-7 h-7 stroke-[2]" />
-            </div>
-            <h3 className="font-black text-lg text-[#222918]">
-              Desarrollo de equipos
-            </h3>
-            <p className="text-sm text-[#363D28]/85 font-normal leading-relaxed max-w-xs">
-              Equipos más conectados, con confianza y foco.
-            </p>
-          </div>
-
-          {/* Pilar 3 */}
-          <div className="flex flex-col items-center space-y-3 p-4">
-            <div className="w-14 h-14 rounded-full bg-[#DFEC9C] flex items-center justify-center text-[#222918] shadow-2xs">
-              <Heart className="w-7 h-7 stroke-[2]" />
-            </div>
-            <h3 className="font-black text-lg text-[#222918]">
-              Bienestar y cultura de cuidado
-            </h3>
-            <p className="text-sm text-[#363D28]/85 font-normal leading-relaxed max-w-xs">
-              Entornos laborales más saludables, inclusivos y sostenibles.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* ------------------------------------------------------------- */}
-      {/* SECCIÓN: FORMATOS Y EXPERIENCIAS */}
-      {/* ------------------------------------------------------------- */}
-      <section className="max-w-6xl mx-auto px-5 sm:px-8 mb-20 md:mb-28">
-        <div className="bg-[#FAF5EE] border border-[#363D28]/12 rounded-3xl p-8 sm:p-12 shadow-2xs space-y-10">
-          <div className="text-center space-y-3">
-            <div className="inline-block bg-[#DFEC9C] text-[#222918] text-xs font-black px-4 py-1.5 rounded-full uppercase tracking-wider">
+        {/* ============================================================= */}
+        {/* 3. FORMATOS Y EXPERIENCIAS                                    */}
+        {/* ============================================================= */}
+        <section className="bg-[#FAF7F2] rounded-[28px] border border-[#222918]/10 p-8 sm:p-12 md:p-14 shadow-xs text-center space-y-10">
+          <div className="space-y-3 max-w-2xl mx-auto">
+            <span className="inline-block bg-[#EAE2D0] text-[#3D4726] text-[11px] font-bold tracking-wider uppercase px-3.5 py-1 rounded-full">
               FORMATOS Y EXPERIENCIAS
-            </div>
-            <div className="relative inline-flex items-center justify-center">
-              <h2 className="text-2xl sm:text-4xl font-black uppercase text-[#222918] tracking-tight">
-                ¿Cómo podemos trabajar juntos?
-              </h2>
-              <div className="hidden sm:block absolute -top-3 -right-8 text-[#222918] text-lg font-mono tracking-tighter select-none font-bold">
-                ///
-              </div>
-            </div>
+            </span>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#222918] tracking-tight">
+              ¿Cómo podemos trabajar juntos?
+              <SketchBurst />
+            </h2>
           </div>
 
-          {/* 3 Tarjetas de Formatos */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {/* Formato 1: Talleres prácticos */}
-            <div className="bg-[#FAF7F2] p-6 sm:p-8 rounded-2xl border border-[#363D28]/10 flex flex-col items-start space-y-4 shadow-2xs hover:border-[#363D28]/30 transition-all">
-              <div className="w-12 h-12 rounded-full bg-[#DFEC9C] flex items-center justify-center text-[#222918]">
-                <Users className="w-6 h-6 stroke-[2]" />
+          {/* 3 Tarjetas Blancas */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
+            {/* Tarjeta 1: Talleres prácticos */}
+            <div className="bg-white rounded-2xl p-7 border border-[#222918]/10 shadow-xs flex flex-col items-start space-y-3.5">
+              <div className="w-12 h-12 rounded-full bg-[#EAE2D0]/70 flex items-center justify-center text-[#52632C]">
+                <Users className="w-6 h-6 stroke-[1.75]" />
               </div>
-              <h3 className="font-bold text-lg sm:text-xl text-[#222918]">
+              <h3 className="font-bold text-lg text-[#222918]">
                 Talleres prácticos
               </h3>
-              <p className="text-sm text-[#363D28]/85 font-normal leading-relaxed">
+              <p className="text-xs sm:text-sm text-[#4A533B] leading-relaxed">
                 Dinámicas participativas para reflexionar, aplicar herramientas y generar acuerdos.
               </p>
             </div>
 
-            {/* Formato 2: Conferencias */}
-            <div className="bg-[#FAF7F2] p-6 sm:p-8 rounded-2xl border border-[#363D28]/10 flex flex-col items-start space-y-4 shadow-2xs hover:border-[#363D28]/30 transition-all">
-              <div className="w-12 h-12 rounded-full bg-[#DFEC9C] flex items-center justify-center text-[#222918]">
-                <Mic className="w-6 h-6 stroke-[2]" />
+            {/* Tarjeta 2: Conferencias */}
+            <div className="bg-white rounded-2xl p-7 border border-[#222918]/10 shadow-xs flex flex-col items-start space-y-3.5">
+              <div className="w-12 h-12 rounded-full bg-[#EAE2D0]/70 flex items-center justify-center text-[#52632C]">
+                <Mic className="w-6 h-6 stroke-[1.75]" />
               </div>
-              <h3 className="font-bold text-lg sm:text-xl text-[#222918]">
+              <h3 className="font-bold text-lg text-[#222918]">
                 Conferencias
               </h3>
-              <p className="text-sm text-[#363D28]/85 font-normal leading-relaxed">
+              <p className="text-xs sm:text-sm text-[#4A533B] leading-relaxed">
                 Ideas que abren conversaciones sobre liderazgo, bienestar y decisiones conscientes.
               </p>
             </div>
 
-            {/* Formato 3: Programas de acompañamiento */}
-            <div className="bg-[#FAF7F2] p-6 sm:p-8 rounded-2xl border border-[#363D28]/10 flex flex-col items-start space-y-4 shadow-2xs hover:border-[#363D28]/30 transition-all">
-              <div className="w-12 h-12 rounded-full bg-[#DFEC9C] flex items-center justify-center text-[#222918]">
-                <Layers className="w-6 h-6 stroke-[2]" />
+            {/* Tarjeta 3: Programas de acompañamiento */}
+            <div className="bg-white rounded-2xl p-7 border border-[#222918]/10 shadow-xs flex flex-col items-start space-y-3.5">
+              <div className="w-12 h-12 rounded-full bg-[#EAE2D0]/70 flex items-center justify-center text-[#52632C]">
+                <Layers className="w-6 h-6 stroke-[1.75]" />
               </div>
-              <h3 className="font-bold text-lg sm:text-xl text-[#222918]">
+              <h3 className="font-bold text-lg text-[#222918]">
                 Programas de acompañamiento
               </h3>
-              <p className="text-sm text-[#363D28]/85 font-normal leading-relaxed">
+              <p className="text-xs sm:text-sm text-[#4A533B] leading-relaxed">
                 Procesos para fortalecer hábitos, comunicación y colaboración en los equipos.
               </p>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* ------------------------------------------------------------- */}
-      {/* NUESTRA FORMA DE TRABAJAR: 4 PASOS */}
-      {/* ------------------------------------------------------------- */}
-      <section className="max-w-6xl mx-auto px-5 sm:px-8 mb-20 md:mb-28 space-y-12">
-        <div className="text-center space-y-3">
-          <div className="inline-block bg-[#DFEC9C] text-[#222918] text-xs font-black px-4 py-1.5 rounded-full uppercase tracking-wider">
-            NUESTRA FORMA DE TRABAJAR
-          </div>
-          <div className="relative inline-flex items-center justify-center">
-            <h2 className="text-2xl sm:text-4xl font-black uppercase text-[#222918] tracking-tight">
+        {/* ============================================================= */}
+        {/* 4. NUESTRA FORMA DE TRABAJAR                                  */}
+        {/* ============================================================= */}
+        <section className="text-center space-y-10">
+          <div className="space-y-3 max-w-2xl mx-auto">
+            <span className="inline-block bg-[#EAE2D0] text-[#3D4726] text-[11px] font-bold tracking-wider uppercase px-3.5 py-1 rounded-full">
+              NUESTRA FORMA DE TRABAJAR
+            </span>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#222918] tracking-tight">
               Un proceso pensado para tu equipo
+              <SketchBurst />
             </h2>
-            <div className="hidden sm:block absolute -top-3 -right-8 text-[#222918] text-lg font-mono tracking-tighter select-none font-bold">
-              ///
-            </div>
           </div>
-        </div>
 
-        {/* 4 Pasos en Grid con Líneas Divisorias */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 relative">
-          {/* Paso 01 */}
-          <div className="bg-[#F6F0E8] p-6 rounded-2xl border border-[#363D28]/10 space-y-3 flex flex-col justify-between">
-            <div>
-              <div className="inline-block bg-[#DFEC9C] text-[#222918] font-black text-xs px-3 py-1 rounded-full mb-3">
-                01
+          {/* 4 Pasos Horizontales */}
+          <div className="relative">
+            {/* Línea conectora horizontal sutil en desktop */}
+            <div className="hidden lg:block absolute top-5 left-[12%] right-[12%] h-[1.5px] bg-[#222918]/15 -z-0" />
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-4 relative z-10">
+              {/* Paso 01 */}
+              <div className="flex flex-col items-center text-center space-y-2.5 px-3">
+                <div className="w-10 h-10 rounded-full bg-[#DFEC9C] text-[#222918] font-bold text-sm flex items-center justify-center shadow-xs">
+                  01
+                </div>
+                <h3 className="font-bold text-base text-[#222918]">
+                  Conversamos
+                </h3>
+                <p className="text-xs sm:text-sm text-[#4A533B] leading-snug max-w-[210px]">
+                  Entendemos el contexto y los desafíos.
+                </p>
               </div>
-              <h3 className="font-bold text-lg text-[#222918] mb-2">
-                Conversamos
-              </h3>
-              <p className="text-xs sm:text-sm text-[#363D28]/85 font-normal leading-relaxed">
-                Entendemos el contexto y los desafíos.
-              </p>
-            </div>
-          </div>
 
-          {/* Paso 02 */}
-          <div className="bg-[#F6F0E8] p-6 rounded-2xl border border-[#363D28]/10 space-y-3 flex flex-col justify-between">
-            <div>
-              <div className="inline-block bg-[#DFEC9C] text-[#222918] font-black text-xs px-3 py-1 rounded-full mb-3">
-                02
+              {/* Paso 02 */}
+              <div className="flex flex-col items-center text-center space-y-2.5 px-3">
+                <div className="w-10 h-10 rounded-full bg-[#DFEC9C] text-[#222918] font-bold text-sm flex items-center justify-center shadow-xs">
+                  02
+                </div>
+                <h3 className="font-bold text-base text-[#222918]">
+                  Diseñamos
+                </h3>
+                <p className="text-xs sm:text-sm text-[#4A533B] leading-snug max-w-[210px]">
+                  Adaptamos la propuesta a tus objetivos.
+                </p>
               </div>
-              <h3 className="font-bold text-lg text-[#222918] mb-2">
-                Diseñamos
-              </h3>
-              <p className="text-xs sm:text-sm text-[#363D28]/85 font-normal leading-relaxed">
-                Adaptamos la propuesta a tus objetivos.
-              </p>
-            </div>
-          </div>
 
-          {/* Paso 03 */}
-          <div className="bg-[#F6F0E8] p-6 rounded-2xl border border-[#363D28]/10 space-y-3 flex flex-col justify-between">
-            <div>
-              <div className="inline-block bg-[#DFEC9C] text-[#222918] font-black text-xs px-3 py-1 rounded-full mb-3">
-                03
+              {/* Paso 03 */}
+              <div className="flex flex-col items-center text-center space-y-2.5 px-3">
+                <div className="w-10 h-10 rounded-full bg-[#DFEC9C] text-[#222918] font-bold text-sm flex items-center justify-center shadow-xs">
+                  03
+                </div>
+                <h3 className="font-bold text-base text-[#222918]">
+                  Facilitamos
+                </h3>
+                <p className="text-xs sm:text-sm text-[#4A533B] leading-snug max-w-[210px]">
+                  Creamos una experiencia participativa.
+                </p>
               </div>
-              <h3 className="font-bold text-lg text-[#222918] mb-2">
-                Facilitamos
-              </h3>
-              <p className="text-xs sm:text-sm text-[#363D28]/85 font-normal leading-relaxed">
-                Creamos una experiencia participativa.
-              </p>
-            </div>
-          </div>
 
-          {/* Paso 04 */}
-          <div className="bg-[#F6F0E8] p-6 rounded-2xl border border-[#363D28]/10 space-y-3 flex flex-col justify-between">
-            <div>
-              <div className="inline-block bg-[#DFEC9C] text-[#222918] font-black text-xs px-3 py-1 rounded-full mb-3">
-                04
+              {/* Paso 04 */}
+              <div className="flex flex-col items-center text-center space-y-2.5 px-3">
+                <div className="w-10 h-10 rounded-full bg-[#DFEC9C] text-[#222918] font-bold text-sm flex items-center justify-center shadow-xs">
+                  04
+                </div>
+                <h3 className="font-bold text-base text-[#222918]">
+                  Damos seguimiento
+                </h3>
+                <p className="text-xs sm:text-sm text-[#4A533B] leading-snug max-w-[210px]">
+                  Revisamos aprendizajes y próximos pasos, según el alcance.
+                </p>
               </div>
-              <h3 className="font-bold text-lg text-[#222918] mb-2">
-                Damos seguimiento
-              </h3>
-              <p className="text-xs sm:text-sm text-[#363D28]/85 font-normal leading-relaxed">
-                Revisamos aprendizajes y próximos pasos, según el alcance.
-              </p>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* ------------------------------------------------------------- */}
-      {/* SECCIÓN FORMULARIO Y CONTACTO DE PROPUESTA */}
-      {/* ------------------------------------------------------------- */}
-      <section id="formulario-organizaciones" className="max-w-6xl mx-auto px-5 sm:px-8 mb-20 md:mb-28">
-        <div className="bg-[#F6F0E8] rounded-3xl p-8 sm:p-12 border border-[#363D28]/12 shadow-xs">
+        {/* ============================================================= */}
+        {/* 5. FORMULARIO CORPORATIVO DE CONTACTO                         */}
+        {/* ============================================================= */}
+        <section id="formulario-organizaciones" className="pt-4">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 items-start">
-            {/* Lado Izquierdo: Textos de Invitación */}
+            {/* Lado Izquierdo: Titular, bajada y 3 badges */}
             <div className="lg:col-span-5 space-y-6">
               <div className="space-y-3">
-                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black uppercase text-[#222918] leading-tight">
-                  Cada organización tiene una{' '}
-                  <span className="relative inline-block">
-                    historia.
-                    <span className="absolute left-0 bottom-1 w-full h-2 bg-[#DFEC9C] -z-10 rounded-full" />
-                  </span>{' '}
-                  Conversemos sobre la tuya.
+                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#222918] leading-[1.18] tracking-tight">
+                  Cada organización tiene una historia. Conversemos sobre la tuya.
                 </h2>
-                <p className="text-sm sm:text-base text-[#363D28]/85 font-normal leading-relaxed">
+                <p className="text-sm sm:text-base text-[#4A533B] font-normal leading-relaxed">
                   Cuéntanos qué necesita tu equipo y exploremos una propuesta a su medida.
                 </p>
               </div>
 
-              {/* 3 Badges de Valor */}
-              <div className="space-y-3 pt-2">
-                <div className="flex items-center gap-3 bg-[#FAF5EE] p-3 rounded-xl border border-[#363D28]/10">
-                  <div className="w-8 h-8 rounded-lg bg-[#DFEC9C] flex items-center justify-center text-[#222918] shrink-0">
-                    <Sliders className="w-4 h-4" />
-                  </div>
-                  <span className="text-xs sm:text-sm font-bold text-[#222918]">
+              {/* 3 Trust Badges en fila */}
+              <div className="grid grid-cols-3 gap-3 pt-6 border-t border-[#222918]/10 text-center">
+                <div className="space-y-1.5 flex flex-col items-center">
+                  <Sliders className="w-6 h-6 text-[#52632C] stroke-[1.75]" />
+                  <span className="text-xs font-bold text-[#222918] leading-tight block">
                     Diseño a medida
                   </span>
                 </div>
 
-                <div className="flex items-center gap-3 bg-[#FAF5EE] p-3 rounded-xl border border-[#363D28]/10">
-                  <div className="w-8 h-8 rounded-lg bg-[#DFEC9C] flex items-center justify-center text-[#222918] shrink-0">
-                    <ShieldCheck className="w-4 h-4" />
-                  </div>
-                  <span className="text-xs sm:text-sm font-bold text-[#222918]">
+                <div className="space-y-1.5 flex flex-col items-center">
+                  <ShieldCheck className="w-6 h-6 text-[#52632C] stroke-[1.75]" />
+                  <span className="text-xs font-bold text-[#222918] leading-tight block">
                     Confidencialidad
                   </span>
                 </div>
 
-                <div className="flex items-center gap-3 bg-[#FAF5EE] p-3 rounded-xl border border-[#363D28]/10">
-                  <div className="w-8 h-8 rounded-lg bg-[#DFEC9C] flex items-center justify-center text-[#222918] shrink-0">
-                    <Zap className="w-4 h-4" />
-                  </div>
-                  <span className="text-xs sm:text-sm font-bold text-[#222918]">
+                <div className="space-y-1.5 flex flex-col items-center">
+                  <Zap className="w-6 h-6 text-[#52632C] stroke-[1.75]" />
+                  <span className="text-xs font-bold text-[#222918] leading-tight block">
                     Respuesta ágil
                   </span>
                 </div>
               </div>
             </div>
 
-            {/* Lado Derecho: Formulario */}
-            <div className="lg:col-span-7 bg-[#FAF5EE] p-6 sm:p-8 rounded-2xl border border-[#363D28]/12 shadow-xs">
+            {/* Lado Derecho: Formulario en tarjeta blanca */}
+            <div className="lg:col-span-7 bg-white p-6 sm:p-8 rounded-2xl border border-[#222918]/10 shadow-xs">
               {formSubmitted ? (
                 <div className="text-center py-10 space-y-4">
-                  <div className="w-14 h-14 bg-[#DFEC9C] rounded-full flex items-center justify-center mx-auto text-[#222918]">
+                  <div className="w-14 h-14 bg-[#52632C]/10 rounded-full flex items-center justify-center mx-auto text-[#52632C]">
                     <CheckCircle2 className="w-8 h-8" />
                   </div>
                   <h3 className="text-2xl font-bold uppercase text-[#222918]">
                     ¡Propuesta solicitada con éxito!
                   </h3>
-                  <p className="text-sm text-[#363D28]/80 max-w-md mx-auto">
-                    Anatolia Zapata y su equipo revisarán tus requerimientos y te responderán en menos de 24 horas hábiles.
+                  <p className="text-sm text-[#4A533B] max-w-md mx-auto">
+                    Anatolia Zapata revisará tus requerimientos y te responderá en menos de 24 horas hábiles.
                   </p>
                 </div>
               ) : (
@@ -384,80 +392,88 @@ export default function OrganizacionesPage({ onNavigate }: OrganizacionesPagePro
                   <input type="hidden" name="_subject" value="Nueva solicitud corporativa desde RAÍZ Organizaciones" />
                   <input type="hidden" name="origen" value="Landing Organizaciones" />
 
-                  <div>
-                    <label className="block text-xs font-bold uppercase tracking-wider text-[#363D28] mb-1.5">
-                      Nombre y apellido
-                    </label>
-                    <input
-                      type="text"
-                      name="nombre"
-                      required
-                      placeholder="Ej. Valeria Mendoza"
-                      className="w-full px-4 py-3 rounded-xl bg-white border border-[#363D28]/20 focus:outline-none focus:ring-2 focus:ring-[#5A6836] text-sm"
-                    />
+                  {/* Fila 1: Nombre y Empresa */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-xs font-medium text-[#222918] mb-1.5">
+                        Nombre y apellido
+                      </label>
+                      <input
+                        type="text"
+                        name="nombre"
+                        required
+                        placeholder=""
+                        className="w-full px-3.5 py-2.5 rounded-lg bg-white border border-[#222918]/20 focus:outline-none focus:ring-2 focus:ring-[#52632C] text-sm text-[#222918]"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-xs font-medium text-[#222918] mb-1.5">
+                        Empresa u organización
+                      </label>
+                      <input
+                        type="text"
+                        name="organizacion"
+                        required
+                        placeholder=""
+                        className="w-full px-3.5 py-2.5 rounded-lg bg-white border border-[#222918]/20 focus:outline-none focus:ring-2 focus:ring-[#52632C] text-sm text-[#222918]"
+                      />
+                    </div>
                   </div>
 
-                  <div>
-                    <label className="block text-xs font-bold uppercase tracking-wider text-[#363D28] mb-1.5">
-                      Empresa u organización
-                    </label>
-                    <input
-                      type="text"
-                      name="organizacion"
-                      required
-                      placeholder="Nombre de tu empresa o institución"
-                      className="w-full px-4 py-3 rounded-xl bg-white border border-[#363D28]/20 focus:outline-none focus:ring-2 focus:ring-[#5A6836] text-sm"
-                    />
+                  {/* Fila 2: Correo y Experiencia */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-xs font-medium text-[#222918] mb-1.5">
+                        Correo corporativo
+                      </label>
+                      <input
+                        type="email"
+                        name="email"
+                        required
+                        placeholder=""
+                        className="w-full px-3.5 py-2.5 rounded-lg bg-white border border-[#222918]/20 focus:outline-none focus:ring-2 focus:ring-[#52632C] text-sm text-[#222918]"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-xs font-medium text-[#222918] mb-1.5">
+                        ¿Qué experiencia buscan?
+                      </label>
+                      <select
+                        name="experiencia"
+                        required
+                        defaultValue=""
+                        className="w-full px-3.5 py-2.5 rounded-lg bg-white border border-[#222918]/20 focus:outline-none focus:ring-2 focus:ring-[#52632C] text-sm text-[#222918]"
+                      >
+                        <option value="" disabled>Selecciona una opción</option>
+                        <option value="Talleres prácticos">Talleres prácticos</option>
+                        <option value="Conferencias">Conferencias</option>
+                        <option value="Programas de acompañamiento">Programas de acompañamiento</option>
+                        <option value="Propuesta personalizada">Propuesta personalizada</option>
+                        <option value="Otro">Otro formato</option>
+                      </select>
+                    </div>
                   </div>
 
+                  {/* Fila 3: ¿Qué necesitan? */}
                   <div>
-                    <label className="block text-xs font-bold uppercase tracking-wider text-[#363D28] mb-1.5">
-                      Correo corporativo
-                    </label>
-                    <input
-                      type="email"
-                      name="email"
-                      required
-                      placeholder="nombre@tuempresa.com"
-                      className="w-full px-4 py-3 rounded-xl bg-white border border-[#363D28]/20 focus:outline-none focus:ring-2 focus:ring-[#5A6836] text-sm"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-xs font-bold uppercase tracking-wider text-[#363D28] mb-1.5">
-                      ¿Qué experiencia buscan?
-                    </label>
-                    <select
-                      name="experiencia"
-                      required
-                      defaultValue=""
-                      className="w-full px-4 py-3 rounded-xl bg-white border border-[#363D28]/20 focus:outline-none focus:ring-2 focus:ring-[#5A6836] text-sm text-[#222918]"
-                    >
-                      <option value="" disabled>Selecciona una opción</option>
-                      <option value="Talleres prácticos">Talleres prácticos</option>
-                      <option value="Conferencias">Conferencias</option>
-                      <option value="Programas de acompañamiento">Programas de acompañamiento</option>
-                      <option value="Diagnóstico y asesoría de bienestar">Diagnóstico y asesoría de bienestar</option>
-                      <option value="Otro">Otro formato</option>
-                    </select>
-                  </div>
-
-                  <div>
-                    <label className="block text-xs font-bold uppercase tracking-wider text-[#363D28] mb-1.5">
+                    <label className="block text-xs font-medium text-[#222918] mb-1.5">
                       ¿Qué necesitan? (opcional)
                     </label>
                     <textarea
                       name="mensaje"
                       rows={3}
-                      placeholder="Cuéntanos sobre el número de personas, objetivos principales o fecha tentativa..."
-                      className="w-full px-4 py-3 rounded-xl bg-white border border-[#363D28]/20 focus:outline-none focus:ring-2 focus:ring-[#5A6836] text-sm resize-none"
+                      placeholder=""
+                      className="w-full px-3.5 py-2.5 rounded-lg bg-white border border-[#222918]/20 focus:outline-none focus:ring-2 focus:ring-[#52632C] text-sm text-[#222918] resize-none"
                     />
                   </div>
 
+                  {/* Botón Submit */}
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full bg-[#54662E] hover:bg-[#3D4C1F] text-[#FAF7F2] font-black uppercase tracking-wider py-4 rounded-xl text-xs sm:text-sm transition-all flex items-center justify-center gap-2 shadow-md hover:shadow-lg"
+                    className="w-full bg-[#52632C] hover:bg-[#435224] text-white font-bold text-xs sm:text-sm uppercase tracking-wider py-3.5 px-6 rounded-full transition-all flex items-center justify-center gap-2 shadow-sm hover:shadow-md active:scale-[0.99]"
                   >
                     {isSubmitting ? (
                       <span>Enviando propuesta...</span>
@@ -472,37 +488,48 @@ export default function OrganizacionesPage({ onNavigate }: OrganizacionesPagePro
               )}
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* ------------------------------------------------------------- */}
-      {/* FRANJA DE LOGOS CORPORATIVOS: Organizaciones que han confiado */}
-      {/* ------------------------------------------------------------- */}
-      <section className="border-t border-[#363D28]/10 bg-[#FAF7F2] py-10 px-5 sm:px-8">
-        <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
-          <div className="shrink-0 text-center md:text-left md:border-r md:border-[#363D28]/20 md:pr-8">
-            <p className="text-xs sm:text-sm font-bold text-[#363D28] max-w-[200px] leading-snug">
+        {/* ============================================================= */}
+        {/* 6. CLIENT LOGOS: CARRUSEL INFINITO SIN SUPERPOSICIONES       */}
+        {/* ============================================================= */}
+        <section className="bg-white rounded-3xl border border-[#222918]/10 p-6 sm:p-8 md:p-10 shadow-xs space-y-6 overflow-hidden">
+          {/* Encabezado */}
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#222918]/10 pb-4">
+            <span className="text-base sm:text-lg md:text-xl font-extrabold text-[#222918] tracking-tight">
               Organizaciones que han confiado en mi trabajo
-            </p>
+            </span>
+            <span className="text-xs text-[#52632C] font-semibold uppercase tracking-wider bg-[#EAE2D0]/60 px-3 py-1 rounded-full w-fit">
+              Talleres · Conferencias · Procesos de Acompañamiento
+            </span>
           </div>
 
-          <div className="flex-1 flex flex-wrap items-center justify-center md:justify-around gap-8 sm:gap-10">
-            {CLIENT_LOGOS.map((client, idx) => (
-              <div
-                key={idx}
-                className="h-10 sm:h-12 flex items-center justify-center grayscale hover:grayscale-0 opacity-80 hover:opacity-100 transition-all"
-                title={client.name}
-              >
-                <img
-                  src={client.logo}
-                  alt={client.name}
-                  className="max-h-8 sm:max-h-10 max-w-[120px] sm:max-w-[140px] object-contain"
-                />
-              </div>
-            ))}
+          {/* Carrusel infinito con espaciado amplio y sin sobreposiciones */}
+          <div className="relative w-full overflow-hidden py-3">
+            {/* Gradientes laterales de difuminado suave */}
+            <div className="absolute left-0 top-0 bottom-0 w-12 sm:w-20 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
+            <div className="absolute right-0 top-0 bottom-0 w-12 sm:w-20 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
+
+            <div className="animate-marquee-infinite flex items-center gap-8 sm:gap-12 md:gap-16">
+              {[...CLIENT_LOGOS, ...CLIENT_LOGOS].map((client, idx) => (
+                <div
+                  key={`${client.name}-${idx}`}
+                  className="shrink-0 flex items-center justify-center min-w-[170px] sm:min-w-[200px] h-20 sm:h-24 px-5 py-2.5 rounded-2xl bg-[#FAF7F2]/80 hover:bg-[#FAF7F2] border border-[#222918]/5 transition-all group"
+                  title={client.name}
+                >
+                  <img
+                    src={client.logo}
+                    alt={client.name}
+                    className="max-h-14 sm:max-h-16 md:max-h-20 w-auto max-w-[150px] sm:max-w-[180px] object-contain transition-transform duration-300 group-hover:scale-105"
+                    loading="lazy"
+                  />
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+
+      </div>
     </div>
   );
 }

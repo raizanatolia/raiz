@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { PageId } from '../data/content';
 import { BRAND_ASSETS } from '../data/images';
-import { Mail, MapPin, Laptop, BookOpen, Gift, Play, X, CheckCircle2, ChevronRight, HelpCircle } from 'lucide-react';
+import { Mail, MapPin, Laptop, BookOpen, Gift, Play, X, CheckCircle2, ChevronRight, HelpCircle, Target, Calendar, Sparkles, Compass } from 'lucide-react';
 
 interface ViajeRaizPageProps {
   onNavigate: (page: PageId) => void;
@@ -47,11 +47,102 @@ const VIAJE_FAQS = [
   },
 ];
 
+const BASE_PRICE = 1200;
+
+const BASE_INCLUSIONS = [
+  '12 sesiones individuales 1 a 1 de 60 min con Anatolia Zapata',
+  'Diagnóstico profundo inicial con el Mapa RAÍZ',
+  'Bitácora RAÍZ (física para Perú / digital interactiva para el exterior)',
+  'Kit de Bienvenida exclusivo para iniciar tu proceso (Perú)',
+  'Acompañamiento reflexivo y soporte entre sesiones por WhatsApp',
+  'Grabación o síntesis de acuerdos para cada una de tus 12 sesiones',
+];
+
 export default function ViajeRaizPage({ onNavigate }: ViajeRaizPageProps) {
   const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isPricingVisible, setIsPricingVisible] = useState(false);
+
+  // Estado del configurador adaptado exclusivamente a los 3 servicios:
+  // 1. Plan Base: US$1,200 (marcado por defecto con 12 sesiones)
+  // 2. Una sesión estratégica: cambia a US$1,350
+  // 3. Dos sesiones de seguimiento: cambia a US$1,600
+  const [addonAccion, setAddonAccion] = useState(false);
+  const [addonContinuidad, setAddonContinuidad] = useState(false);
+
+  const toggleAccion = () => {
+    if (addonContinuidad) {
+      setAddonContinuidad(false);
+      setAddonAccion(false);
+    } else {
+      setAddonAccion((prev) => !prev);
+    }
+  };
+
+  const toggleContinuidad = () => {
+    if (!addonContinuidad) {
+      setAddonContinuidad(true);
+      setAddonAccion(true);
+    } else {
+      setAddonContinuidad(false);
+      setAddonAccion(true);
+    }
+  };
+
+  const handleSelectPreset = (preset: 'base' | 'accion' | 'continuidad') => {
+    if (preset === 'base') {
+      setAddonAccion(false);
+      setAddonContinuidad(false);
+    } else if (preset === 'accion') {
+      setAddonAccion(true);
+      setAddonContinuidad(false);
+    } else if (preset === 'continuidad') {
+      setAddonAccion(true);
+      setAddonContinuidad(true);
+    }
+  };
+
+  const currentPlan = useMemo(() => {
+    if (addonContinuidad) {
+      return {
+        id: 'continuidad',
+        name: 'Viaje RAÍZ Continuidad',
+        badge: 'Continuidad y consolidación',
+        price: 1600,
+        breakdown: 'Base: US$1,200 + Estratégica y Seguimiento: US$400',
+        description: 'Todo lo anterior + dos sesiones de seguimiento: una a los 6 meses y otra a los 12 meses.',
+        ctaText: 'QUIERO SEGUIR CULTIVANDO MI RAÍZ →',
+        whatsAppMessage:
+          '¡Hola Anatolia! Quiero comenzar mi Viaje RAÍZ Continuidad (12 sesiones individuales + sesión estratégica + 2 sesiones de seguimiento a los 6 y 12 meses) por US$1,600. Quisiera coordinar mi agenda.',
+      };
+    }
+    if (addonAccion) {
+      return {
+        id: 'accion',
+        name: 'Viaje RAÍZ + Acción',
+        badge: 'Experiencia ampliada',
+        price: 1350,
+        breakdown: 'Base: US$1,200 + Sesión estratégica: US$150',
+        description: '12 sesiones individuales + una sesión estratégica para convertir tus descubrimientos en un plan de acción 10-10-10-1.',
+        ctaText: 'QUIERO PASAR A LA ACCIÓN →',
+        whatsAppMessage:
+          '¡Hola Anatolia! Quiero comenzar mi Viaje RAÍZ + Acción (12 sesiones individuales + una sesión estratégica para plan de acción 10-10-10-1) por US$1,350. Quisiera coordinar mi agenda.',
+      };
+    }
+    return {
+      id: 'base',
+      name: 'Viaje RAÍZ',
+      badge: 'Marcado por defecto',
+      price: 1200,
+      breakdown: 'Base: US$1,200 (12 sesiones individuales)',
+      description: '12 sesiones individuales para comprender tu historia y elegir qué quieres construir.',
+      ctaText: 'QUIERO COMENZAR MI VIAJE RAÍZ →',
+      whatsAppMessage:
+        '¡Hola Anatolia! Quiero comenzar mi Viaje RAÍZ (12 sesiones individuales) por US$1,200. Quisiera coordinar mi agenda.',
+    };
+  }, [addonAccion, addonContinuidad]);
+
+  const whatsAppCheckoutUrl = `https://wa.me/51940497864?text=${encodeURIComponent(currentPlan.whatsAppMessage)}`;
 
   const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -74,43 +165,40 @@ export default function ViajeRaizPage({ onNavigate }: ViajeRaizPageProps) {
   };
 
   const handleCtaClick = () => {
-    setIsPricingVisible(true);
-    setTimeout(() => {
-      const pricingElem = document.getElementById('opciones-inversion');
-      if (pricingElem) {
-        pricingElem.scrollIntoView({ behavior: 'smooth' });
-      }
-    }, 100);
+    const pricingElem = document.getElementById('opciones-inversion');
+    if (pricingElem) {
+      pricingElem.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   return (
-    <div className="bg-[#FAF5EE] text-[#222918] font-sans min-h-screen">
+    <div className="bg-[#FAF7F2] text-[#222918] font-sans min-h-screen">
       {/* ------------------------------------------------------------- */}
-      {/* SECCIÓN 1: HERO VIAJE RAÍZ (Referencia Image 1) */}
+      {/* SECCIÓN 1: HERO VIAJE RAÍZ (Fiel a Panel 1 de Referencia)    */}
       {/* ------------------------------------------------------------- */}
-      <section className="relative pt-28 pb-16 md:pt-36 md:pb-24 px-5 sm:px-8 max-w-6xl mx-auto overflow-hidden">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-center">
+      <section className="relative pt-28 pb-8 md:pt-36 md:pb-0 px-5 sm:px-8 max-w-7xl mx-auto overflow-hidden">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-8 items-end">
           {/* Columna Izquierda: Textos y titulares */}
-          <div className="md:col-span-7 space-y-6 text-left">
+          <div className="md:col-span-6 lg:col-span-6 space-y-5 text-left pb-4 md:pb-12">
             {/* Eyebrow */}
             <div className="inline-block">
               <span className="text-xs sm:text-sm font-sans font-semibold tracking-[0.2em] uppercase text-[#363D28] block mb-1">
                 MÉTODO RAÍZ · ANATOLIA ZAPATA
               </span>
-              <div className="w-16 h-[2px] bg-[#A18347]" />
+              <div className="w-14 h-[2px] bg-[#A18347]" />
             </div>
 
             {/* Título Principal con brocha verde claro / lima */}
             <div className="relative inline-block">
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black font-sans tracking-tight text-[#222918] uppercase leading-none">
+              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-black font-sans tracking-tight text-[#222918] uppercase leading-none">
                 VIAJE RAÍZ
               </h1>
               {/* Lime brush underline graphic effect */}
-              <div className="w-full h-3 sm:h-4 bg-[#D8E488] rounded-full mt-1 opacity-90 -skew-x-6" />
+              <div className="w-full h-3 sm:h-3.5 bg-[#DFEC9C] rounded-full mt-1.5 opacity-90 -skew-x-6" />
             </div>
 
             {/* Titular Impactante */}
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black font-sans text-[#222918] leading-[1.15] tracking-tight uppercase">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black font-sans text-[#222918] leading-[1.15] tracking-tight uppercase pt-2">
               ERES ADULTA Y AHORA ERES TÚ QUIEN CUIDA A QUIENES AMAS.
             </h2>
 
@@ -119,33 +207,19 @@ export default function ViajeRaizPage({ onNavigate }: ViajeRaizPageProps) {
               Jurabas que, cuando llegara ese momento, serías la máster de tu vida. La que tendría las respuestas, sabría qué hacer y tendría todo bajo control.
             </p>
 
-            {/* Callout destacado en verde lima */}
-            <div className="bg-[#D8E488] text-[#222918] font-bold text-lg sm:text-xl p-4 sm:p-5 rounded-2xl shadow-xs leading-snug max-w-xl">
+            {/* Callout destacado en verde lima redondeado (exacto a la referencia) */}
+            <div className="inline-block bg-[#DFEC9C] text-[#222918] font-bold text-base sm:text-lg p-4 sm:p-5 rounded-2xl shadow-2xs leading-snug max-w-xl">
               Pero nadie te dijo que la adultez venía con cero manual, ¿verdad?
-            </div>
-
-            {/* Botón CTA del Hero */}
-            <div className="pt-2">
-              <button
-                type="button"
-                onClick={handleCtaClick}
-                className="inline-flex items-center gap-2.5 px-8 py-4 rounded-full text-sm sm:text-base font-bold uppercase tracking-wider bg-[#5A6836] text-[#FAF7F2] hover:bg-[#222719] shadow-md hover:shadow-lg transition-all focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#5A6836]"
-              >
-                <span>Quiero viajar a la raíz</span>
-                <span aria-hidden="true" className="font-sans">→</span>
-              </button>
             </div>
           </div>
 
-          {/* Columna Derecha: Foto de Anatolia Zapata */}
-          <div className="md:col-span-5 flex justify-center md:justify-end">
-            <div className="relative max-w-md w-full">
-              {/* Glow sutil tras la foto */}
-              <div className="absolute inset-0 bg-[#D8E488]/30 rounded-3xl filter blur-xl transform scale-95" />
+          {/* Columna Derecha: Foto de Anatolia Zapata integrada en gran tamaño */}
+          <div className="md:col-span-6 lg:col-span-6 flex justify-center md:justify-end items-end self-end">
+            <div className="relative w-full max-w-lg sm:max-w-xl md:max-w-none flex justify-center md:justify-end">
               <img
-                src={BRAND_ASSETS.anatoliaHeroHorizontal}
+                src={BRAND_ASSETS.heroViajeRaizImage}
                 alt="Anatolia Zapata · Creadora del Método RAÍZ"
-                className="relative z-10 w-full h-auto object-cover rounded-3xl shadow-sm border border-[#363D28]/10"
+                className="w-full max-h-[520px] sm:max-h-[600px] lg:max-h-[660px] object-contain object-bottom select-none drop-shadow-sm scale-100 sm:scale-105 md:scale-110 lg:scale-115 origin-bottom"
               />
             </div>
           </div>
@@ -153,32 +227,38 @@ export default function ViajeRaizPage({ onNavigate }: ViajeRaizPageProps) {
       </section>
 
       {/* ------------------------------------------------------------- */}
-      {/* SECCIÓN 2: VIDEO Y MANIFIESTO (Referencia Image 2) */}
+      {/* SECCIÓN 2: VIDEO Y MANIFIESTO (Fiel a Panel 2 de Referencia) */}
       {/* ------------------------------------------------------------- */}
-      <section className="py-16 md:py-24 px-5 sm:px-8 bg-[#F6F0E8] border-y border-[#363D28]/10">
-        <div className="max-w-4xl mx-auto text-center space-y-10">
-          {/* Header del Video con Badge */}
+      <section className="py-14 md:py-20 px-5 sm:px-8 bg-[#FAF7F2] border-t border-[#363D28]/10">
+        <div className="max-w-4xl mx-auto text-center space-y-8">
+          {/* Header del Video con Badge \ VIDEO / y chispas */}
           <div className="space-y-3">
-            {/* Pill de \ VIDEO */}
-            <div className="inline-flex items-center gap-1.5 bg-[#D8E488] text-[#222918] px-4 py-1.5 rounded-full font-bold text-xs uppercase tracking-wider">
-              <span className="font-mono text-sm">/</span>
-              <span>VIDEO</span>
+            {/* Pill de \ VIDEO / */}
+            <div className="inline-flex items-center gap-2">
+              <span className="font-mono text-base font-bold text-[#222918] select-none -rotate-12">\</span>
+              <span className="bg-[#DFEC9C] text-[#222918] px-5 py-1.5 rounded-full font-black text-xs uppercase tracking-widest shadow-2xs">
+                VIDEO
+              </span>
+              <span className="font-mono text-base font-bold text-[#222918] select-none rotate-12">/</span>
             </div>
 
             {/* Título con pill rosa 2 MINUTOS */}
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight uppercase text-[#222918] leading-tight">
-              CONOCE VIAJE RAÍZ EN{' '}
-              <span className="inline-block bg-[#FFD6E8] text-[#222918] px-4 py-1 rounded-full font-extrabold text-2xl sm:text-3xl md:text-4xl align-middle mx-1 shadow-xs">
-                2 MINUTOS
+              CONOCE VIAJE RAÍZ<br />
+              <span className="inline-flex items-center gap-2.5 mt-1 justify-center flex-wrap">
+                <span>EN</span>
+                <span className="inline-block bg-[#FFD6E8] text-[#222918] px-5 py-1 rounded-full font-black text-2xl sm:text-3xl md:text-4xl align-middle shadow-2xs">
+                  2 MINUTOS
+                </span>
               </span>
             </h2>
           </div>
 
-          {/* Card de Video interactivo */}
-          <div className="relative max-w-2xl mx-auto">
+          {/* Card de Video interactivo con Chispas laterales */}
+          <div className="relative max-w-2xl mx-auto my-4">
             <div
               onClick={() => setIsVideoModalOpen(true)}
-              className="group relative rounded-3xl overflow-hidden shadow-lg border border-[#363D28]/12 cursor-pointer bg-[#363D28] transition-transform hover:scale-[1.01]"
+              className="group relative rounded-3xl overflow-hidden shadow-lg border border-[#363D28]/10 cursor-pointer bg-[#363D28] transition-transform hover:scale-[1.01]"
               role="button"
               tabIndex={0}
               onKeyDown={(e) => {
@@ -186,53 +266,51 @@ export default function ViajeRaizPage({ onNavigate }: ViajeRaizPageProps) {
               }}
               aria-label="Reproducir video de presentación de Viaje RAÍZ"
             >
-              {/* Imagen de preview */}
+              {/* Imagen de preview de Anatolia con chin on hand */}
               <img
                 src={BRAND_ASSETS.anatoliaSplitCard}
                 alt="Presentación en video de Viaje RAÍZ con Anatolia Zapata"
-                className="w-full h-72 sm:h-96 object-cover opacity-90 group-hover:opacity-100 transition-opacity"
+                className="w-full h-72 sm:h-96 object-cover opacity-95 group-hover:opacity-100 transition-opacity"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
 
-              {/* Botón Play central */}
+              {/* Botón Play central blanco limpio */}
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="w-16 h-16 sm:w-20 sm:h-20 bg-white/95 rounded-full flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform">
-                  <Play className="w-7 h-7 sm:w-8 sm:h-8 text-[#5A6836] fill-[#5A6836] ml-1" />
+                  <Play className="w-7 h-7 sm:w-8 sm:h-8 text-[#222918] fill-[#222918] ml-1" />
                 </div>
               </div>
 
               {/* Tag de click para ver */}
               <div className="absolute bottom-4 left-4 right-4 text-center">
-                <span className="bg-[#222918]/80 text-[#FAF7F2] text-xs font-semibold px-4 py-1.5 rounded-full backdrop-blur-xs">
+                <span className="bg-[#222918]/85 text-[#FAF7F2] text-xs font-semibold px-4 py-1.5 rounded-full backdrop-blur-xs">
                   Haz click para reproducir el video (2 min)
                 </span>
               </div>
             </div>
 
-            {/* Destellos decorativos a la derecha */}
-            <div className="hidden sm:block absolute -right-8 bottom-8 text-[#222918] text-xl font-mono tracking-tighter opacity-70 select-none">
-              ///
+            {/* Chispas decorativas a la derecha del video (//) */}
+            <div className="hidden sm:block absolute -right-8 bottom-10 text-[#222918] text-xl font-mono tracking-tighter select-none font-black opacity-80">
+              //
             </div>
           </div>
 
           {/* Manifiesto y Reflexión */}
-          <div className="pt-6 max-w-2xl mx-auto space-y-6">
+          <div className="pt-2 max-w-2xl mx-auto space-y-4">
             {/* Destacado Verde Lima */}
-            <div className="bg-[#D8E488] text-[#222918] font-bold text-lg sm:text-xl md:text-2xl py-3.5 px-6 rounded-2xl md:rounded-full inline-block text-center shadow-xs">
+            <div className="bg-[#DFEC9C] text-[#222918] font-bold text-base sm:text-lg md:text-xl py-3 px-6 rounded-2xl md:rounded-full inline-block text-center shadow-2xs leading-snug">
               Creo que desarrollarte y cuidar a quienes amas no deberían ser caminos opuestos.
             </div>
 
-            {/* Texto con pill rosa final */}
-            <div className="relative text-base sm:text-lg text-[#363D28] leading-relaxed font-normal">
-              <p>
-                Porque una cosa es vivir reaccionando a todo lo que pasa y otra es detenerte a pensar:{' '}
-                <span className="inline-block bg-[#FFD6E8] text-[#222918] font-bold px-3.5 py-1 rounded-full text-sm sm:text-base align-middle mt-1">
+            {/* Texto con pill rosa final y chispas */}
+            <div className="text-base sm:text-lg text-[#363D28] leading-relaxed font-normal">
+              <p>Porque una cosa es vivir reaccionando a todo lo que pasa</p>
+              <div className="relative inline-flex items-center gap-2 mt-1 flex-wrap justify-center">
+                <span>y otra es detenerte a pensar:</span>
+                <span className="inline-block bg-[#FFD6E8] text-[#222918] font-bold px-4 py-1 rounded-full text-sm sm:text-base shadow-2xs">
                   ¿estoy eligiendo la vida que quiero construir?
                 </span>
-              </p>
-              {/* Spark decorativo */}
-              <div className="hidden sm:block absolute -right-6 top-0 text-[#222918] font-mono text-sm tracking-tighter opacity-60">
-                ///
+                <span className="text-[#222918] font-mono font-bold text-sm select-none">//</span>
               </div>
             </div>
           </div>
@@ -240,9 +318,9 @@ export default function ViajeRaizPage({ onNavigate }: ViajeRaizPageProps) {
       </section>
 
       {/* ------------------------------------------------------------- */}
-      {/* SECCIÓN 3: ¿QUÉ PASA EN VIAJE RAÍZ? (Fiel a imagen de ref) */}
+      {/* SECCIÓN 3: ¿QUÉ PASA EN VIAJE RAÍZ? (Fiel a Panel 3 Ref)      */}
       {/* ------------------------------------------------------------- */}
-      <section className="py-20 md:py-28 px-5 sm:px-8 max-w-6xl mx-auto">
+      <section className="py-16 md:py-24 px-5 sm:px-8 max-w-6xl mx-auto border-t border-[#363D28]/10">
         <div className="text-center space-y-12">
           {/* Header de la sección con chispas */}
           <div className="relative inline-block text-center">
@@ -446,97 +524,312 @@ export default function ViajeRaizPage({ onNavigate }: ViajeRaizPageProps) {
       </section>
 
       {/* ------------------------------------------------------------- */}
-      {/* SECCIÓN 4.5: OPCIONES DE INVERSIÓN (Referencia Image 1) - Revelado al hacer clic */}
+      {/* SECCIÓN 4: OPCIONES DE INVERSIÓN (Formato Interactivo Toggle)  */}
       {/* ------------------------------------------------------------- */}
-      {isPricingVisible && (
-        <section id="opciones-inversion" className="py-20 md:py-28 px-5 sm:px-8 max-w-4xl mx-auto transition-all animate-fadeIn">
-          <div className="text-center space-y-4 mb-12">
-            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-[#363D28]">
-              INVERSIÓN EN TU PROCESO
+      <section id="opciones-inversion" className="py-16 md:py-24 px-5 sm:px-8 max-w-6xl mx-auto scroll-mt-12">
+        {/* Encabezado Principal fiel a Referencia */}
+        <div className="text-center max-w-2xl mx-auto space-y-4 mb-12 sm:mb-16">
+          <div className="inline-block bg-[#EAE4D7] text-[#363D28] text-xs font-bold uppercase tracking-[0.18em] px-4 py-1.5 rounded-full shadow-2xs">
+            Arma tu experiencia
+          </div>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black uppercase text-[#222918] tracking-tight leading-tight">
+            Solo paga por lo que necesitas
+          </h2>
+          <p className="text-sm sm:text-base text-[#363D28]/85 leading-relaxed font-normal">
+            Empieza con el programa base individual y activa los módulos de acción y seguimiento según lo que buscas. Total flexibilidad, a tu ritmo.
+          </p>
+
+          {/* Selector de paquetes predeterminados rápidos */}
+          <div className="flex flex-wrap items-center justify-center gap-2 pt-2">
+            <span className="text-xs font-bold uppercase text-[#363D28]/70 mr-1">
+              Planes:
             </span>
-            <h2 className="text-3xl sm:text-4xl font-black uppercase text-[#222918] tracking-tight">
-              Opciones del Viaje RAÍZ
-            </h2>
-            <p className="text-sm sm:text-base text-[#363D28]/85 font-normal max-w-lg mx-auto">
-              Elige el formato de acompañamiento que mejor se adapte a tu momento actual.
-            </p>
+            <button
+              type="button"
+              onClick={() => handleSelectPreset('base')}
+              className={`px-3.5 py-1.5 rounded-full text-xs font-bold transition-all ${
+                !addonAccion && !addonContinuidad
+                  ? 'bg-[#222918] text-[#FAF7F2] shadow-xs'
+                  : 'bg-white/80 hover:bg-white text-[#363D28] border border-[#222918]/15'
+              }`}
+            >
+              Viaje RAÍZ (US$1,200)
+            </button>
+            <button
+              type="button"
+              onClick={() => handleSelectPreset('accion')}
+              className={`px-3.5 py-1.5 rounded-full text-xs font-bold transition-all ${
+                addonAccion && !addonContinuidad
+                  ? 'bg-[#222918] text-[#FAF7F2] shadow-xs'
+                  : 'bg-white/80 hover:bg-white text-[#363D28] border border-[#222918]/15'
+              }`}
+            >
+              Viaje + Acción (US$1,350)
+            </button>
+            <button
+              type="button"
+              onClick={() => handleSelectPreset('continuidad')}
+              className={`px-3.5 py-1.5 rounded-full text-xs font-bold transition-all ${
+                addonContinuidad
+                  ? 'bg-[#222918] text-[#FAF7F2] shadow-xs'
+                  : 'bg-white/80 hover:bg-white text-[#363D28] border border-[#222918]/15'
+              }`}
+            >
+              Viaje Continuidad (US$1,600)
+            </button>
+          </div>
+        </div>
+
+        {/* Layout en 2 Columnas fiel a image_3a0f40b8.png adaptado a los 3 servicios */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
+          {/* Columna Izquierda: Los 3 Servicios con Switch Interactivo */}
+          <div className="lg:col-span-7 space-y-4">
+            <div className="mb-4">
+              <h3 className="text-xl sm:text-2xl font-bold text-[#222918] tracking-tight">
+                Servicios del programa
+              </h3>
+              <p className="text-xs sm:text-sm text-[#363D28]/70 mt-1">
+                El plan base de 12 sesiones está activo por defecto. Marca las opciones de acción o seguimiento para actualizar tu inversión.
+              </p>
+            </div>
+
+            <div className="space-y-3.5">
+              {/* Servicio 1: Plan Base (Marcado por defecto, siempre activo) */}
+              <div className="p-4 sm:p-5 rounded-2xl border bg-white border-[#222918] shadow-xs flex items-center justify-between gap-4 select-none">
+                <div className="flex items-start sm:items-center gap-3.5 sm:gap-4 flex-1">
+                  <div className="w-11 h-11 rounded-full flex items-center justify-center shrink-0 bg-[#222918] text-[#FAF7F2]">
+                    <CheckCircle2 className="w-5 h-5 text-[#DFEC9C]" />
+                  </div>
+                  <div className="space-y-1">
+                    <div className="flex flex-wrap items-center gap-2">
+                      <h4 className="font-bold text-[#222918] text-sm sm:text-base leading-snug">
+                        Viaje RAÍZ (12 sesiones individuales)
+                      </h4>
+                      <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-[#DFEC9C] text-[#222918]">
+                        Marcado por defecto
+                      </span>
+                    </div>
+                    <p className="text-xs text-[#363D28]/75 leading-relaxed font-normal">
+                      12 sesiones individuales para comprender tu historia y elegir qué quieres construir.
+                    </p>
+                    <div className="text-xs font-bold text-[#54662E] pt-0.5">
+                      US$1,200 · Base del programa
+                    </div>
+                  </div>
+                </div>
+
+                {/* Switch activo bloqueado (representa que viene por defecto) */}
+                <div className="shrink-0 pl-2">
+                  <div
+                    aria-label="Plan base activo por defecto"
+                    className="relative inline-flex h-7 w-12 shrink-0 cursor-default rounded-full p-0.5 bg-[#222918]"
+                  >
+                    <span
+                      aria-hidden="true"
+                      className="inline-block h-6 w-6 transform rounded-full bg-white shadow-md translate-x-5 transition duration-200"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* Servicio 2: Una sesión estratégica para plan de acción 10-10-10-1 */}
+              <div
+                onClick={toggleAccion}
+                className={`p-4 sm:p-5 rounded-2xl border transition-all cursor-pointer flex items-center justify-between gap-4 select-none ${
+                  addonAccion
+                    ? 'bg-white border-[#222918] shadow-sm ring-1 ring-[#222918]/20'
+                    : 'bg-white/60 hover:bg-white border-[#222918]/10 hover:border-[#222918]/25'
+                }`}
+              >
+                <div className="flex items-start sm:items-center gap-3.5 sm:gap-4 flex-1">
+                  <div
+                    className={`w-11 h-11 rounded-full flex items-center justify-center shrink-0 transition-colors ${
+                      addonAccion
+                        ? 'bg-[#222918] text-[#FAF7F2]'
+                        : 'bg-[#ECE6DA] text-[#363D28]'
+                    }`}
+                  >
+                    <Target className="w-5 h-5" />
+                  </div>
+                  <div className="space-y-1">
+                    <div className="flex flex-wrap items-center gap-2">
+                      <h4 className="font-bold text-[#222918] text-sm sm:text-base leading-snug">
+                        Una sesión estratégica para plan de acción
+                      </h4>
+                      <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-[#EAE4D7] text-[#363D28]">
+                        Experiencia ampliada
+                      </span>
+                    </div>
+                    <p className="text-xs text-[#363D28]/75 leading-relaxed font-normal">
+                      Una sesión estratégica para convertir tus descubrimientos en un plan de acción 10-10-10-1.
+                    </p>
+                    <div className="text-xs font-bold text-[#54662E] pt-0.5">
+                      +US$150 · Cambia a US$1,350
+                    </div>
+                  </div>
+                </div>
+
+                {/* Switch Toggle */}
+                <div className="shrink-0 pl-2">
+                  <button
+                    type="button"
+                    role="switch"
+                    aria-checked={addonAccion}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      toggleAccion();
+                    }}
+                    className={`relative inline-flex h-7 w-12 shrink-0 cursor-pointer rounded-full p-0.5 transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-[#54662E] focus:ring-offset-2 ${
+                      addonAccion ? 'bg-[#222918]' : 'bg-[#D6CFC2]'
+                    }`}
+                    aria-label="Activar sesión estratégica"
+                  >
+                    <span
+                      aria-hidden="true"
+                      className={`pointer-events-none inline-block h-6 w-6 transform rounded-full bg-white shadow-md ring-0 transition duration-200 ease-in-out ${
+                        addonAccion ? 'translate-x-5' : 'translate-x-0'
+                      }`}
+                    />
+                  </button>
+                </div>
+              </div>
+
+              {/* Servicio 3: Dos sesiones de seguimiento */}
+              <div
+                onClick={toggleContinuidad}
+                className={`p-4 sm:p-5 rounded-2xl border transition-all cursor-pointer flex items-center justify-between gap-4 select-none ${
+                  addonContinuidad
+                    ? 'bg-white border-[#222918] shadow-sm ring-1 ring-[#222918]/20'
+                    : 'bg-white/60 hover:bg-white border-[#222918]/10 hover:border-[#222918]/25'
+                }`}
+              >
+                <div className="flex items-start sm:items-center gap-3.5 sm:gap-4 flex-1">
+                  <div
+                    className={`w-11 h-11 rounded-full flex items-center justify-center shrink-0 transition-colors ${
+                      addonContinuidad
+                        ? 'bg-[#222918] text-[#FAF7F2]'
+                        : 'bg-[#ECE6DA] text-[#363D28]'
+                    }`}
+                  >
+                    <Calendar className="w-5 h-5" />
+                  </div>
+                  <div className="space-y-1">
+                    <div className="flex flex-wrap items-center gap-2">
+                      <h4 className="font-bold text-[#222918] text-sm sm:text-base leading-snug">
+                        Dos sesiones de seguimiento (6 y 12 meses)
+                      </h4>
+                      <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-[#EAE4D7] text-[#363D28]">
+                        Continuidad
+                      </span>
+                    </div>
+                    <p className="text-xs text-[#363D28]/75 leading-relaxed font-normal">
+                      Todo lo anterior + dos sesiones de seguimiento: una a los 6 meses y otra a los 12 meses.
+                    </p>
+                    <div className="text-xs font-bold text-[#54662E] pt-0.5">
+                      Cambia a US$1,600
+                    </div>
+                  </div>
+                </div>
+
+                {/* Switch Toggle */}
+                <div className="shrink-0 pl-2">
+                  <button
+                    type="button"
+                    role="switch"
+                    aria-checked={addonContinuidad}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      toggleContinuidad();
+                    }}
+                    className={`relative inline-flex h-7 w-12 shrink-0 cursor-pointer rounded-full p-0.5 transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-[#54662E] focus:ring-offset-2 ${
+                      addonContinuidad ? 'bg-[#222918]' : 'bg-[#D6CFC2]'
+                    }`}
+                    aria-label="Activar dos sesiones de seguimiento"
+                  >
+                    <span
+                      aria-hidden="true"
+                      className={`pointer-events-none inline-block h-6 w-6 transform rounded-full bg-white shadow-md ring-0 transition duration-200 ease-in-out ${
+                        addonContinuidad ? 'translate-x-5' : 'translate-x-0'
+                      }`}
+                    />
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
 
-          <div className="space-y-6">
-            {/* Opción 1: Viaje RAÍZ */}
-            <div className="bg-[#FAF5EE] rounded-3xl p-6 sm:p-8 border border-[#363D28]/12 shadow-xs hover:border-[#363D28]/30 transition-all space-y-4">
-              <div>
-                <h3 className="text-xl sm:text-2xl font-bold text-[#222918]">
-                  Viaje RAÍZ
-                </h3>
-                <div className="text-2xl sm:text-3xl font-black text-[#5A6836] mt-1">
-                  US$1,200
+          {/* Columna Derecha: Tarjeta de Resumen en Tiempo Real */}
+          <div className="lg:col-span-5 lg:sticky lg:top-24">
+            <div className="bg-white rounded-3xl p-6 sm:p-8 border border-[#222918]/15 shadow-md space-y-6">
+              {/* Encabezado del Resumen */}
+              <div className="space-y-1.5 border-b border-[#222918]/10 pb-4">
+                <div className="flex items-center justify-between">
+                  <span className="text-lg font-bold text-[#222918]">
+                    Tu plan seleccionado
+                  </span>
+                  <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-[#DFEC9C] text-[#222918]">
+                    {currentPlan.badge}
+                  </span>
                 </div>
+                <h4 className="text-base font-extrabold text-[#222918]">
+                  {currentPlan.name}
+                </h4>
+                <p className="text-xs sm:text-sm text-[#363D28]/75 leading-relaxed">
+                  {currentPlan.description}
+                </p>
               </div>
-              <p className="text-sm sm:text-base text-[#363D28]/90 font-normal leading-relaxed">
-                12 sesiones individuales para comprender tu historia y elegir qué quieres construir.
-              </p>
-              <a
-                href="https://wa.me/51940497864?text=Hola%20Anatolia,%20quiero%20comenzar%20mi%20Viaje%20RA%C3%8DZ%20(US$1,200)"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full bg-[#111111] hover:bg-[#363D28] text-white font-black text-xs sm:text-sm uppercase tracking-wider py-4 px-6 rounded-full inline-flex items-center justify-center gap-2 shadow-sm hover:shadow-md transition-all text-center"
-              >
-                <span>QUIERO COMENZAR MI VIAJE RAÍZ →</span>
-              </a>
-            </div>
 
-            {/* Opción 2: Viaje RAÍZ + Acción */}
-            <div className="bg-[#FAF5EE] rounded-3xl p-6 sm:p-8 border border-[#363D28]/12 shadow-xs hover:border-[#363D28]/30 transition-all space-y-4 relative">
+              {/* Precio Dinámico Grande */}
               <div>
-                <span className="inline-block bg-[#D8E488] text-[#222918] text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-2">
-                  Experiencia ampliada
-                </span>
-                <h3 className="text-xl sm:text-2xl font-bold text-[#222918]">
-                  Viaje RAÍZ + Acción
-                </h3>
-                <div className="text-2xl sm:text-3xl font-black text-[#5A6836] mt-1">
-                  US$1,350
+                <div className="flex items-baseline gap-1">
+                  <span className="text-2xl sm:text-3xl font-extrabold text-[#222918]">US$</span>
+                  <span className="text-5xl sm:text-6xl font-black text-[#222918] tracking-tight transition-all duration-300">
+                    {currentPlan.price.toLocaleString()}
+                  </span>
+                </div>
+                <div className="text-xs sm:text-sm font-medium text-[#363D28]/75 mt-1.5">
+                  <span>{currentPlan.breakdown}</span>
                 </div>
               </div>
-              <p className="text-sm sm:text-base text-[#363D28]/90 font-normal leading-relaxed">
-                12 sesiones individuales + una sesión estratégica para convertir tus descubrimientos en un plan de acción 10-10-10-1.
-              </p>
-              <a
-                href="https://wa.me/51940497864?text=Hola%20Anatolia,%20quiero%20el%20programa%20Viaje%20RA%C3%8DZ%20%2B%20Acci%C3%B3n%20(US$1,350)"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full bg-[#111111] hover:bg-[#363D28] text-white font-black text-xs sm:text-sm uppercase tracking-wider py-4 px-6 rounded-full inline-flex items-center justify-center gap-2 shadow-sm hover:shadow-md transition-all text-center"
-              >
-                <span>QUIERO PASAR A LA ACCIÓN →</span>
-              </a>
-            </div>
 
-            {/* Opción 3: Viaje RAÍZ Continuidad */}
-            <div className="bg-[#FAF5EE] rounded-3xl p-6 sm:p-8 border border-[#363D28]/12 shadow-xs hover:border-[#363D28]/30 transition-all space-y-4">
+              {/* Botón de Acción Principal a WhatsApp con el plan configurado */}
               <div>
-                <h3 className="text-xl sm:text-2xl font-bold text-[#222918]">
-                  Viaje RAÍZ Continuidad
-                </h3>
-                <div className="text-2xl sm:text-3xl font-black text-[#5A6836] mt-1">
-                  US$1,600
-                </div>
+                <a
+                  href={whatsAppCheckoutUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full bg-[#111111] hover:bg-[#363D28] text-white font-bold text-xs sm:text-sm uppercase tracking-wider py-4 px-6 rounded-full inline-flex items-center justify-center gap-2 shadow-sm hover:shadow-md transition-all text-center group"
+                >
+                  <span>{currentPlan.ctaText}</span>
+                  <span className="text-base group-hover:translate-x-0.5 transition-transform" aria-hidden="true">↗</span>
+                </a>
+                <p className="text-[11px] text-[#363D28]/60 text-center mt-2">
+                  Conversa directamente con Anatolia para coordinar inicio y agenda.
+                </p>
               </div>
-              <p className="text-sm sm:text-base text-[#363D28]/90 font-normal leading-relaxed">
-                Todo lo anterior + dos sesiones de seguimiento: una a los 6 meses y otra a los 12 meses.
-              </p>
-              <a
-                href="https://wa.me/51940497864?text=Hola%20Anatolia,%20quiero%20informaci%C3%B3n%20sobre%20Viaje%20RA%C3%8DZ%20Continuidad%20(US$1,600)"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full bg-[#111111] hover:bg-[#363D28] text-white font-black text-xs sm:text-sm uppercase tracking-wider py-4 px-6 rounded-full inline-flex items-center justify-center gap-2 shadow-sm hover:shadow-md transition-all text-center"
-              >
-                <span>QUIERO SEGUIR CULTIVANDO MI RAÍZ →</span>
-              </a>
+
+              {/* Sección Siempre Incluido con Checkmarks Circulares */}
+              <div className="border-t border-[#222918]/10 pt-5 space-y-3.5">
+                <h5 className="text-xs font-bold uppercase tracking-wider text-[#222918]">
+                  Siempre incluido en tu programa:
+                </h5>
+                <ul className="space-y-2.5">
+                  {BASE_INCLUSIONS.map((item, idx) => (
+                    <li key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm text-[#363D28]/90">
+                      <span className="w-4 h-4 rounded-full bg-[#222918] flex items-center justify-center text-white shrink-0 mt-0.5">
+                        <svg className="w-2.5 h-2.5 stroke-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3.5">
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                        </svg>
+                      </span>
+                      <span className="leading-snug">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
           </div>
-        </section>
-      )}
+        </div>
+      </section>
 
       {/* ------------------------------------------------------------- */}
       {/* SECCIÓN 5: FORMULARIO DE CONSULTA & FAQ */}

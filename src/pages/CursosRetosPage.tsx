@@ -171,49 +171,53 @@ export default function CursosRetosPage({ onNavigate }: CursosRetosPageProps) {
   return (
     <div className="bg-[#FAF5EE] text-[#222918] font-sans min-h-screen pt-28 pb-20 md:pt-36 md:pb-28">
       {/* ------------------------------------------------------------- */}
-      {/* HERO: PEQUEÑOS PASOS. NUEVAS FORMAS DE ELEGIR. (Referencia Img) */}
+      {/* HERO: PEQUEÑOS PASOS. NUEVAS FORMAS DE ELEGIR. (Background Premium) */}
       {/* ------------------------------------------------------------- */}
       <section className="max-w-6xl mx-auto px-5 sm:px-8 mb-12 md:mb-16">
-        <div className="bg-[#F6F0E8] rounded-3xl p-8 sm:p-12 md:p-16 border border-[#363D28]/10 relative overflow-hidden shadow-xs">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
-            <div className="lg:col-span-7 space-y-5 text-left">
-              {/* Badge */}
-              <div className="inline-block bg-[#DFEC9C] text-[#222918] text-xs font-black px-4 py-1.5 rounded-full uppercase tracking-wider">
-                APRENDE A TU RITMO
-              </div>
+        <div className="relative rounded-[32px] overflow-hidden min-h-[460px] sm:min-h-[520px] md:min-h-[560px] flex items-center shadow-lg border border-[#222918]/15 bg-[#FAF7F2]">
+          {/* Foto como background cubriendo el hero */}
+          <div
+            className="absolute inset-0 bg-cover bg-right md:bg-center transition-transform duration-1000"
+            style={{ backgroundImage: `url(${BRAND_ASSETS.heroCursosBackground})` }}
+          />
 
-              {/* Titular con chispas */}
-              <div className="relative inline-block">
-                <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black uppercase tracking-tight text-[#222918] leading-[1.08]">
-                  Pequeños pasos.<br />
-                  Nuevas formas de elegir.
-                </h1>
-                {/* Chispas arriba a la derecha */}
-                <div className="hidden sm:block absolute -top-4 -right-8 text-[#222918] text-xl font-mono tracking-tighter select-none font-bold">
-                  ///
-                </div>
-              </div>
+          {/* Degradado marfil premium superpuesto para máxima legibilidad del texto en el lado izquierdo */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#FAF5EE] via-[#FAF5EE]/95 via-50% to-[#FAF5EE]/30 md:to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#FAF5EE]/80 via-transparent to-transparent md:hidden" />
 
-              {/* Subtítulo */}
-              <p className="text-base sm:text-lg text-[#363D28]/90 font-normal leading-relaxed max-w-xl">
-                Explora cursos, herramientas y retos gratuitos para comprenderte mejor y llevar lo que aprendes a tu vida.
-              </p>
+          {/* Contenido principal en el lado izquierdo */}
+          <div className="relative z-10 p-6 sm:p-10 md:p-14 lg:p-16 max-w-2xl text-left space-y-5">
+            {/* Badge */}
+            <div className="inline-block bg-[#DFEC9C] text-[#222918] text-xs font-black px-4 py-1.5 rounded-full uppercase tracking-wider shadow-2xs">
+              APRENDE A TU RITMO
             </div>
 
-            {/* Imagen decorativa de hojas/naturaleza */}
-            <div className="lg:col-span-5 flex justify-center lg:justify-end">
-              <div className="relative w-full max-w-sm rounded-2xl overflow-hidden shadow-sm border border-[#363D28]/10 bg-[#FAF5EE] p-4">
-                <img
-                  src={BRAND_ASSETS.senseComprender}
-                  alt="Aprende a tu ritmo con Anatolia Zapata"
-                  className="w-full h-48 sm:h-56 object-cover rounded-xl"
-                />
-                <div className="mt-3 text-center">
-                  <span className="text-xs font-bold uppercase tracking-wider text-[#5A6836]">
-                    Contenido 100% Gratuito en YouTube
-                  </span>
-                </div>
+            {/* Titular con chispas */}
+            <div className="relative inline-block">
+              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black uppercase tracking-tight text-[#222918] leading-[1.08]">
+                Pequeños pasos.<br />
+                Nuevas formas de elegir.
+              </h1>
+              {/* Chispas arriba a la derecha */}
+              <div className="hidden sm:block absolute -top-4 -right-8 text-[#222918] text-xl font-mono tracking-tighter select-none font-bold">
+                ///
               </div>
+            </div>
+
+            {/* Subtítulo */}
+            <p className="text-base sm:text-lg text-[#363D28] font-normal leading-relaxed max-w-xl">
+              Explora cursos, herramientas y retos gratuitos para comprenderte mejor y llevar lo que aprendes a tu vida.
+            </p>
+
+            {/* Botón CTA */}
+            <div className="pt-2">
+              <a
+                href="#galeria-youtube"
+                className="inline-flex items-center gap-2.5 px-6 py-3 rounded-full bg-[#52632C] hover:bg-[#435224] text-white text-xs sm:text-sm font-bold uppercase tracking-wider transition-all shadow-md hover:shadow-lg active:scale-[0.98]"
+              >
+                <span>VER VIDEOS Y CLASES GRATUITAS</span>
+                <span aria-hidden="true">↓</span>
+              </a>
             </div>
           </div>
         </div>
